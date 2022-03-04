@@ -36,6 +36,14 @@ public class Epreuve {
 		this.terrain = terrain;
 	}
 	
+	
+	public void confirmer()
+	{
+		
+	}
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -108,12 +116,6 @@ public class Epreuve {
 		this.participants = participants;
 	}
 
-
-	public void setReservations(List<Reservation> reservations) {
-		this.reservations = reservations;
-	}
-
-
 	public void setScore(Score score) {
 		this.score = score;
 	}
@@ -121,6 +123,11 @@ public class Epreuve {
 
 	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
+	}
+
+	
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	@Override
