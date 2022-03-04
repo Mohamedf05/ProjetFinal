@@ -69,7 +69,7 @@ public class Epreuve {
 	}
 
 
-	public List<reservation> getReservations() {
+	public List<Reservation> getReservations() {
 		return reservations;
 	}
 
@@ -109,7 +109,7 @@ public class Epreuve {
 	}
 
 
-	public void setReservations(List<reservation> reservations) {
+	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
 	}
 
