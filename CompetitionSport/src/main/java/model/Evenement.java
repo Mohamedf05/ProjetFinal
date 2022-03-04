@@ -4,12 +4,24 @@ import java.time.LocalDate;
 
 public class Evenement {
 	
+	private Integer id;
 	private String nom;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
 	private String ville;
 	private boolean statut;
 	
+	
+	
+	public Evenement(Integer id, String nom, LocalDate dateDebut, LocalDate dateFin, String ville, boolean statut) {
+		this.id = id;
+		this.nom = nom;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.ville = ville;
+		this.statut = statut;
+	}
+
 	public Evenement(String nom, LocalDate dateDebut, LocalDate dateFin, String ville, boolean statut) {
 		super();
 		this.nom = nom;
@@ -17,6 +29,14 @@ public class Evenement {
 		this.dateFin = dateFin;
 		this.ville = ville;
 		this.statut = statut;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNom() {
@@ -61,10 +81,8 @@ public class Evenement {
 
 	@Override
 	public String toString() {
-		return "Evenement [nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", ville=" + ville
-				+ ", statut=" + statut + "]";
+		return "Evenement [id=" + id + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", ville="
+				+ ville + ", statut=" + statut + "]";
 	}
-
-	
 	
 }

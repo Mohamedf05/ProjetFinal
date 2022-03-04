@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Organisateur {
 	
+	private Integer id;
 	private String nom;
 	private String prenom;
 	private String password;
@@ -13,8 +14,20 @@ public class Organisateur {
 	private Logement logement;
 	
 	
+	
+	public Organisateur(Integer id, String nom, String prenom, String password, Adresse adresse, String raisonSoc,
+			Terrain terrain, Logement logement) {
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.password = password;
+		this.adresse = adresse;
+		this.raisonSoc = raisonSoc;
+		this.terrain = terrain;
+		this.logement = logement;
+	}
+
 	public Organisateur(String nom, String prenom, String password, String numero, String voie, String ville, String cp, String raisonSoc, Terrain terrain, Logement logement) {
-		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
@@ -24,7 +37,14 @@ public class Organisateur {
 		this.logement = logement;
 	}
 
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -73,13 +93,6 @@ public class Organisateur {
 	public void setRaisonSoc(String raisonSoc) {
 		this.raisonSoc = raisonSoc;
 	}
-
-
-	@Override
-	public String toString() {
-		return "Organisateur [nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", raisonSoc=" + raisonSoc
-				+ "]";
-	}
 	
 	public static Evenement creer(String nom, LocalDate dateDebut, LocalDate dateFin, String ville, boolean statut)
 	{
@@ -96,5 +109,10 @@ public class Organisateur {
 	{
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "Organisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password
+				+ ", adresse=" + adresse + ", raisonSoc=" + raisonSoc+ "]";
 	
 }
