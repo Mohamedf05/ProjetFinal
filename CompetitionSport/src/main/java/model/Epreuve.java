@@ -4,16 +4,28 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Epreuve {
+	private Integer id;
 	private  int maxParticipant;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
 	private Discipline discipline;
 	private List<Athlete> participants;
-	private List<reservation> reservations;
+	private List<Reservation> reservations;
 	private Score score;
 	private Terrain terrain;
 	
-	
+	public Epreuve(Integer id, int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
+			List<Athlete> participants, Score score, Terrain terrain) {
+		this.id = id;
+		this.maxParticipant = maxParticipant;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.discipline = discipline;
+		this.participants = participants;
+		this.score = score;
+		this.terrain = terrain;
+	}
+
 	public Epreuve(int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
 			List<Athlete> participants, Terrain terrain) {
 		this.maxParticipant = maxParticipant;
@@ -23,7 +35,14 @@ public class Epreuve {
 		this.participants = participants;
 		this.terrain = terrain;
 	}
+	
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public int getMaxParticipant() {
 		return maxParticipant;
@@ -104,14 +123,11 @@ public class Epreuve {
 		this.terrain = terrain;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Epreuve [maxParticipant=" + maxParticipant + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
+		return "Epreuve [id=" + id + ", maxParticipant=" + maxParticipant + ", dateDebut=" + dateDebut + ", dateFin="
+				+ dateFin + ", discipline=" + discipline + ", participants=" + participants + ", terrain=" + terrain
+				+ "]";
 	}
-	
-	
-	
-	
 
 }
