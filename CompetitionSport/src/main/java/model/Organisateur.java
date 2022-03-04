@@ -8,30 +8,27 @@ public class Organisateur {
 	private String nom;
 	private String prenom;
 	private String password;
-	private Adresse adresse;
 	private String raisonSoc;
 	private Terrain terrain;
 	private Logement logement;
 	
 	
 	
-	public Organisateur(Integer id, String nom, String prenom, String password, Adresse adresse, String raisonSoc,
+	public Organisateur(Integer id, String nom, String prenom, String password, String raisonSoc,
 			Terrain terrain, Logement logement) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
-		this.adresse = adresse;
 		this.raisonSoc = raisonSoc;
 		this.terrain = terrain;
 		this.logement = logement;
 	}
 
-	public Organisateur(String nom, String prenom, String password, String numero, String voie, String ville, String cp, String raisonSoc, Terrain terrain, Logement logement) {
+	public Organisateur(String nom, String prenom, String password, String raisonSoc, Terrain terrain, Logement logement) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.password = password;
-		this.adresse = new Adresse(numero,voie,ville,cp);
 		this.raisonSoc = raisonSoc;
 		this.terrain = terrain;
 		this.logement = logement;
@@ -75,16 +72,6 @@ public class Organisateur {
 	}
 
 
-	public Adresse getAdresse() {
-		return adresse;
-	}
-
-
-	public void setAdresse(Adresse adresse) {
-		this.adresse = adresse;
-	}
-
-
 	public String getRaisonSoc() {
 		return raisonSoc;
 	}
@@ -93,26 +80,29 @@ public class Organisateur {
 	public void setRaisonSoc(String raisonSoc) {
 		this.raisonSoc = raisonSoc;
 	}
-	
-	public static Evenement creer(String nom, LocalDate dateDebut, LocalDate dateFin, String ville, boolean statut)
-	{
-		Evenement event = new Evenement(nom, dateDebut, dateFin, ville, statut);
-		return event;
+
+	public Terrain getTerrain() {
+		return terrain;
 	}
-	
-	public static void modifier(Evenement)
-	{
-		
+
+	public void setTerrain(Terrain terrain) {
+		this.terrain = terrain;
 	}
-	
-	public static void supprimer(Evenement)
-	{
-		
+
+	public Logement getLogement() {
+		return logement;
 	}
-	
+
+	public void setLogement(Logement logement) {
+		this.logement = logement;
+	}
+
 	@Override
 	public String toString() {
 		return "Organisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password
-				+ ", adresse=" + adresse + ", raisonSoc=" + raisonSoc+ "]";
+				+ ", raisonSoc=" + raisonSoc + ", terrain=" + terrain + ", logement=" + logement + "]";
+	}
+	
+	
 	
 }
