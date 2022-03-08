@@ -15,24 +15,22 @@ public class Epreuve {
 	private Terrain terrain;
 	
 	public Epreuve(Integer id, int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
-			List<Athlete> participants, Score score, Terrain terrain) {
+			 Score score, Terrain terrain) {
 		this.id = id;
 		this.maxParticipant = maxParticipant;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.discipline = discipline;
-		this.participants = participants;
 		this.score = score;
 		this.terrain = terrain;
 	}
 
 	public Epreuve(int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
-			List<Athlete> participants, Terrain terrain) {
+			 Terrain terrain) {
 		this.maxParticipant = maxParticipant;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.discipline = discipline;
-		this.participants = participants;
 		this.terrain = terrain;
 	}
 	
