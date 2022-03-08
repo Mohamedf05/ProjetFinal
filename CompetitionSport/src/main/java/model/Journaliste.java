@@ -1,9 +1,15 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Journaliste extends Client {
 	
 	private String entreprise;
 
+	public Journaliste() {
+	}
+	
 	public Journaliste(Integer id, String nom, String prenom, String mail, String password, Adresse adresse,
 			String entreprise) {
 		super(id, nom, prenom, mail, password, adresse);

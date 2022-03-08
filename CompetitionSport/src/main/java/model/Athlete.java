@@ -3,11 +3,20 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Athlete extends Client {
 	
 	private LocalDate dateNaissance;
-	private List<Epreuve> epreuves;
+	
+	@ManyToMany(mappedBy = "participants")
+	private transient List<Epreuve> epreuves;
 
+	public Athlete() {
+	}
+	
 	public Athlete(Integer id, String nom, String prenom, String mail, String password, Adresse adresse,
 			LocalDate dateNaissance) {
 		super(id, nom, prenom, mail, password, adresse);

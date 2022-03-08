@@ -2,10 +2,16 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Spectateur extends Client {
 	
 	private LocalDate dateNaissance;
 
+	public Spectateur() {
+	}
+	
 	public Spectateur(Integer id, String nom, String prenom, String mail, String password, Adresse adresse,
 			LocalDate dateNaissance) {
 		super(id, nom, prenom, mail, password, adresse);
