@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +23,8 @@ public abstract class Client {
 	protected String mail;
 	protected String password;
 	
-	protected transient Adresse adresse;
+	@Embedded
+	protected Adresse adresse;
 	
 	@OneToMany(mappedBy = "client")
 	protected List<Reservation> reservations;
