@@ -14,10 +14,10 @@ public class Organisateur extends Client {
 
 	private String raisonSoc;
 	
-	//@ManyToMany
-	private transient List<Terrain> terrains;
+	@ManyToMany
+	private List<Terrain> terrains;
 	
-	//@ManyToMany
+	@ManyToMany
 	private transient List<Logement> logements;
 	
 	@ElementCollection()
@@ -80,5 +80,12 @@ public class Organisateur extends Client {
 	public void setEvenements(List<Evenement> evenements) {
 		this.evenements = evenements;
 	}
+
+	@Override
+	public String toString() {
+		return "Organisateur [raisonSoc=" + raisonSoc + ", terrains=" + terrains + ", logements=" + logements
+				+ ", disciplines=" + disciplines + "]";
+	}
+
 
 }

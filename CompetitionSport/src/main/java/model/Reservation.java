@@ -34,12 +34,12 @@ public class Reservation {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
-	private Logement logement;
+	private TypeLogement logement;
 	
 	public Reservation() {
 	}
 	
-	public Reservation(Client client, Epreuve epreuve, Logement logement) {
+	public Reservation(Client client, Epreuve epreuve, TypeLogement logement) {
 		this.client = client;
 		this.epreuve = epreuve;
 		this.logement = logement;
@@ -88,7 +88,7 @@ public class Reservation {
 	}
 
 
-	public Logement getLogement() {
+	public TypeLogement getLogement() {
 		return logement;
 	}
 
@@ -123,7 +123,7 @@ public class Reservation {
 	}
 
 
-	public void setLogement(Logement logement) {
+	public void setLogement(TypeLogement logement) {
 		this.logement = logement;
 	}
 
