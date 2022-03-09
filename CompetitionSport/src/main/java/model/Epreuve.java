@@ -3,16 +3,35 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Epreuve {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private  int maxParticipant;
 	private LocalDate dateDebut;
 	private LocalDate dateFin;
+	@Enumerated
+	@Column(columnDefinition = "Enum('Athletisme', 'Baseball', 'Basketball', 'Boxe', 'Cyclisme', 'Equitation', 'Handball', 'Football', 'Judo', 'Natation', 'Skate', 'Tennis')")
 	private Discipline discipline;
+	@OneToMany(mappedBy = "epreuve")
 	private List<Athlete> participants;
+	@OneToMany(mappedBy = "epreuve")
 	private List<Reservation> reservations;
 	private Score score;
+	@Enumerated
+	@Column(columnDefinition = "Enum('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
 	private Terrain terrain;
+	
+	public Epreuve() {}
 	
 	public Epreuve(Integer id, int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
 			 Score score, Terrain terrain) {
