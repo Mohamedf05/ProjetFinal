@@ -2,16 +2,32 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
 public class Evenement {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nom;
+	@Column(name="date_debut")
 	private LocalDate dateDebut;
+	@Column(name="date_fin")
 	private LocalDate dateFin;
 	private String ville;
 	private boolean statut;
+	@ManyToOne
+	@JoinColumn(name="id_organisateur")
+	private Organisateur organisateur;
 	
-	
+	public Evenement (){}
 	
 	public Evenement(Integer id, String nom, LocalDate dateDebut, LocalDate dateFin, String ville, boolean statut) {
 		this.id = id;
