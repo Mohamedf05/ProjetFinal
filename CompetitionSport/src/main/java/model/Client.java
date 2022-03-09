@@ -21,7 +21,8 @@ public abstract class Client {
 	protected String prenom;
 	protected String mail;
 	protected String password;
-	protected Adresse adresse;
+	
+	protected transient Adresse adresse;
 	
 	@OneToMany(mappedBy = "client")
 	protected List<Reservation> reservations;

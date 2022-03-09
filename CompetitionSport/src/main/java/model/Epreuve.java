@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -22,11 +23,11 @@ public class Epreuve {
 	@Enumerated
 	@Column(columnDefinition = "Enum('Athletisme', 'Baseball', 'Basketball', 'Boxe', 'Cyclisme', 'Equitation', 'Handball', 'Football', 'Judo', 'Natation', 'Skate', 'Tennis')")
 	private Discipline discipline;
-	@OneToMany(mappedBy = "epreuve")
+	@ManyToMany
 	private List<Athlete> participants;
 	@OneToMany(mappedBy = "epreuve")
 	private List<Reservation> reservations;
-	private Score score;
+	private transient Score score;
 	@Enumerated
 	@Column(columnDefinition = "Enum('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
 	private Terrain terrain;

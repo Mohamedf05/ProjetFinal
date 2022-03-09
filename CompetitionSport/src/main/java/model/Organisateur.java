@@ -2,7 +2,10 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -11,13 +14,14 @@ public class Organisateur extends Client {
 
 	private String raisonSoc;
 	
-	@ManyToMany
-	private List<Terrain> terrains;
+	//@ManyToMany
+	private transient List<Terrain> terrains;
 	
-	@ManyToMany
-	private List<Logement> logements;
+	//@ManyToMany
+	private transient List<Logement> logements;
 	
-	@ManyToMany
+	@ElementCollection()
+	@Enumerated(EnumType.STRING)
 	private List<Discipline> disciplines;
 	
 	@OneToMany(mappedBy = "organisateur")
