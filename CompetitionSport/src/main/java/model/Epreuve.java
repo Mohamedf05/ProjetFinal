@@ -30,12 +30,12 @@ public class Epreuve {
 	private transient Score score;
 	@Enumerated
 	@Column(columnDefinition = "Enum('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
-	private Terrain terrain;
+	private TypeTerrain terrain;
 	
 	public Epreuve() {}
 	
 	public Epreuve(Integer id, int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
-			 Score score, Terrain terrain) {
+			 Score score, TypeTerrain terrain) {
 		this.id = id;
 		this.maxParticipant = maxParticipant;
 		this.dateDebut = dateDebut;
@@ -46,7 +46,7 @@ public class Epreuve {
 	}
 
 	public Epreuve(int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
-			 Terrain terrain) {
+			 TypeTerrain terrain) {
 		this.maxParticipant = maxParticipant;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
@@ -105,7 +105,7 @@ public class Epreuve {
 	}
 
 
-	public Terrain getTerrain() {
+	public TypeTerrain getTerrain() {
 		return terrain;
 	}
 
@@ -139,7 +139,7 @@ public class Epreuve {
 	}
 
 
-	public void setTerrain(Terrain terrain) {
+	public void setTerrain(TypeTerrain terrain) {
 		this.terrain = terrain;
 	}
 
