@@ -29,7 +29,7 @@ public class Reservation {
 	private Client client;
 	
 	@ManyToOne
-	@JoinColumn(name="epreuvee_fk")
+	@JoinColumn(name="epreuve_fk")
 	private Epreuve epreuve;
 	
 	@Enumerated(EnumType.STRING)
