@@ -3,15 +3,41 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Reservation {
+	
+	@Id
 	private Integer id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
 	private Statut statut;
+	
 	private LocalDate date;
 	private LocalTime heure;
+	
+	@ManyToOne
+	@JoinColumn(name="client_fk")
 	private Client client;
+	
+	@ManyToOne
+	@JoinColumn(name="epreuvee_fk")
 	private Epreuve epreuve;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
 	private Logement logement;
 	
+	public Reservation() {
+	}
 	
 	public Reservation(Client client, Epreuve epreuve, Logement logement) {
 		this.client = client;

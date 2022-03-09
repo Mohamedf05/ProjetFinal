@@ -12,7 +12,7 @@ public class Athlete extends Client {
 	private LocalDate dateNaissance;
 	
 	@ManyToMany(mappedBy = "participants")
-	private transient List<Epreuve> epreuves;
+	private List<Epreuve> epreuves;
 
 	public Athlete() {
 	}
