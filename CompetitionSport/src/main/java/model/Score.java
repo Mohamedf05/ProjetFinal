@@ -2,9 +2,12 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 public class Score {
 	private int score;
 	private List<Athlete> athletes;
+	
+	public Score() {}
 	
 	public Score(int score, List<Athlete> athletes) {
 		this.score = score;
