@@ -3,38 +3,40 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
 import util.Context;
-import model.Epreuve;
+import model.Reservation;
 
-public class DAOEpreuve implements IDAOEpreuve{
+public class DAOReservation implements IDAOReservation{
 
 	@Override
-	public Epreuve findById(Integer id) {
+	public Reservation findById(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		Epreuve ep = em.find(Epreuve.class, id);
+		Reservation r = em.find(Reservation.class, id);
 		em.close();
-		return ep;
+		return r;
 	}
 
 	@Override
-	public List<Epreuve> findAll() {
+	public List<Reservation> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		List<Epreuve> epreuves = em.createQuery("SELECT ep from Epreuve ep").getResultList();
+		List<Reservation> reservations = em.createQuery("SELECT r from Reservation r").getResultList();
 		em.close();
-		return epreuves;
+		return reservations;
 	}
 
 	@Override
-	public Epreuve save(Epreuve ep) {
+	public Reservation save(Reservation r) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 
 		try {
 			em.getTransaction().begin();
-			ep = em.merge(ep);
+
+			r = em.merge(r);
 			em.getTransaction().commit();
-		} catch(Exception e) {e.printStackTrace();}
+		}catch(Exception e) {e.printStackTrace();}
 		em.close();
-		return ep;
+		return r;
 	}
 
 
@@ -42,11 +44,11 @@ public class DAOEpreuve implements IDAOEpreuve{
 	public void delete(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Epreuve ep = em.find(Epreuve.class, id);
-		em.remove(ep);
+		Reservation r = em.find(Reservation.class, id);
+		em.remove(r);
 		em.getTransaction().commit();
 		em.close();
-
+		
 	}
 
 }

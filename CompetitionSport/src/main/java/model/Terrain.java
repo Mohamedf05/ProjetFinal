@@ -11,11 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Terrain {
 
 	@Id
@@ -31,12 +29,20 @@ public class Terrain {
 	@Column(columnDefinition = "ENUM('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
 	private TypeTerrain typeTerrain;
 	
+	@Version
+	protected int version;
 	
 	
 	public Terrain() {
 	}
 
-
+	public Terrain(Integer id, String nom, Adresse adresse, TypeTerrain typeTerrain) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.adresse = adresse;
+		this.typeTerrain = typeTerrain;
+	}
 
 	public Terrain(Integer id, String nom, Adresse adresse, List<Discipline> disciplines, TypeTerrain typeTerrain) {
 		super();
@@ -107,6 +113,14 @@ public class Terrain {
 		this.typeTerrain = typeTerrain;
 	}
 
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 
 	@Override

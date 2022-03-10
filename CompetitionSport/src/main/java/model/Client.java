@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -29,24 +30,27 @@ public abstract class Client {
 	@OneToMany(mappedBy = "client")
 	protected List<Reservation> reservations;
 	
+	@Version
+	protected int version;
+	
 	public Client() {
 	}
 	
-	public Client(Integer id, String nom, String prenom, String mail, String password, Adresse adresse) {
+	public Client(Integer id, String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
 		this.password = password;
-		this.adresse = adresse;
+		this.adresse = new Adresse(numero,voie,ville,cp);
 	}
 
-	public Client(String nom, String prenom, String mail, String password, Adresse adresse) {
+	public Client(String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
 		this.password = password;
-		this.adresse = adresse;
+		this.adresse = new Adresse(numero,voie,ville,cp);
 	}
 	
 	public Integer getId() {
@@ -94,6 +98,14 @@ public abstract class Client {
 
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

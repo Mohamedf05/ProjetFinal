@@ -17,15 +17,15 @@ public class Athlete extends Client {
 	public Athlete() {
 	}
 	
-	public Athlete(Integer id, String nom, String prenom, String mail, String password, Adresse adresse,
+	public Athlete(Integer id, String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp,
 			LocalDate dateNaissance) {
-		super(id, nom, prenom, mail, password, adresse);
+		super(id, nom, prenom, mail, password, numero,voie,ville,cp);
 		this.setDateNaissance(dateNaissance);
 	}
 	
-	public Athlete(String nom, String prenom, String mail, String password, Adresse adresse,
+	public Athlete(String nom, String prenom, String mail, String password,String numero, String voie, String ville, String cp,
 			LocalDate dateNaissance) {
-		super(nom, prenom, mail, password, adresse);
+		super(nom, prenom, mail, password, numero,voie,ville,cp);
 		this.setDateNaissance(dateNaissance);
 	}
 

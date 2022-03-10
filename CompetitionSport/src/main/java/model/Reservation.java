@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 @Entity
 public class Reservation {
@@ -35,6 +36,9 @@ public class Reservation {
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
 	private TypeLogement logement;
+	
+	@Version
+	protected int version;
 	
 	public Reservation() {
 	}
@@ -125,6 +129,14 @@ public class Reservation {
 
 	public void setLogement(TypeLogement logement) {
 		this.logement = logement;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 

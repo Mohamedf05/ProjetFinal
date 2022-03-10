@@ -12,15 +12,15 @@ public class Spectateur extends Client {
 	public Spectateur() {
 	}
 	
-	public Spectateur(Integer id, String nom, String prenom, String mail, String password, Adresse adresse,
+	public Spectateur(Integer id, String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp,
 			LocalDate dateNaissance) {
-		super(id, nom, prenom, mail, password, adresse);
+		super(id, nom, prenom, mail, password, numero,voie,ville,cp);
 		this.setDateNaissance(dateNaissance);
 	}
 	
-	public Spectateur(String nom, String prenom, String mail, String password, Adresse adresse,
+	public Spectateur(String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp,
 			LocalDate dateNaissance) {
-		super(nom, prenom, mail, password, adresse);
+		super(nom, prenom, mail, password, numero,voie,ville,cp);
 		this.setDateNaissance(dateNaissance);
 	}
 

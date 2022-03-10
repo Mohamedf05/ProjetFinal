@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 
 @Entity
 public class Epreuve {
@@ -31,6 +32,9 @@ public class Epreuve {
 	@Enumerated
 	@Column(columnDefinition = "Enum('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
 	private TypeTerrain terrain;
+	
+	@Version
+	protected int version;
 	
 	public Epreuve() {}
 	
@@ -146,6 +150,14 @@ public class Epreuve {
 	
 	public void setReservations(List<Reservation> reservations) {
 		this.reservations = reservations;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override
