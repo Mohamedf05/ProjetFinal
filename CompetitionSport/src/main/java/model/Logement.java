@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,10 +26,11 @@ public class Logement {
 	@Column(columnDefinition = "ENUM('Camping', 'Hotel', 'Villa', 'Village_Vacances')")
 	private TypeLogement typeLogement;
 	
+	@Version
+	protected int version;
 	
-	public Logement() {
-		super();
-	}
+	
+	public Logement() {}
 
 	public Logement(Integer id, String nom, Adresse adresse, TypeLogement typeLogement) {
 		super();
@@ -68,6 +70,14 @@ public class Logement {
 
 	public void setTypeLogement(TypeLogement typeLogement) {
 		this.typeLogement = typeLogement;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

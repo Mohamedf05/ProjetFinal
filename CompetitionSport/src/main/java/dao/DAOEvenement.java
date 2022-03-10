@@ -4,49 +4,50 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import util.Context;
-import model.Epreuve;
+import model.Evenement;
 
-public class DAOEpreuve implements IDAOEpreuve{
+public class DAOEvenement implements IDAOEvenement{
 
 	@Override
-	public Epreuve findById(Integer id) {
+	public Evenement findById(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		Epreuve ep = em.find(Epreuve.class, id);
+		Evenement e = em.find(Evenement.class, id);
 		em.close();
-		return ep;
+		return e;
 	}
 
 	@Override
-	public List<Epreuve> findAll() {
+	public List<Evenement> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		List<Epreuve> epreuves = em.createQuery("SELECT ep from Epreuve ep").getResultList();
+		List<Evenement> Evenements = em.createQuery("SELECT e from Evenement e").getResultList();
 		em.close();
-		return epreuves;
+		return Evenements;
 	}
 
 	@Override
-	public Epreuve save(Epreuve ep) {
+	public Evenement save(Evenement ev) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 
 		try {
 			em.getTransaction().begin();
-			ep = em.merge(ep);
-			em.getTransaction().commit();
-		} catch(Exception e) {e.printStackTrace();}
-		em.close();
-		return ep;
-	}
 
+			ev = em.merge(ev);
+			em.getTransaction().commit();
+		}catch(Exception e) {e.printStackTrace();}
+		em.close();
+		return ev;
+	}
 
 	@Override
 	public void delete(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Epreuve ep = em.find(Epreuve.class, id);
-		em.remove(ep);
+		Evenement e = em.find(Evenement.class, id);
+		em.remove(e);
 		em.getTransaction().commit();
 		em.close();
 
 	}
+
 
 }

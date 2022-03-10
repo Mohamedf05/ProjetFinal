@@ -31,13 +31,13 @@ public class Organisateur extends Client {
 	public Organisateur() {
 	}
 
-	public Organisateur(Integer id, String nom, String prenom, String mail, String password, Adresse adresse, String raisonSoc) {
-		super(id, nom, prenom, mail, password, adresse);
+	public Organisateur(Integer id, String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp, String raisonSoc) {
+		super(id, nom, prenom, mail, password, numero,voie,ville,cp);
 		this.raisonSoc = raisonSoc;
 	}
 
-	public Organisateur(String nom, String prenom, String mail, String password, Adresse adresse, String raisonSoc) {
-		super(nom, prenom, mail, password, adresse);
+	public Organisateur(String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp, String raisonSoc) {
+		super(nom, prenom, mail, password, numero,voie,ville,cp);
 		this.raisonSoc = raisonSoc;
 	}
 

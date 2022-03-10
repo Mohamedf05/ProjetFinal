@@ -4,37 +4,37 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import util.Context;
-import model.Epreuve;
+import model.Terrain;
 
-public class DAOEpreuve implements IDAOEpreuve{
+public class DAOTerrain implements IDAOTerrain{
 
 	@Override
-	public Epreuve findById(Integer id) {
+	public Terrain findById(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		Epreuve ep = em.find(Epreuve.class, id);
+		Terrain t = em.find(Terrain.class, id);
 		em.close();
-		return ep;
+		return t;
 	}
 
 	@Override
-	public List<Epreuve> findAll() {
+	public List<Terrain> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		List<Epreuve> epreuves = em.createQuery("SELECT ep from Epreuve ep").getResultList();
+		List<Terrain> terrains = em.createQuery("SELECT t from Terrain t").getResultList();
 		em.close();
-		return epreuves;
+		return terrains;
 	}
 
 	@Override
-	public Epreuve save(Epreuve ep) {
+	public Terrain save(Terrain t) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 
 		try {
 			em.getTransaction().begin();
-			ep = em.merge(ep);
+			t = em.merge(t);
 			em.getTransaction().commit();
 		} catch(Exception e) {e.printStackTrace();}
 		em.close();
-		return ep;
+		return t;
 	}
 
 
@@ -42,8 +42,8 @@ public class DAOEpreuve implements IDAOEpreuve{
 	public void delete(Integer id) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Epreuve ep = em.find(Epreuve.class, id);
-		em.remove(ep);
+		Terrain t = em.find(Terrain.class, id);
+		em.remove(t);
 		em.getTransaction().commit();
 		em.close();
 

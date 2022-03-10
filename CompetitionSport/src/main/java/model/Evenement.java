@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
 
 
 @Entity
@@ -22,14 +23,17 @@ public class Evenement {
 	@Column(name="date_fin")
 	private LocalDate dateFin;
 	private String ville;
-	private boolean statut;
+	private Statut statut;
 	@ManyToOne
 	@JoinColumn(name="id_organisateur")
 	private Organisateur organisateur;
 	
+	@Version
+	protected int version;
+	
 	public Evenement (){}
 	
-	public Evenement(Integer id, String nom, LocalDate dateDebut, LocalDate dateFin, String ville, boolean statut) {
+	public Evenement(Integer id, String nom, LocalDate dateDebut, LocalDate dateFin, String ville, Statut statut) {
 		this.id = id;
 		this.nom = nom;
 		this.dateDebut = dateDebut;
@@ -38,7 +42,7 @@ public class Evenement {
 		this.statut = statut;
 	}
 
-	public Evenement(String nom, LocalDate dateDebut, LocalDate dateFin, String ville, boolean statut) {
+	public Evenement(String nom, LocalDate dateDebut, LocalDate dateFin, String ville, Statut statut) {
 		super();
 		this.nom = nom;
 		this.dateDebut = dateDebut;
@@ -87,12 +91,20 @@ public class Evenement {
 		this.ville = ville;
 	}
 
-	public boolean isStatut() {
+	public Statut isStatut() {
 		return statut;
 	}
 
-	public void setStatut(boolean statut) {
+	public void setStatut(Statut statut) {
 		this.statut = statut;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

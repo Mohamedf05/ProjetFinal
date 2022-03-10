@@ -10,15 +10,15 @@ public class Journaliste extends Client {
 	public Journaliste() {
 	}
 	
-	public Journaliste(Integer id, String nom, String prenom, String mail, String password, Adresse adresse,
+	public Journaliste(Integer id, String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp,
 			String entreprise) {
-		super(id, nom, prenom, mail, password, adresse);
+		super(id, nom, prenom, mail, password, numero,voie,ville,cp);
 		this.setEntreprise(entreprise);
 	}
 	
-	public Journaliste(String nom, String prenom, String mail, String password, Adresse adresse,
+	public Journaliste(String nom, String prenom, String mail, String password, String numero, String voie, String ville, String cp,
 			String entreprise) {
-		super(nom, prenom, mail, password, adresse);
+		super(nom, prenom, mail, password, numero,voie,ville,cp);
 		this.setEntreprise(entreprise);
 	}
 
