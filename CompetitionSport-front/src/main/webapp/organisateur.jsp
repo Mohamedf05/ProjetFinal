@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+    pageEncoding="utf-8" %>
+    
+<c:if test="${connected.getClass().getSimpleName()!='Organisateur'}">
+	<c:redirect url = "home"/>
+</c:if>
 
-</body>
-</html>
+
+<title>Menu Organisateur</title>
+
+<main align="center">
+
+<h1>Welcome ${connected.mail}</h1>
+<div id="banniere">
+  <div> <a href="evenement"><i>"Gestion des évènements"</i></a></div>
+  <div> <a href="terrain"><i>"Gestion des terrains"</i></a></div>
+  <div> <a href="logement"><i>"Gestion des logements"</i></a> </div>
+</div>
+<br>
+
+
+
+  <a href="disconnect"><input value="Se deconnecter" type="submit"></a>
+
+</main>
