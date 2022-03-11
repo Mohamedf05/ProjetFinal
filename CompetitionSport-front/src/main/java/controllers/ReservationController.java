@@ -16,7 +16,7 @@ import model.Adresse;
 import model.Discipline;
 import util.Context;
 //AAAAAAAAAAAAAAAA FFFFFFFFAAAAAAAAAAAAAAAIIIIIIIIIIIIIIIIIRRRRRRRRRRRREEEEEEEEEEEEE
-@WebServlet("/terrain")
+@WebServlet("/reservation")
 public class ReservationController extends HttpServlet {
 
 	//FindById + FindAll()
