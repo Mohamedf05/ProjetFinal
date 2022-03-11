@@ -9,4 +9,7 @@
       <url-pattern>*.jsp</url-pattern>
     </jsp-property-group>
   </jsp-config>
+  <listener>
+    <listener-class>listener.LaunchTomcat</listener-class>
+  </listener>
 </web-app>
