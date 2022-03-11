@@ -26,7 +26,7 @@
       <table>
         <tr>
           <td><button type="button" name="button"><a href="connexion.jsp">Se connecter</a></button></td>
-          <td><button type="button" name="button"><a href="inscriptionAtlete.jsp">Créer un compte</a></button></td>
+          <td><button type="button" name="button"><a href="inscription.jsp">Créer un compte</a></button></td>
         </tr>
       </table>
     </div>
