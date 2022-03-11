@@ -21,13 +21,24 @@ public class EvenementController extends HttpServlet {
 
 	//FindById + FindAll()
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if(request.getParameter("idO")!=null) 
+		{
+			int idO = Integer.parseInt(request.getParameter("idO"));
+			List<Evenement> evenement=Context.getSingleton().getDaoEvenement().findAllByOrganisateur(idO);
+			request.setAttribute("listeEvenement", evenement);
+			System.out.println(evenement);
+			getServletContext().getRequestDispatcher("/evenement.jsp").forward(request, response);
+		}
+		
+		
 		//findAll()
 		if(request.getParameter("id")==null) 
 		{
 			List<Evenement> evenement=Context.getSingleton().getDaoEvenement().findAll();
 			request.setAttribute("listeEvenement", evenement);
 			System.out.println(evenement);
-			getServletContext().getRequestDispatcher("/WEB-INF/evenement.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/evenement.jsp").forward(request, response);
 		}
 			
 		//findById
