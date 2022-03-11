@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" %>
     
-<c:if test="${connected.getClass().getSimpleName()!='Organisateur'}">
+ <style>
+ body
+ {
+  background-image: url("img/colisee.jpg");
+ }
+
+</style>
+
+ <body>
+ <c:if test="${connected.getClass().getSimpleName()!='Organisateur'}">
 	<c:redirect url = "home"/>
 </c:if>
 
@@ -17,9 +26,6 @@
   <div> <a href="logement"><i>"Gestion des logements"</i></a> </div>
 </div>
 <br>
-
-
-
-  <a href="disconnect"><input value="Se deconnecter" type="submit"></a>
-
 </main>
+ 
+ </body>   
