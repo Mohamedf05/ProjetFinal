@@ -7,6 +7,10 @@
   background-image: url("img/colisee.jpg");
  }
 
+main
+{
+	background-color:beige;
+}
 </style>
 
  <body>
@@ -21,7 +25,7 @@
 
 <h1>Welcome ${connected.mail}</h1>
 <div id="banniere">
-  <div> <a href="evenement"><i>"Gestion des évènements"</i></a></div>
+  <div> <a href="evenement?idO=${connected.id}"><i>"Gestion des évènements"</i></a></div>
   <div> <a href="terrain"><i>"Gestion des terrains"</i></a></div>
   <div> <a href="logement"><i>"Gestion des logements"</i></a> </div>
 </div>
