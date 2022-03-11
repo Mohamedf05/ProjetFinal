@@ -27,7 +27,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("colisee.jpg");
+    background-image: url("img/colisee.jpg");
     background-size: cover;
     background-attachment: fixed;
 }
