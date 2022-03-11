@@ -1,0 +1,53 @@
+
+#logo{
+  display : flex;
+  justify-content:left;
+  border : solid 2px;
+  width: 150px;
+  height: 150px;
+}
+
+
+body{
+ 	display : flex;
+ 	background-color: lightgrey;
+
+}
+
+#banniere{
+ 	display : flex;
+ 	
+
+}
+
+header{
+	width:100%;
+}
+
+.menuBanniere{
+
+  display :flex;
+  justify-content: flex-end;
+  width:100%;
+
+}
+
+#myCarousel{
+	display:flex;
+	flex-direction: column;
+	height: 770px;
+}
+
+
+
+
+.carousel-control-prev-icon {
+
+    width: 32px;
+    height: 32px;
+}
+.carousel-control-next-icon {
+
+    width: 32px;
+    height: 32px;
+}
