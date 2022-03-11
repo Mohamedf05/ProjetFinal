@@ -20,7 +20,7 @@
 <header>
 <div id="banniere">
 
-  <a href="index.jsp"><div id="logo"><img src="img/logo3.jpg" alt="logo"></div></a>
+  <a href="index.jsp"><div id="logo"><img id="imglogo" src="img/logo3.jpg" alt="logo"></div></a>
 
     <div class="menuBanniere">
       <table>
@@ -37,7 +37,7 @@
    <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="carousel-orga">
-        <h5>Organisateur</h5>
+        <h5>ORGANISATEUR</h5>
         <p>Vous êtes organisateur d'évènements et vous voulez créer un évènement digne des Jeux Olympiques alors lancez vous !</p>
         </div>
         <a href="organisateur.jsp"><img class="d-block w-100" src="img/Sportcitation.jpg" alt="Sportcitation"></a>
@@ -45,7 +45,7 @@
       
       <div class="carousel-item">
       <div class="carousel-event">
-        <h5>Évènements</h5>
+        <h5>EVENEMENTS</h5>
         <p>Pour suivre tous les évènements à la une et ne rien rater des compétitions proche de chez vous.</p>
         </div>
         <a href="evenement.jsp"><img class="d-block w-100" src="img/colisee.jpg" alt="Colisee"></a>
@@ -53,8 +53,8 @@
       
        <div class="carousel-item">
         <div class="carousel-athlete">
-        <h5>Athlètes</h5>
-        <p>Vous êtes athlètes et vous souhaitez participer à des évènements sur mesure ? N'attendez plus pour vous inscrire !</p>
+        <h5>ATHLETE</h5>
+        <p>Vous êtes athlète et vous souhaitez participer à des évènements sur mesure ? N'attendez plus pour vous inscrire !</p>
         </div>
          <a href="athlete.jsp"><img class="d-block w-100" src="img/coupe.jpg" alt="Coupe"></a>
       </div>
