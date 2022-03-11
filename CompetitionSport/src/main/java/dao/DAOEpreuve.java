@@ -3,8 +3,10 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import util.Context;
+import javax.persistence.Query;
+
 import model.Epreuve;
+import util.Context;
 
 public class DAOEpreuve implements IDAOEpreuve{
 
@@ -14,6 +16,15 @@ public class DAOEpreuve implements IDAOEpreuve{
 		Epreuve ep = em.find(Epreuve.class, id);
 		em.close();
 		return ep;
+	}
+	
+	public List<Epreuve> findByAthleteId(Integer id) {
+		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
+		Query q= em.createQuery("SELECT ep from Epreuve ep join fetch ep.athlete a where a.id=:id");
+		q.setParameter("id", id);
+		 List<Epreuve> epreuves = q.getResultList();
+		em.close();
+		return epreuves;
 	}
 
 	@Override

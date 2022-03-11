@@ -54,8 +54,7 @@ public class TerrainController extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			int version = Integer.parseInt(request.getParameter("version"));
 			Adresse adresse = new Adresse(request.getParameter("numero"),request.getParameter("voie"),request.getParameter("ville"),request.getParameter("cp"));
-			List<Discipline> disciplines = new ArrayList<Discipline>();
-			Terrain t = new Terrain(id,request.getParameter("nom"),adresse, disciplines, TypeTerrain.valueOf(request.getParameter("terrains")));
+			Terrain t = new Terrain(id,request.getParameter("nom"), adresse, TypeTerrain.valueOf(request.getParameter("terrains")));
 			t.setVersion(version);
 			Context.getSingleton().getDaoTerrain().save(t);
 		}
