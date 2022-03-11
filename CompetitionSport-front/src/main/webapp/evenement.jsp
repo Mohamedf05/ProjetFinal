@@ -19,11 +19,17 @@
     height : 300px;
     background-color:#eff2f3;
   }
+  
+ body
+ {
+  background-image: url("img/colisee.jpg");
+ }
+
 
 </style>
 
 
-<html>
+<body>
 <div>
     <button id="NouvelEvenement" class="btn btn-info" type="button" name="NouvelEvenement">Nouvel évènement</button>
 </div>
@@ -126,7 +132,7 @@
 
 </div>
 
-</html>
+</body>
 
 <form  id="formulaireAjoutEvenement" >
   
@@ -139,11 +145,11 @@
       </tr>
       <tr>
         <th>Date début</th>
-        <td><input required type="date" name="dateDebut" value=""></td>
+        <td><input required type="date" name="dateDebut" min="${LocalDate.now()}" value=""></td>
       </tr>
       <tr>
         <th>Date fin</th>
-        <td><input required type="date" name="dateFin" value=""></td>
+        <td><input required type="date" name="dateFin" min="${datedebut}"  value=""></td>
       </tr>
       <tr>
         <th>ville</th>
