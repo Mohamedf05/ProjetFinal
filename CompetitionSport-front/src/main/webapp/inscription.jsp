@@ -163,13 +163,16 @@ body
     width: 200%;
     background-color: white;
 }
-header{
-  background-color: rgb(184, 187, 184, 0.5);
-}
+
 #addSpectateur, #addJournaliste
 {
     display: none;
 }
+
+header{
+  background-color : rgb(225,203,147);
+}
+
     </style>
 
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
@@ -178,22 +181,22 @@ header{
          
 </head>
 <body>
-    
-    <header>
-        <div id="banniere">
-        
-          <a href="index.jsp"><div id="logo"><img src="img/logo3.jpg" alt="logo"></div></a>
-        
-            <div class="menuBanniere">
-              <table>
-                <tr>
-                  <td><button type="button" name="button"><a href="connexion.jsp">Se connecter</a></button></td>
-                  <td><button type="button" name="button"><a href="inscriptionAtlete.jsp">Créer un compte</a></button></td>
-                </tr>
-              </table>
-            </div>
-        </div>
-    </header>
+
+<header>
+<div id="banniere">
+
+  <a href="index.jsp"><div id="logo"><img src="img/logo3.jpg" alt="logo"></div></a>
+
+    <div class="menuBanniere">
+      <table>
+        <tr>
+          <td><button type="button" name="button"><a href="connexion.jsp">Se connecter</a></button></td>
+          <td><button type="button" name="button"><a href="inscriptionAtlete.jsp">Créer un compte</a></button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</header>
 
 
     <div class="container">
@@ -276,7 +279,7 @@ header{
 
                 <div class="login-signup">
                     <span class="text">Déjà inscrit?
-                        <a href="connexion.html" class="text login-link">Connexion</a>
+                        <a href="connexion.jsp" class="text login-link">Connexion</a>
                     </span>
                 </div>
             </div>

@@ -183,7 +183,7 @@ body
 }
 
 header{
-  background-color: rgb(184, 187, 184, 0.5);
+  background-color : rgb(225,203,147);
 }
 
     </style>
@@ -247,7 +247,7 @@ header{
 
                 <div class="login-signup">
                     <span class="text">Vous n'avez pas encore de compte ?
-                        <a href="inscription_atlete.html" class="text signup-link">Inscrivez-vous</a>
+                        <a href="inscription.jsp" class="text signup-link">Inscrivez-vous</a>
                     </span>
                 </div>
             </div>
