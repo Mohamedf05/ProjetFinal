@@ -2,6 +2,13 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+ }
+ 
   .evenements
   {
     display:flex;
@@ -12,14 +19,21 @@
   #formulaireAjoutEvenement
   {
     display:none;
+    background-color:#eff2f3;
+    width:22%;
+    height:300px;
+    margin-bottom: 100px;
+    margin-left: 40%;
+
   }
+
   #EvenementsEnCours,#EvenementsAVenir,#EvenementsPasses
   {
     width:30%;
     height : 300px;
-    background-color:#eff2f3;
+    background-color:beige;
   }
-  
+
  body
  {
   background-image: url("img/colisee.jpg");
@@ -41,13 +55,13 @@
 
   <div id="EvenementsEnCours">
   		<p>Evénements en cours</p>
-  		
+
   		<c:forEach items="${listeEvenement}" var="evenement">
-		
+
 			<c:choose>
 
 				<c:when test="${evenement.dateDebut<=LocalDate.now() and evenement.dateFin>=LocalDate.now()}">
-			
+
 			      	<table>
 					  <tr>
 					    <th>${evenement.nom}</th>
@@ -62,22 +76,22 @@
 					    <td><a href="animal?id=${evenement.id}&action='consulter'"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
 					  </tr>
 			  		</table>
-			  		
+
 			  	</c:when>
 			  </c:choose>
 		 </c:forEach>
-			  		
+
   </div>
 
   <div id="EvenementsAVenir">
     <p>Evénements à venir</p>
-    
+
     <c:forEach items="${listeEvenement}" var="evenement">
-		
+
 			<c:choose>
 
 				<c:when test="${evenement.dateDebut>=LocalDate.now()}">
-			
+
 			      	<table>
 					  <tr>
 					    <th>${evenement.nom}</th>
@@ -92,7 +106,7 @@
 					    <td><a href="animal?id=${evenement.id}&action='consulter'"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
 					  </tr>
 			  		</table>
-			  		
+
 			  	</c:when>
 			  </c:choose>
 		 </c:forEach>
@@ -100,13 +114,13 @@
 
   <div id="EvenementsPasses">
     <p>Evénements passés</p>
-    
+
     <c:forEach items="${listeEvenement}" var="evenement">
-		
+
 			<c:choose>
 
 				<c:when test="${evenement.dateFin<LocalDate.now()}">
-			
+
 			      	<table>
 					  <tr>
 					    <th>${evenement.nom}</th>
@@ -124,7 +138,7 @@
 					    <td><a href="animal?id=${evenement.id}&action='consulter'"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
 					  </tr>
 			  		</table>
-			  		
+
 			  	</c:when>
 			  </c:choose>
 		 </c:forEach>
@@ -135,13 +149,13 @@
 </body>
 
 <form  id="formulaireAjoutEvenement" >
-  
-  <fieldset>
+
+  <fieldset id="fieldset">
   <legend>Ajout d'un nouvel animal</legend>
     <table>
       <tr>
         <th>Nom</th>
-        <td><input required type="text" name="nom" value=""></td>
+        <td><input required type="text" name="nom" value="nom"></td>
       </tr>
       <tr>
         <th>Date début</th>
@@ -153,7 +167,7 @@
       </tr>
       <tr>
         <th>ville</th>
-        <td><input required type="text" name="ville" value=""></td>
+        <td><input required type="text" name="ville" value="ville"></td>
       </tr>
       <tr>
         <th></th>
@@ -170,7 +184,10 @@
 NouvelEvenement.onclick=AjouterEvenement;
 function AjouterEvenement()
 {
-  formulaireAjoutEvenement.style.display="block";
+  EvenementsEnCours.style.display="none";
+  EvenementsAVenir.style.display="none";
+  EvenementsPasses.style.display="none";
+  formulaireAjoutEvenement.style.display="flex";
 }
 
 </script>
