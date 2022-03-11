@@ -22,7 +22,7 @@ display:flex;
 
 <div id="navAthlete">
   <div> Mes menus </div>
-  <div><a href='evenement.jsp'><input id="btnMesEvents" type="button" value="Mes events"></a></div>
+  <div><a href=epreuve><input id="btnMesEvents" type="button" value="Mes events"></a></div>
   <div><a href='score.jsp'><input id="btnMesPerf" type="button" value="Mes performances"></a></div>
   <div><a href='evenement.jsp'><input id="btnPartage" type="button" value="Partager avec un ami"></a></div>
   <div><a href='spectateur.jsp'><input id="btnSwitch" type="button" value="Passer en mode spectateur"></a></div>
