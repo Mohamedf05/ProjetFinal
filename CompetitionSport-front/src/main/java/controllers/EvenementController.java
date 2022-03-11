@@ -36,7 +36,17 @@ public class EvenementController extends HttpServlet {
 					int id = Integer.parseInt(request.getParameter("id"));
 					Evenement e = Context.getSingleton().getDaoEvenement().findById(id);
 					request.setAttribute("evenement", e);
-					getServletContext().getRequestDispatcher("/WEB-INF/updateEvenement.jsp").forward(request, response);
+					if(request.getParameter("action")=="consulter")
+					{
+						
+						getServletContext().getRequestDispatcher("/WEB-INF/consulterEvenement.jsp").forward(request, response);
+					}
+					else
+					{
+						getServletContext().getRequestDispatcher("/WEB-INF/updateEvenement.jsp").forward(request, response);
+						
+					}
+				
 				}
 		}
 

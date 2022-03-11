@@ -16,7 +16,7 @@ import model.Adresse;
 import model.Discipline;
 import util.Context;
 //AAAAAAAAAAAAAAAA FFFFFFFFAAAAAAAAAAAAAAAIIIIIIIIIIIIIIIIIRRRRRRRRRRRREEEEEEEEEEEEE
-@WebServlet("/terrain")
+@WebServlet("/epreuve")
 public class EpreuveController extends HttpServlet {
 
 	//FindById + FindAll()
