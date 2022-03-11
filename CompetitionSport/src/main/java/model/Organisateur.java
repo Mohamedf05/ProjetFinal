@@ -18,11 +18,11 @@ public class Organisateur extends Client {
 	private List<Terrain> terrains;
 	
 	@ManyToMany
-	private transient List<Logement> logements;
-	
+	private List<Logement> logements;
+	/*
 	@ElementCollection()
 	@Enumerated(EnumType.STRING)
-	private List<Discipline> disciplines;
+	private List<Discipline> disciplines;*/
 	
 	@OneToMany(mappedBy = "organisateur")
 	private List<Evenement> evenements;
@@ -65,14 +65,6 @@ public class Organisateur extends Client {
 		this.logements = logements;
 	}
 
-	public List<Discipline> getDisciplines() {
-		return disciplines;
-	}
-
-	public void setDisciplines(List<Discipline> disciplines) {
-		this.disciplines = disciplines;
-	}
-
 	public List<Evenement> getEvenements() {
 		return evenements;
 	}
@@ -84,7 +76,7 @@ public class Organisateur extends Client {
 	@Override
 	public String toString() {
 		return "Organisateur [raisonSoc=" + raisonSoc + ", terrains=" + terrains + ", logements=" + logements
-				+ ", disciplines=" + disciplines + "]";
+				+ "]";
 	}
 
 
