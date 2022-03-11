@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -7,13 +8,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+
     <!-- ===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+ 	<link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo3.jpg">
+    
     <style>
         /* ===== Google Font Import - Poformsins ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 
 *{
     margin: 0;
@@ -22,11 +30,8 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+body
+{
     background-image: url("img/colisee.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -40,7 +45,8 @@ body{
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin: 0 20px;
+    margin-top: 5%;
+    margin-left: auto;
 }
 
 .container .forms{
@@ -179,6 +185,10 @@ body{
     text-align: center;
 }
 
+header{
+  background-color : rgb(225,203,147);
+}
+
     </style>
 
 
@@ -200,6 +210,23 @@ body{
 </head>
 <body>
     
+    <header>
+        <div id="banniere">
+        
+          <a href="index.jsp"><div id="logo"><img src="img/logo3.jpg" alt="logo"></div></a>
+        
+            <div class="menuBanniere">
+              <table>
+                <tr>
+                  <td><button type="button" name="button"><a href="connexion.jsp">Se connecter</a></button></td>
+                  <td><button type="button" name="button"><a href="inscription.jsp">Créer un compte</a></button></td>
+                </tr>
+              </table>
+            </div>
+        </div>
+    </header>
+
+
     <div class="container">
         <div class="forms">
             <div class="form login">
@@ -223,7 +250,7 @@ body{
 
                 <div class="login-signup">
                     <span class="text">Vous n'avez pas encore de compte ?
-                        <a href="inscriptionAtlete.jsp" class="text signup-link">Inscrivez-vous</a>
+                        <a href="inscription.jsp" class="text signup-link">Inscrivez-vous</a>
                     </span>
                 </div>
             </div>
