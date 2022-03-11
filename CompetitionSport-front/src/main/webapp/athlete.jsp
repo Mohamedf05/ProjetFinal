@@ -41,7 +41,7 @@ display:flex;
 <br>Grand chelem de Strasbourg
 <br>Jeudi 342 Mars 2022 à Vendredi 356 Mars 2022</div></a>
   <a href='evenement.jsp'><div class="event">
-    <img src="assets/imgEvent/Event2.jpg" alt="Image event3" width="100">Event 3
+    <img src="assets/imgEvent/Event3.jpg" alt="Image event3" width="100">Event 3
 <br>Tir à l'arc de Lilles
 <br>Jeudi 65 Juillet 2120 - 15h</div></a>
 </div>
@@ -79,7 +79,7 @@ Aucun évènement
 <br>Grand chelem de Strasbourg
 <br>Jeudi 342 Mars 2022 à Vendredi 356 Mars 2022</div></a>
   <a href='evenement.jsp'><div class="event">
-    <img src="assets/imgEvent/Event2.jpg" alt="Image event3" width="100">Event 3
+    <img src="assets/imgEvent/Event3.jpg" alt="Image event3" width="100">Event 3
 <br>Tir à l'arc de Lilles
 <br>Jeudi 65 Juillet 2120 - 15h</div></a>
 </div>
