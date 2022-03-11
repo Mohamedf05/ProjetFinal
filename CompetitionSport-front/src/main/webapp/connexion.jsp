@@ -246,7 +246,7 @@ text-align: center;
             <div class="form login">
                 <span class="title">Connexion</span>
 
-                <form action="login" method="post">
+                <form action="home" method="post">
                     <div class="input-field">
                         <input type="text" name="mail" placeholder="Mail" required>
                         <i class="uil uil-envelope icon"></i>

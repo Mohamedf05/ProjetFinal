@@ -70,41 +70,34 @@ public class ClientController extends HttpServlet {
 
 	//save / Delete
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println(request.getParameter("typeCompte"));
 		if(request.getParameter("tache").equals("save")) 
 		{
-			if(request.getClass().getSimpleName().equals("Organisateur")) 
+			if(request.getParameter("typeCompte").equals("organisateur")) 
 			{
 
 				Organisateur o = new Organisateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("mail"),request.getParameter("password"),request.getParameter("numero"),request.getParameter("voie"),request.getParameter("ville"),request.getParameter("cp"),request.getParameter("raisonSoc"));
 				Context.getSingleton().getDaoClient().save(o);
 			}
-			else if(request.getClass().getSimpleName().equals("Athlete"))
+			else if(request.getParameter("typeCompte").equals("athlete"))
 			{
 				Athlete a = new Athlete(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("mail"),request.getParameter("password"),request.getParameter("numero"),request.getParameter("voie"),request.getParameter("ville"),request.getParameter("cp"),LocalDate.parse(request.getParameter("dateNaissance")));
 				Context.getSingleton().getDaoClient().save(a);
 			}
-			else if(request.getClass().getSimpleName().equals("Spectateur"))
+			else if(request.getParameter("typeCompte").equals("spectateur"))
 			{
 				Spectateur s = new Spectateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("mail"),request.getParameter("password"),request.getParameter("numero"),request.getParameter("voie"),request.getParameter("ville"),request.getParameter("cp"),LocalDate.parse(request.getParameter("dateNaissance")));
 				Context.getSingleton().getDaoClient().save(s);
 			}
-			else if(request.getClass().getSimpleName().equals("Journaliste"))
+			else if(request.getParameter("typeCompte").equals("journaliste"))
 			{
 				Journaliste j = new Journaliste(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("mail"),request.getParameter("password"),request.getParameter("numero"),request.getParameter("voie"),request.getParameter("ville"),request.getParameter("cp"),request.getParameter("entreprise"));
 				Context.getSingleton().getDaoClient().save(j);
 			}
 			
-			//sinon c'est le staff qui fait un nouveau client
-			if(request.getSession().getAttribute("connected")!=null) 
-			{
-				response.sendRedirect("client");
-			}
-			
-			//Si on est pas encore connecté, c'est une inscription
-			else {
+		
 				response.sendRedirect("home");
-			}
+		
 			
 			
 		}

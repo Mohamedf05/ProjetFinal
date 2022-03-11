@@ -25,7 +25,7 @@
 <header>
 <div id="banniere">
 
-  <a href="index.jsp"><div id="logo"><img id="imglogo" src="img/logo3.jpg" alt="logo"></div></a>
+ <a href="home"><div id="logo"> <img id="imglogo" src="img/logo3.jpg" alt="logo"></div></a>
 	<h1> SPORT EVENTS</h1>
     <div class="menuBanniere">
       <table>

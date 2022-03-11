@@ -218,9 +218,8 @@ text-align: center;
 
             <div class="form signup">
                 <span class="title">Inscription</span>
-                <form action="client" method="post" id="addFormCompte">
+                <form action="client" method=post id="addFormCompte">
                     <input type="hidden" name="tache" value="save">
-                    <input type="hidden" name="typeCompte" value="athlete">
 
                         <div>
                             <br>
@@ -243,7 +242,7 @@ text-align: center;
                                 <i class="uil uil-envelope icon"></i>
                             </div>
                             <div class="input-field">
-                                <input type="password" class="password" placeholder="Password" required>
+                                <input type="password" name="password" class="password" placeholder="Password" required>
                                 <i class="uil uil-lock icon"></i>
                             </div>
                             <div class="input-field">
@@ -267,19 +266,19 @@ text-align: center;
                         
                         <div id="addJournaliste">
                             <div class="input-field">
-                                <input type="text" name="entreprise" placeholder="Entreprise" required>
+                                <input type="text" name="entreprise" placeholder="Entreprise" >
                                 <i class="uil uil-book-reader"></i>
                             </div>
                         </div>
                         <div id="addAthlete">
                             <div class="input-field">
-                                <input type="date" name="dateNaissance" required style="color: gray;">
+                                <input type="date" name="dateNaissance"  value="2022-03-01" style="color: gray;">
                                 <i class="uil uil-calendar-alt"></i>
                             </div>
                         </div>
                         <div id="addSpectateur">
                             <div class="input-field">
-                                <input type="date" name="dateNaissance" required style="color: gray;">
+                                <input type="date" name="dateNaissance" value="2022-03-01" style="color: gray;">
                                 <i class="uil uil-calendar-alt"></i>
                             </div>
                         </div>
@@ -331,7 +330,7 @@ typeCompteAthlete.onchange=showFormAthlete;
 typeCompteJournaliste.onchange=showFormJournaliste;
 typeCompteSpectateur.onchange=showFormSpectateur;
 
-btnShowAddForm.onclick=function(){$("#addFormCompte").show();}
+
 function showFormAthlete()
 {
 	$("#addAthlete").show();

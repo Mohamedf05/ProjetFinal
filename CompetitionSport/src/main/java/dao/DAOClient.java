@@ -53,7 +53,7 @@ public class DAOClient implements IDAOClient{
 	public Client seConnecter(String mail, String password) {
 
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
-		Query q = em.createQuery("SELECT c from Compte c where c.mail = :mail and c.password = :password");
+		Query q = em.createQuery("SELECT c from Client c where c.mail = :mail and c.password = :password");
 		q.setParameter("mail", mail);
 		q.setParameter("password", password);
 		Client c=null;
