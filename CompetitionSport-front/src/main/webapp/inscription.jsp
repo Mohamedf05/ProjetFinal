@@ -19,6 +19,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  	<link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo3.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+	
 
 
     <style>
@@ -173,6 +178,15 @@ header{
   background-color : rgb(225,203,147);
 }
 
+#imglogo{
+	border-radius: 50%;
+}
+
+h1{
+font-family: 'Permanent Marker', cursive;
+text-align: center;
+}
+
     </style>
 
     <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
@@ -185,13 +199,13 @@ header{
 <header>
 <div id="banniere">
 
-  <a href="index.jsp"><div id="logo"><img src="img/logo3.jpg" alt="logo"></div></a>
-
+  <a href="index.jsp"><div id="logo"><img id="imglogo" src="img/logo3.jpg" alt="logo"></div></a>
+	<h1> SPORT EVENTS</h1>
     <div class="menuBanniere">
       <table>
         <tr>
-          <td><button type="button" name="button"><a href="connexion.jsp">Se connecter</a></button></td>
-          <td><button type="button" name="button"><a href="inscriptionAtlete.jsp">Créer un compte</a></button></td>
+          <td></td>
+          <td></td>
         </tr>
       </table>
     </div>
