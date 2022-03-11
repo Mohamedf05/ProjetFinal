@@ -3,6 +3,8 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import util.Context;
 import model.Evenement;
 
@@ -20,6 +22,16 @@ public class DAOEvenement implements IDAOEvenement{
 	public List<Evenement> findAll() {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		List<Evenement> Evenements = em.createQuery("SELECT e from Evenement e").getResultList();
+		em.close();
+		return Evenements;
+	}
+	
+	public List<Evenement> findAllByOrganisateur(Integer idO) {
+		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
+		List<Evenement> Evenements ;
+		Query q= em.createQuery("SELECT e from Evenement e where e.id_organisateur=:identifiant");
+		q.setParameter("identifiant", idO);
+		Evenements=q.getResultList();
 		em.close();
 		return Evenements;
 	}

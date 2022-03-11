@@ -8,7 +8,13 @@
     padding: 0;
     box-sizing: border-box;
  }
- 
+
+ p
+ {
+ 	color:#3598dc;
+ 	font-size:20px;
+ }
+
   .evenements
   {
     display:flex;
@@ -54,7 +60,7 @@
 
 
   <div id="EvenementsEnCours">
-  		<p>Evénements en cours</p>
+  		<p><b>Evénements en cours</b></p>
 
   		<c:forEach items="${listeEvenement}" var="evenement">
 
@@ -73,7 +79,7 @@
 					    <td>date de fin &nbsp ${evenement.dateFin}</td>
 					  </tr>
 					  <tr>
-					    <td><a href="animal?id=${evenement.id}&action='consulter'"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
+					    <td><a href="animal?id=${evenement.id}"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
 					  </tr>
 			  		</table>
 
@@ -84,7 +90,7 @@
   </div>
 
   <div id="EvenementsAVenir">
-    <p>Evénements à venir</p>
+    <p><b>Evénements à venir</b></p>
 
     <c:forEach items="${listeEvenement}" var="evenement">
 
@@ -103,7 +109,7 @@
 					    <td>date de debut &nbsp${evenement.dateDebut}</td>
 					  </tr>
 					  <tr>
-					    <td><a href="animal?id=${evenement.id}&action='consulter'"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
+					    <td><a href="animal?id=${evenement.id}"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
 					  </tr>
 			  		</table>
 
@@ -113,7 +119,7 @@
   </div>
 
   <div id="EvenementsPasses">
-    <p>Evénements passés</p>
+    <p><b>Evénements passés</b></p>
 
     <c:forEach items="${listeEvenement}" var="evenement">
 
@@ -135,7 +141,7 @@
 					    <td>date de fin &nbsp ${evenement.dateDebut}</td>
 					  </tr>
 					  <tr>
-					    <td><a href="animal?id=${evenement.id}&action='consulter'"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
+					    <td><a href="animal?id=${evenement.id}"><button class="btn btn-dark" type="button" name="button">Consulter</button></a></td>
 					  </tr>
 			  		</table>
 
@@ -148,10 +154,11 @@
 
 </body>
 
-<form  id="formulaireAjoutEvenement" >
+<form method="post" action="evenement" id="formulaireAjoutEvenement" >
+	<input type="hidden" name="tache" value="save">
 
   <fieldset id="fieldset">
-  <legend>Ajout d'un nouvel animal</legend>
+  <legend>Ajout d'un nouvel événement</legend>
     <table>
       <tr>
         <th>Nom</th>
@@ -171,7 +178,7 @@
       </tr>
       <tr>
         <th></th>
-        <td>  <a href="evenement"><input class="btn btn-success" type="submit" name="Ajouter" value="Ajouter"></a></td>
+        <td><input class="btn btn-success" type="submit" name="Ajouter" value="Ajouter"></td>
       </tr>
     </table>
   </fieldset>
