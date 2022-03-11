@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
  	<link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/logo3.jpg">
-    <title>Index</title>
+    <title>Accueil SportEvents</title>
  </head>
   
 
@@ -38,17 +38,15 @@
       <div class="carousel-item active">
         <div class="carousel-orga">
         <h5>Organisateur</h5>
-        <small>
-        Vous êtes organisateur d'événèments et vous voulez créer un évènement digne des Jeux Olympiques alors lancez vous !</small>
+        <p>Vous êtes organisateur d'évènements et vous voulez créer un évènement digne des Jeux Olympiques alors lancez vous !</p>
         </div>
         <a href="organisateur.jsp"><img class="d-block w-100" src="img/Sportcitation.jpg" alt="Sportcitation"></a>
       </div>
       
       <div class="carousel-item">
       <div class="carousel-event">
-        <h5>Evenements</h5>
-        <small>
-        Pour suivre tous les évènements à la une et ne rien rater des compétitions proche de chez vous.</small>
+        <h5>Évènements</h5>
+        <p>Pour suivre tous les évènements à la une et ne rien rater des compétitions proche de chez vous.</p>
         </div>
         <a href="evenement.jsp"><img class="d-block w-100" src="img/colisee.jpg" alt="Colisee"></a>
       </div>
@@ -56,8 +54,7 @@
        <div class="carousel-item">
         <div class="carousel-athlete">
         <h5>Athlètes</h5>
-        <small>
-        Vous êtes athlètes et vous souhaitez participer à des évènements sur mesure ? N'attendez plus pour vous inscrire !</small>
+        <p>Vous êtes athlètes et vous souhaitez participer à des évènements sur mesure ? N'attendez plus pour vous inscrire !</p>
         </div>
          <a href="athlete.jsp"><img class="d-block w-100" src="img/coupe.jpg" alt="Coupe"></a>
       </div>
