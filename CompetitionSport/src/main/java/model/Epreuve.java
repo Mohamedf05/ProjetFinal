@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 @Entity
@@ -29,9 +30,9 @@ public class Epreuve {
 	@OneToMany(mappedBy = "epreuve")
 	private List<Reservation> reservations;
 	private transient Score score;
-	@Enumerated
-	@Column(columnDefinition = "Enum('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
-	private TypeTerrain terrain;
+
+	@OneToOne
+	private Terrain terrain;
 	
 	@Version
 	protected int version;
@@ -39,23 +40,20 @@ public class Epreuve {
 	public Epreuve() {}
 	
 	public Epreuve(Integer id, int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
-			 Score score, TypeTerrain terrain) {
+			 Score score) {
 		this.id = id;
 		this.maxParticipant = maxParticipant;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.discipline = discipline;
 		this.score = score;
-		this.terrain = terrain;
 	}
 
-	public Epreuve(int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
-			 TypeTerrain terrain) {
+	public Epreuve(int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline) {
 		this.maxParticipant = maxParticipant;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.discipline = discipline;
-		this.terrain = terrain;
 	}
 	
 	
@@ -109,7 +107,7 @@ public class Epreuve {
 	}
 
 
-	public TypeTerrain getTerrain() {
+	public Terrain getTerrain() {
 		return terrain;
 	}
 
@@ -143,7 +141,7 @@ public class Epreuve {
 	}
 
 
-	public void setTerrain(TypeTerrain terrain) {
+	public void setTerrain(Terrain terrain) {
 		this.terrain = terrain;
 	}
 

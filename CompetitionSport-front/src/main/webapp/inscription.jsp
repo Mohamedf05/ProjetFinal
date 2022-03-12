@@ -46,12 +46,12 @@ body
 
 .container{
     position: relative;
-    max-width: 350px;
+    left: 27%;
+    max-width: 370px;
     width: 100%;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     margin-top: 5%;
     margin-left: auto;
 }
@@ -169,7 +169,7 @@ body
     background-color: white;
 }
 
-#addSpectateur, #addJournaliste
+#addSpectateur, #addJournaliste, #addOrganisateur
 {
     display: none;
 }
@@ -223,19 +223,40 @@ text-align: center;
 
                         <div>
                             <br>
-                            <div style="font-size: 13px;">
-                                <input id="typeCompteAthlete" checked type="radio" name="typeCompte" value="athlete">
-                                Athlete <input id="typeCompteSpectateur" type="radio" name="typeCompte" value="spectateur">
-                                Spectateur <input id="typeCompteJournaliste" type="radio" name="typeCompte" value="journaliste">
-                                Journaliste
-                            </div>
+                            <table style="font-size: 13px;">
+                                <tr>
+                                    <th>Type compte</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input style="margin: 5px" id="typeCompteAthlete" checked type="radio" name="typeCompte" value="athlete">
+                                        Athlete
+                                    </td>
+                                    <td>
+                                        <input style="margin: 7px;" id="typeCompteOrganisateur" type="radio" name="typeCompte" value="organisateur">
+                                        Organisateur
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input style="margin: 5px" id="typeCompteSpectateur" type="radio" name="typeCompte" value="spectateur">
+                                        Spectateur
+                                    </td>
+                                    <td>
+                                        <input style="margin: 5px" id="typeCompteJournaliste" type="radio" name="typeCompte" value="journaliste">
+                                        Journaliste
+                                    </td>
+                                </tr>
+                            </table>
+
                             <div class="input-field">
                                 <input type="text" name="nom" placeholder="Nom" required>
                                 <i class="uil uil-user"></i> 
-                             </div>
-                             <div class="input-field">
+                            </div>                            
+                            
+                            <div class="input-field">
                                 <input type="text" name="prenom" placeholder="Prenom" required>
-                                    <i class="uil uil-user"></i>
+                                <i class="uil uil-user"></i>
                             </div>                           
                             <div class="input-field">
                                 <input type="text" name="mail" placeholder="Mail" required>
@@ -282,6 +303,12 @@ text-align: center;
                                 <i class="uil uil-calendar-alt"></i>
                             </div>
                         </div>
+                        <div id="addOrganisateur">
+                            <div class="input-field">
+                                <input type="text" name="raisonSoc" placeholder="Raison sociale">
+                                <i class="uil uil-user"></i>
+                            </div>
+                        </div>
                         
                         <div class="input-field button">
                             <input type="submit" value="S'INSCRIRE">
@@ -300,35 +327,11 @@ text-align: center;
     </div>
 
     <script>
-        const container = document.querySelector(".container"),
-        pwShowHide = document.querySelectorAll(".showHidePw"),
-        pwFields = document.querySelectorAll(".password");
-    
-        //   js code to show/hide password and change icon
-        pwShowHide.forEach(eyeIcon =>{
-            eyeIcon.addEventListener("click", ()=>{
-                pwFields.forEach(pwField =>{
-                    if(pwField.type ==="password"){
-                        pwField.type = "text";
-    
-                        pwShowHide.forEach(icon =>{
-                            icon.classList.replace("uil-eye-slash", "uil-eye");
-                        })
-                    }else{
-                        pwField.type = "password";
-    
-                        pwShowHide.forEach(icon =>{
-                            icon.classList.replace("uil-eye", "uil-eye-slash");
-                        })
-                    }
-                }) 
-            })
-        })
-    
 
 typeCompteAthlete.onchange=showFormAthlete;
 typeCompteJournaliste.onchange=showFormJournaliste;
 typeCompteSpectateur.onchange=showFormSpectateur;
+typeCompteOrganisateur.onchange=showFormOrganisateur;
 
 
 function showFormAthlete()
@@ -336,6 +339,8 @@ function showFormAthlete()
 	$("#addAthlete").show();
 	$("#addJournaliste").hide();
     $("#addSpectateur").hide();
+    $("#addOrganisateur").hide();
+
 }
 
 function showFormJournaliste()
@@ -343,6 +348,8 @@ function showFormJournaliste()
 	$("#addAthlete").hide();
 	$("#addJournaliste").show();
     $("#addSpectateur").hide();
+    $("#addOrganisateur").hide();
+
 }
 
 function showFormSpectateur()
@@ -350,6 +357,15 @@ function showFormSpectateur()
 	$("#addAthlete").hide();
 	$("#addJournaliste").hide();
     $("#addSpectateur").show();
+    $("#addOrganisateur").hide();
+}
+
+function showFormOrganisateur()
+{
+	$("#addAthlete").hide();
+	$("#addJournaliste").hide();
+    $("#addSpectateur").hide();
+    $("#addOrganisateur").show();
 }
     
     </script>

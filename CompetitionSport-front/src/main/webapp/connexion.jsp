@@ -44,6 +44,7 @@ body
 
 .container{
     position: relative;
+    left: 27%;
     max-width: 350px;
     width: 100%;
     background: #fff;
