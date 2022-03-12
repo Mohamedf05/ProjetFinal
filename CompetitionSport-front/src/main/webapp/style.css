@@ -3,11 +3,28 @@
   display: flex;
   justify-content: left;
   border: solid 2px;
+  border-radius: 50%;
   width: 150px;
   height: 150px;
 }
 
-
+#imglogo{
+  border-radius: 50%;
+  }
+  
+ a{
+  color: #e1cb93;
+  }
+  
+ a:hoven{
+  color: #e1cb93;
+  }
+  
+h1{
+font-family: 'Permanent Marker', cursive;
+text-align: center;
+}
+  
 body{
  	position: relative;
  	background-color: #e1cb93;
@@ -28,6 +45,7 @@ header{
 .menuBanniere{
 
   display: flex;
+  align-items: flex-start;
   justify-content: flex-end;
   width: 100%;
 
