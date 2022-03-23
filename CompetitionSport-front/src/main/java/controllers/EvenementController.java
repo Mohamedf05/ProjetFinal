@@ -21,9 +21,10 @@ public class EvenementController extends HttpServlet {
 
 	//FindById + FindAll()
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("test");
 		if(request.getParameter("idO")!=null) 
 		{
+			System.out.println("test2");
 			int idO = Integer.parseInt(request.getParameter("idO"));
 			List<Evenement> evenement=Context.getSingleton().getDaoEvenement().findAllByOrganisateur(idO);
 			request.setAttribute("listeEvenement", evenement);
@@ -33,8 +34,9 @@ public class EvenementController extends HttpServlet {
 		
 		
 		//findAll()
-		if(request.getParameter("id")==null) 
+		else if(request.getParameter("id")==null) 
 		{
+			System.out.println("test3");
 			List<Evenement> evenement=Context.getSingleton().getDaoEvenement().findAll();
 			request.setAttribute("listeEvenement", evenement);
 			System.out.println(evenement);
