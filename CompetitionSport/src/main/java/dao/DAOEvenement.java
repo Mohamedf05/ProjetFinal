@@ -29,7 +29,7 @@ public class DAOEvenement implements IDAOEvenement{
 	public List<Evenement> findAllByOrganisateur(Integer idO) {
 		EntityManager em  = Context.getSingleton().getEmf().createEntityManager();
 		List<Evenement> Evenements ;
-		Query q= em.createQuery("SELECT e from Evenement e where e.id_organisateur=:identifiant");
+		Query q= em.createQuery("SELECT DISTINCT e from Evenement e JOIN FETCH e.organisateur o where o.id=:identifiant");
 		q.setParameter("identifiant", idO);
 		Evenements=q.getResultList();
 		em.close();

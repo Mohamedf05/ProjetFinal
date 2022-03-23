@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,8 @@ public class Evenement {
 	@Column(name="date_fin")
 	private LocalDate dateFin;
 	private String ville;
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('A_Venir','En_Cours','Termine')")
 	private Statut statut;
 	@ManyToOne
 	@JoinColumn(name="id_organisateur")
