@@ -1,6 +1,8 @@
 
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 
 *{
@@ -63,10 +65,19 @@
   		<p><b>Evénements en cours</b></p>
 
   		<c:forEach items="${listeEvenement}" var="evenement">
-
+			<% System.out.println("test100");%>
+			
 			<c:choose>
-
-				<c:when test="${evenement.dateDebut<=LocalDate.now() and evenement.dateFin>=LocalDate.now()}">
+			
+				<!-- 
+				<fmt:formatDate var="dateDebut" value="${evenement.dateDebut}" pattern="yyyy-MM-dd"/>
+					<fmt:formatDate var="dateFin" value="${evenement.dateFin}" pattern="yyyy-MM-dd"/>
+					<c:set var="today_" value="<%=new java.util.Date()%>"/>
+					<fmt:formatDate var="today" value="${today_}" pattern="yyyy-MM-dd"/>  
+				 -->	
+					
+				<c:when test="${(dateDebut le today ) and (dateFin ge today)}">
+				<% System.out.println("test10") ;%>
 
 			      	<table>
 					  <tr>
@@ -97,6 +108,7 @@
 			<c:choose>
 
 				<c:when test="${evenement.dateDebut>=LocalDate.now()}">
+				<% System.out.println("test11") ;%>
 
 			      	<table>
 					  <tr>
@@ -126,6 +138,7 @@
 			<c:choose>
 
 				<c:when test="${evenement.dateFin<LocalDate.now()}">
+				<% System.out.println("test12") ;%>
 
 			      	<table>
 					  <tr>

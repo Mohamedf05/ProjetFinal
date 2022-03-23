@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Terrain;
-import model.TypeTerrain;
-import model.Adresse;
-import model.Discipline;
+import CompetitionSport.model.Adresse;
+import CompetitionSport.model.Discipline;
+import CompetitionSport.model.Terrain;
+import CompetitionSport.model.TypeTerrain;
 import util.Context;
 
 @WebServlet("/terrain")
