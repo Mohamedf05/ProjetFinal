@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Reservation;
-import model.Adresse;
-import model.Discipline;
+import CompetitionSport.model.Adresse;
+import CompetitionSport.model.Discipline;
+import CompetitionSport.model.Reservation;
 import util.Context;
 //AAAAAAAAAAAAAAAA FFFFFFFFAAAAAAAAAAAAAAAIIIIIIIIIIIIIIIIIRRRRRRRRRRRREEEEEEEEEEEEE
 @WebServlet("/reservation")
