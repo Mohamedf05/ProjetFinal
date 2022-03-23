@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Evenement;
-import model.Statut;
+import CompetitionSport.model.Evenement;
+import CompetitionSport.model.Statut;
 import util.Context;
 
 @WebServlet("/evenement")

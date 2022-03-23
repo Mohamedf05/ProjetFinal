@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Athlete;
-import model.Client;
-import model.Journaliste;
-import model.Organisateur;
-import model.Spectateur;
+import CompetitionSport.model.Athlete;
+import CompetitionSport.model.Compte;
+import CompetitionSport.model.Journaliste;
+import CompetitionSport.model.Organisateur;
+import CompetitionSport.model.Spectateur;
 import util.Context;
 
 @WebServlet("/client")
@@ -26,7 +26,7 @@ public class ClientController extends HttpServlet {
 		//findAll()
 		if(request.getParameter("id")==null) 
 		{
-			List<Client> comptes=Context.getSingleton().getDaoClient().findAll();
+			List<Compte> comptes=Context.getSingleton().getDaoClient().findAll();
 			request.setAttribute("listeClient", comptes);
 			getServletContext().getRequestDispatcher("/WEB-INF/comptes.jsp").forward(request, response);
 		}
@@ -34,7 +34,7 @@ public class ClientController extends HttpServlet {
 		else 
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
-			Client client = Context.getSingleton().getDaoClient().findById(id);
+			Compte client = Context.getSingleton().getDaoClient().findById(id);
 			if(client instanceof Organisateur) 
 			{
 				Organisateur o = (Organisateur) client;

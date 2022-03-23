@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Athlete;
-import model.Client;
-import model.Journaliste;
-import model.Organisateur;
-import model.Spectateur;
+import CompetitionSport.model.Athlete;
+import CompetitionSport.model.Compte;
+import CompetitionSport.model.Journaliste;
+import CompetitionSport.model.Organisateur;
+import CompetitionSport.model.Spectateur;
 import util.Context;
 
 @WebServlet("/home")
@@ -30,7 +30,7 @@ public class HomeController extends HttpServlet {
 		String mail = request.getParameter("mail");
 		String password = request.getParameter("password");
 		
- 	Client connected=Context.getSingleton().getDaoClient().seConnecter(mail,password);
+ 	Compte connected=Context.getSingleton().getDaoClient().seConnecter(mail,password);
 		
 		request.getSession().setAttribute("connected", connected);
 		

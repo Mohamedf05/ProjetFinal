@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Adresse;
-import model.Logement;
-import model.TypeLogement;
+import CompetitionSport.model.Adresse;
+import CompetitionSport.model.Logement;
+import CompetitionSport.model.TypeLogement;
 import util.Context;
 
 @WebServlet("/logement")
