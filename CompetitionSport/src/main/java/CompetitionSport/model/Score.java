@@ -2,7 +2,6 @@ package CompetitionSport.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 public class Score {
 	private int score;
 	private List<Athlete> athletes;
