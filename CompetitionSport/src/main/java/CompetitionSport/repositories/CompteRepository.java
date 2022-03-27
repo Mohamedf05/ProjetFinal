@@ -7,6 +7,5 @@ import CompetitionSport.model.Compte;
 
 public interface CompteRepository extends JpaRepository<Compte, Integer> {
 
-
 	Optional<Compte> findByMailAndPassword(String mail, String password);
 }
