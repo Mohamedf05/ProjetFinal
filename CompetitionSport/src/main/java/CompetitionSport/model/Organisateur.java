@@ -7,10 +7,15 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Organisateur extends Compte {
 
+	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String raisonSoc;
 	
 	@ManyToMany

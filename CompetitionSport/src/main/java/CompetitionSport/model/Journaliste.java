@@ -1,10 +1,15 @@
 package CompetitionSport.model;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Journaliste extends Compte {
 	
+	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String entreprise;
 
 	public Journaliste() {
