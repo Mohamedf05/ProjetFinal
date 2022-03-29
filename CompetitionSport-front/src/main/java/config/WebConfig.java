@@ -13,7 +13,7 @@ import CompetitionSport.config.AppConfig;
 @Configuration
 @EnableWebMvc
 @Import(AppConfig.class)
-@ComponentScan(basePackages = {"CompetionSport.controller","CompetionSport.restcontroller"})
+@ComponentScan(basePackages = {"controller","restcontroller"})
 public class WebConfig {
 
 	@Bean

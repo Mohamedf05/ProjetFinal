@@ -13,23 +13,42 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 public class Evenement {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Integer id;
+	
+	@JsonView(JsonViews.Common.class)
 	private String nom;
+	
 	@Column(name="date_debut")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(JsonViews.Common.class)
 	private LocalDate dateDebut;
+	
 	@Column(name="date_fin")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(JsonViews.Common.class)
 	private LocalDate dateFin;
+	
+	@JsonView(JsonViews.Common.class)
 	private String ville;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('A_Venir','En_Cours','Termine')")
+	@JsonView(JsonViews.Common.class)
 	private Statut statut;
+	
 	@ManyToOne
 	@JoinColumn(name="id_organisateur")
+	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	private Organisateur organisateur;
 	
 	@Version
