@@ -13,24 +13,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Terrain {
 
+	@JsonView(JsonViews.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@JsonView(JsonViews.Common.class)
 	@NotEmpty
 	private String nom;
 	@Embedded
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private Adresse adresse;
 	@ElementCollection()
 	@Enumerated(EnumType.STRING)
 	private List<Discipline> disciplines;
+	@JsonView(JsonViews.Common.class)
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
-	@NotEmpty
+	@NotNull
 	private TypeTerrain typeTerrain;
 	
 	@Version
