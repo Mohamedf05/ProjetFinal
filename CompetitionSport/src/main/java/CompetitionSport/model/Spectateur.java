@@ -3,10 +3,15 @@ package CompetitionSport.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Spectateur extends Compte {
 	
+	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private LocalDate dateNaissance;
 
 	public Spectateur() {

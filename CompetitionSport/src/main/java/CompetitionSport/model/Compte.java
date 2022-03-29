@@ -13,23 +13,36 @@ import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Compte {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
+	@JsonView(JsonViews.Common.class)
 	protected Integer id;
+	
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	protected String nom;
+	
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	protected String prenom;
+	
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	protected String mail;
+	
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	protected String password;
 	
 	@Embedded
+	@JsonView(JsonViews.Common.class)
 	protected Adresse adresse;
 	
 	@OneToMany(mappedBy = "compte")
