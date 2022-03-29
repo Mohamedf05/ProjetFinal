@@ -3,11 +3,13 @@ package CompetitionSport.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import CompetitionSport.exception.ReservationException;
 import CompetitionSport.model.Reservation;
 import CompetitionSport.repositories.ReservationRepository;
 
+@Service
 public class ReservationService {
 	
 	@Autowired

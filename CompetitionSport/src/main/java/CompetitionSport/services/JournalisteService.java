@@ -3,12 +3,14 @@ package CompetitionSport.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import CompetitionSport.exception.JournalisteException;
 import CompetitionSport.model.Journaliste;
 import CompetitionSport.repositories.JournalisteRepository;
 import CompetitionSport.repositories.ReservationRepository;
 
+@Service
 public class JournalisteService {
 	
 
