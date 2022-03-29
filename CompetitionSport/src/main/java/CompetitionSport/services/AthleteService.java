@@ -1,6 +1,10 @@
 package CompetitionSport.services;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +14,7 @@ import CompetitionSport.model.Athlete;
 import CompetitionSport.repositories.AthleteRepository;
 import CompetitionSport.repositories.ReservationRepository;
 
+
 @Service
 public class AthleteService {
 
@@ -18,25 +23,21 @@ public class AthleteService {
 	private AthleteRepository athleteRepo;
 	@Autowired
 	private ReservationRepository reservationRepo;
+	
+	@Autowired
+	private Validator validator;
 
-	public void create(Athlete athlete) {
+	public Athlete save(Athlete athlete) {
+		Set<ConstraintViolation<Athlete>> constraints = validator.validate(athlete);
+		if (!constraints.isEmpty()) {
+			throw new AthleteException("erreur de validation");
+		}
+
 		if (athlete.getId() != null) {
-			throw new AthleteException("le numero ne doit pas etre defini");
+			Athlete participantEnBase = getById(athlete.getId());
+			athlete.setVersion(participantEnBase.getVersion());
 		}
-		if (athlete.getMail() == null || athlete.getMail().isEmpty()) {
-			throw new AthleteException("le mail doit etre defini");
-		}
-		athleteRepo.save(athlete);
-	}
-
-	public void update(Athlete athlete) {
-		if (athlete.getId() == null) {
-			throw new AthleteException("le numero doit etre defini");
-		}
-		if (athlete.getMail() == null ||athlete.getMail().isEmpty()) {
-			throw new AthleteException("le mail doit etre defini");
-		}
-		athleteRepo.save(athlete);
+		return athleteRepo.save(athlete);
 	}
 
 	public List<Athlete> getAll() {
