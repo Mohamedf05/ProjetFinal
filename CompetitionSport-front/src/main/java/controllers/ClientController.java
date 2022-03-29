@@ -15,7 +15,7 @@ import CompetitionSport.model.Compte;
 import CompetitionSport.model.Journaliste;
 import CompetitionSport.model.Organisateur;
 import CompetitionSport.model.Spectateur;
-import util.Context;
+
 
 @WebServlet("/client")
 public class ClientController extends HttpServlet {

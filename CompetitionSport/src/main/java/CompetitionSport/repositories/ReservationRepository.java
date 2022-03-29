@@ -8,18 +8,20 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import CompetitionSport.model.Compte;
+import CompetitionSport.model.Epreuve;
 import CompetitionSport.model.Reservation;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
 	@Modifying
 	@Transactional
-	@Query("delete from Reservation r where r.compte=:client")
-	void deleteByClient(@Param("client") Compte client);
+	@Query("delete from Reservation r where r.compte=:compte")
+	void deleteByClient(@Param("compte") Compte compte);
 	
 	@Modifying
 	@Transactional
-	@Query("update Reservation r set r.compte=null where r.compte=:client")
-	void setClientReservationToNull(@Param("client")Compte client);
+	@Query("update Reservation r set r.compte=null where r.compte=:compte")
+	void setCompteReservationToNull(@Param("compte")Compte compte);
+
 	
 }

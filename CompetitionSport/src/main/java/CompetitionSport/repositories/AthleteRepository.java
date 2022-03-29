@@ -11,6 +11,6 @@ import CompetitionSport.model.Athlete;
 public interface AthleteRepository extends JpaRepository<Athlete, Integer> {
 	
 	@Query("select c from Compte c left join fetch c.reservations where c.id=:numero")
-	Optional<Athlete> findByNumeroWithReservations(@Param("numero") Integer numero);
+	Optional<Athlete> findByIdWithReservations(@Param("numero") Integer numero);
 
 }

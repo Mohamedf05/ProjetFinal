@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -19,9 +20,13 @@ public abstract class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	protected Integer id;
+	@NotEmpty
 	protected String nom;
+	@NotEmpty
 	protected String prenom;
+	@NotEmpty
 	protected String mail;
+	@NotEmpty
 	protected String password;
 	
 	@Embedded

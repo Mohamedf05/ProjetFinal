@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Terrain {
@@ -19,14 +20,17 @@ public class Terrain {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotEmpty
 	private String nom;
 	@Embedded
+	@NotEmpty
 	private Adresse adresse;
 	@ElementCollection()
 	@Enumerated(EnumType.STRING)
 	private List<Discipline> disciplines;
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
+	@NotEmpty
 	private TypeTerrain typeTerrain;
 	
 	@Version

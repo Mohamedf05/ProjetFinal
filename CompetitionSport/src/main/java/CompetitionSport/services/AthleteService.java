@@ -1,75 +1,71 @@
 package CompetitionSport.services;
 
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.mysql.cj.xdevapi.Client;
 
 import CompetitionSport.exception.AthleteException;
 import CompetitionSport.model.Athlete;
 import CompetitionSport.repositories.AthleteRepository;
 import CompetitionSport.repositories.ReservationRepository;
 
+
 @Service
 public class AthleteService {
 
 
 	@Autowired
-	private AthleteRepository athleteRepository;
+	private AthleteRepository athleteRepo;
 	@Autowired
-	private ReservationRepository reservationRepository;
+	private ReservationRepository reservationRepo;
+	
+	@Autowired
+	private Validator validator;
 
-	public void create(Athlete a) {
-		if (a.getId() != null) {
-			throw new AthleteException("le numero ne doit pas etre defini");
+	public Athlete save(Athlete athlete) {
+		Set<ConstraintViolation<Athlete>> constraints = validator.validate(athlete);
+		if (!constraints.isEmpty()) {
+			throw new AthleteException("erreur de validation");
 		}
-		if (a.getMail() == null || a.getMail().isEmpty()) {
-			throw new AthleteException("le mail doit etre defini");
-		}
-		athleteRepository.save(a);
-	}
 
-	public void update(Athlete a) {
-		if (a.getId() == null) {
-			throw new AthleteException("le numero doit etre defini");
+		if (athlete.getId() != null) {
+			Athlete participantEnBase = getById(athlete.getId());
+			athlete.setVersion(participantEnBase.getVersion());
 		}
-		if (a.getMail() == null ||a.getMail().isEmpty()) {
-			throw new AthleteException("le mail doit etre defini");
-		}
-		athleteRepository.save(a);
+		return athleteRepo.save(athlete);
 	}
 
 	public List<Athlete> getAll() {
-		return athleteRepository.findAll();
+		return athleteRepo.findAll();
 	}
 
-	public Athlete getByNumero(Integer numero) {
-		return athleteRepository.findById(numero).orElseThrow(() -> {
-			throw new AthleteException("numero inconnu");
+	public Athlete getById(Integer id) {
+		return athleteRepo.findById(id).orElseThrow(() -> {
+			throw new AthleteException("id inconnu");
 		});
 	}
 
-	public Athlete getByNumeroWithReservation(Integer numero) {
-		return athleteRepository.findByNumeroWithReservations(numero).orElseThrow(() -> {
-			throw new AthleteException("numero inconnu");
+	public Athlete getByNumeroWithReservation(Integer id) {
+		return athleteRepo.findByIdWithReservations(id).orElseThrow(() -> {
+			throw new AthleteException("id inconnu");
 		});
 	}
 
-	public void delete(Athlete c) {
-//		Athlete athleteEnBaseAvecReservations = getByNumeroWithReservation(c.getNumero());
-//		reservationRepository.deleteAll(athleteEnBaseAvecReservations.getReservations());
-//		athleteRepository.delete(athleteEnBaseAvecReservations);
-
-		Athlete athleteEnBase = getByNumero(c.getId());
-		reservationRepository.deleteByClient((Client) athleteEnBase);
-		athleteRepository.delete(athleteEnBase);
+	public void delete(Athlete athlete) {
+		reservationRepo.setCompteReservationToNull(athlete);
+		Athlete athleteEnBase = getById(athlete.getId());
+		reservationRepo.deleteByClient(athleteEnBase);
+		athleteRepo.delete(athleteEnBase);
 	}
 
-	public void deleteByNumero(Integer numero) {
+	public void deleteById(Integer id) {
 		Athlete athlete = new Athlete();
-		athlete.setId(numero);
+		athlete.setId(id);
 		delete(athlete);
 	}
 	
