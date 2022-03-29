@@ -2,7 +2,10 @@ package CompetitionSport.model;
 
 import javax.persistence.Embeddable;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Embeddable
+@JsonView(JsonViews.Common.class)
 public class Adresse {
 
 	
