@@ -24,20 +24,20 @@ public class OrganisateurService {
 		});
 	}
 	
-	public void save(Organisateur organisateur){
+	public Organisateur save(Organisateur organisateur){
 		if (organisateur.getId() != null) {
 			Organisateur organisateurEnBase = getById(organisateur.getId());
 			organisateur.setVersion(organisateurEnBase.getVersion());
 		}
 
-		organisateurRepo.save(organisateur);
+		return organisateurRepo.save(organisateur);
 	}
 
 	public void delete(Organisateur organisateur) {
-		delete(organisateur.getId());
+		deleteById(organisateur.getId());
 	}
 	
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		organisateurRepo.deleteById(id);
 	}
 }
