@@ -6,6 +6,10 @@ public class JsonViews {
 		
 	};
 	
+	public static class EvenementWithOrganisateur extends Common{
+		
+	}
+	
 	
 }
 
