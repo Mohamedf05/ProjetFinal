@@ -33,4 +33,11 @@ public class OrganisateurService {
 		organisateurRepo.save(organisateur);
 	}
 
+	public void delete(Organisateur organisateur) {
+		delete(organisateur.getId());
+	}
+	
+	public void delete(Integer id) {
+		organisateurRepo.deleteById(id);
+	}
 }

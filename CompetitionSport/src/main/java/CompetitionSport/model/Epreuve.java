@@ -57,10 +57,10 @@ public class Epreuve {
 	}
 	
 	
-	public void confirmer()
+/* 	public void confirmer()
 	{
 		
-	}
+	} */
 	
 	
 	

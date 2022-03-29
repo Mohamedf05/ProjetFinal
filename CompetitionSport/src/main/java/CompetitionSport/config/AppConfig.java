@@ -3,6 +3,9 @@ package CompetitionSport.config;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
+import javax.validation.Validation;
+import javax.validation.Validator;
+
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +68,10 @@ public class AppConfig {
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
+	}
+	
+	@Bean
+	public Validator validator() {
+		return Validation.buildDefaultValidatorFactory().getValidator();
 	}
 }
