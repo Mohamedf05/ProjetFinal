@@ -3,12 +3,14 @@ package CompetitionSport.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import CompetitionSport.exception.SpectateurException;
 import CompetitionSport.model.Spectateur;
 import CompetitionSport.repositories.ReservationRepository;
 import CompetitionSport.repositories.SpectateurRepository;
 
+@Service
 public class SpectateurService {
 
 	@Autowired
