@@ -23,6 +23,12 @@ public class EvenementService {
     public List<Evenement> getAll() {
 		return evenementRepo.findAll();
 	}
+    
+    public List<Evenement> getAllbyOrganisateur(Integer id)
+    {
+    	return evenementRepo.findByOrganisateur(id);
+    	
+    }
 
 	public Evenement getById(Integer id) {
 		return evenementRepo.findById(id).orElseThrow(EvenementException::new);

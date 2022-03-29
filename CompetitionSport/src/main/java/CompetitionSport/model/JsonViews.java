@@ -6,6 +6,10 @@ public static class Common{
 		
 	};
 	
+	public static class EvenementWithOrganisateur extends Common{
+		
+	}
+	
 	
 }
 
