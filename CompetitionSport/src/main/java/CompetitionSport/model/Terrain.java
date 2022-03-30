@@ -28,8 +28,8 @@ public class Terrain {
 	@NotEmpty
 	private String nom;
 	@Embedded
-	@NotEmpty
 	@JsonView(JsonViews.Common.class)
+	@NotNull
 	private Adresse adresse;
 	@ElementCollection()
 	@Enumerated(EnumType.STRING)

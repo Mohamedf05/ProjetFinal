@@ -1,6 +1,7 @@
 package restcontroller;
 
 import java.lang.reflect.Field;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,8 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import CompetitionSport.exception.TerrainException;
+import CompetitionSport.model.Adresse;
 import CompetitionSport.model.JsonViews;
 import CompetitionSport.model.Terrain;
+import CompetitionSport.model.TypeTerrain;
 import CompetitionSport.services.TerrainService;
 
 @RestController
@@ -78,10 +81,25 @@ public class TerrainRestController {
 	@PatchMapping("/{id}")
 	public Terrain partialTerrain(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Terrain terrain = terrainService.getById(id);
-		fields.forEach((k, v)->{
-			Field field = ReflectionUtils.findField(Terrain.class, k);
+		fields.forEach((key, value) -> {
+			if (key.equals("adresse")) {
+				LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
+				Adresse adresse = new Adresse();
+				adresseMap.forEach((k,v)->{
+					Field field = ReflectionUtils.findField(Adresse.class, k);
+					ReflectionUtils.makeAccessible(field);
+					ReflectionUtils.setField(field, adresse, v);
+					});
+				terrain.setAdresse(adresse);	
+			} 
+			else if(key.equals("typeTerrain")) {
+				terrain.setTypeTerrain(TypeTerrain.valueOf(value.toString()));
+			}
+			else {
+			Field field = ReflectionUtils.findField(Terrain.class, key);
 			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, terrain, v);
+			ReflectionUtils.setField(field, terrain, value);
+			}
 		});
 		return terrainService.save(terrain);
 	}
