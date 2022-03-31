@@ -7,35 +7,43 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Reservation {
 	
+	@JsonView(JsonViews.Common.class)
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@JsonView(JsonViews.Common.class)
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
 	private Statut statut;
-	
+	@JsonView(JsonViews.Common.class)
 	private LocalDate date;
+	@JsonView(JsonViews.Common.class)
 	private LocalTime heure;
-	
+	@JsonView(JsonViews.Common.class)
 	@ManyToOne
 	@JoinColumn(name="compte_fk")
 	private Compte compte;
-	
+	@JsonView(JsonViews.Common.class)
 	@ManyToOne
 	@JoinColumn(name="epreuve_fk")
 	private Epreuve epreuve;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
-	private TypeLogement logement;
+	@JsonView(JsonViews.Common.class)
+	@ManyToOne
+	@JoinColumn(name="logement_fk")
+	private Logement logement;
 	
 	@Version
 	protected int version;
@@ -43,7 +51,7 @@ public class Reservation {
 	public Reservation() {
 	}
 	
-	public Reservation(Compte compte, Epreuve epreuve, TypeLogement logement) {
+	public Reservation(Compte compte, Epreuve epreuve, Logement logement) {
 		this.compte = compte;
 		this.epreuve = epreuve;
 		this.logement = logement;
@@ -92,7 +100,7 @@ public class Reservation {
 	}
 
 
-	public TypeLogement getLogement() {
+	public Logement getLogement() {
 		return logement;
 	}
 
@@ -127,7 +135,7 @@ public class Reservation {
 	}
 
 
-	public void setLogement(TypeLogement logement) {
+	public void setLogement(Logement logement) {
 		this.logement = logement;
 	}
 	
