@@ -14,23 +14,40 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Epreuve {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(JsonViews.Common.class)
 	private Integer id;
+	
+	@JsonView(JsonViews.Common.class)
 	private  int maxParticipant;
+	
+	@JsonView(JsonViews.Common.class)
 	private LocalDate dateDebut;
+	
+	@JsonView(JsonViews.Common.class)
 	private LocalDate dateFin;
+	
+	@JsonView(JsonViews.Common.class)
 	@Enumerated
 	@Column(columnDefinition = "Enum('Athletisme', 'Baseball', 'Basketball', 'Boxe', 'Cyclisme', 'Equitation', 'Handball', 'Football', 'Judo', 'Natation', 'Skate', 'Tennis')")
 	private Discipline discipline;
+	
+	@JsonView(JsonViews.EpreuveWithAthlete.class)
 	@ManyToMany
 	private List<Athlete> participants;
+	
 	@OneToMany(mappedBy = "epreuve")
+	@JsonView(JsonViews.EpreuveWithReservation.class)
 	private List<Reservation> reservations;
+	
 	private transient Score score;
 
+	@JsonView(JsonViews.Common.class)
 	@OneToOne
 	private Terrain terrain;
 	
