@@ -1,9 +1,11 @@
 package restcontroller;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -26,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import CompetitionSport.exception.TerrainException;
 import CompetitionSport.model.Adresse;
+import CompetitionSport.model.Discipline;
 import CompetitionSport.model.JsonViews;
 import CompetitionSport.model.Terrain;
 import CompetitionSport.model.TypeTerrain;
@@ -83,6 +86,9 @@ public class TerrainRestController {
 		Terrain terrain = terrainService.getById(id);
 		fields.forEach((key, value) -> {
 			if (key.equals("adresse")) {
+				System.out.println("________________________________________________");
+				System.out.println(key+ " k           v " +value);
+				System.out.println(value.getClass());
 				LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
 				Adresse adresse = new Adresse();
 				adresseMap.forEach((k,v)->{
@@ -94,6 +100,18 @@ public class TerrainRestController {
 			} 
 			else if(key.equals("typeTerrain")) {
 				terrain.setTypeTerrain(TypeTerrain.valueOf(value.toString()));
+			}
+			else if(key.equals("disciplines")) {
+				System.out.println("___________________**********************_____________________________");
+				System.out.println(key+ " k           v " +value);
+				System.out.println(value.getClass());
+				Set<Discipline> disciplineMap = new HashSet<>();
+				List<Discipline> disciplineValue = (List<Discipline>) value;
+				/*for (Discipline discipline : disciplineValue) {
+					System.out.println(discipline);
+				}*/
+				//{disciplineMap.add(discipline);}
+				//terrain.setDisciplines(disciplineMap);
 			}
 			else {
 			Field field = ReflectionUtils.findField(Terrain.class, key);
