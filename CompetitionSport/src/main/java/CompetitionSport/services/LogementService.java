@@ -7,11 +7,13 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import CompetitionSport.exception.LogementException;
 import CompetitionSport.model.Logement;
 import CompetitionSport.repositories.LogementRepository;
 
+@Service
 public class LogementService {
 
 	@Autowired

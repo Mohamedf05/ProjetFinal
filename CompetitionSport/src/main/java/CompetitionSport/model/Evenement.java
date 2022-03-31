@@ -122,6 +122,13 @@ public class Evenement {
 		this.statut = statut;
 	}
 	
+	public Organisateur getOrganisateur() {
+		return organisateur;
+	}
+
+	public void setOrganisateur(Organisateur organisateur) {
+		this.organisateur = organisateur;
+	}
 	public int getVersion() {
 		return version;
 	}
@@ -135,5 +142,7 @@ public class Evenement {
 		return "Evenement [id=" + id + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", ville="
 				+ ville + ", statut=" + statut + "]";
 	}
+
+	
 	
 }
