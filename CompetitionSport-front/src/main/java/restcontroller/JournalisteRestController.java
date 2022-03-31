@@ -1,7 +1,6 @@
 package restcontroller;
 
 import java.lang.reflect.Field;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -68,6 +68,13 @@ public class JournalisteRestController {
 	@JsonView(JsonViews.Common.class)
 	public void delete(@PathVariable Integer id) {
 		journalisteService.deleteById(id);
+	}
+	
+	@PutMapping("/{id}")
+	@JsonView(JsonViews.Common.class)
+	public Journaliste update(@PathVariable Integer id, @Valid @RequestBody Journaliste journaliste, BindingResult br) {
+		journaliste.setId(id);
+		return save(journaliste, br);
 	}
 	
 	@PatchMapping("/{id}")

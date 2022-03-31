@@ -17,6 +17,7 @@ import javax.persistence.Version;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@JsonView(JsonViews.AthleteWirhEpreuve.class)
 public class Epreuve {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

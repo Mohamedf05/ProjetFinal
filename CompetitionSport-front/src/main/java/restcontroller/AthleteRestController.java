@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -38,13 +39,13 @@ public class AthleteRestController {
 	private AthleteService athleteService;
 	
 	@GetMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	public List<Athlete> getAll() {
 		return athleteService.getAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	public Athlete getById(@PathVariable Integer id) {
 		return athleteService.getById(id);
 	}
@@ -58,20 +59,27 @@ public class AthleteRestController {
 	
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	public Athlete create(@Valid @RequestBody Athlete athlete, BindingResult br) {
 		return save(athlete, br);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	public void delete(@PathVariable Integer id) {
 		athleteService.deleteById(id);
 	}
 	
+	@PutMapping("/{id}")
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
+	public Athlete update(@PathVariable Integer id, @Valid @RequestBody Athlete athlete, BindingResult br) {
+		athlete.setId(id);
+		return save(athlete, br);
+	}
+	
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	public Athlete partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Athlete athlete = athleteService.getById(id);
 		fields.forEach((k, v) -> {

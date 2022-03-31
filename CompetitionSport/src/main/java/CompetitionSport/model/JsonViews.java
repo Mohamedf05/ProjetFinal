@@ -17,5 +17,13 @@ public class JsonViews {
 	public static class EpreuveWithReservation extends Common {
 
 	}
+	
+	public static class AthleteWirhEpreuve extends Common {
+
+	}
+	
+	public static class Organisteur extends Common {
+
+	}
 
 }

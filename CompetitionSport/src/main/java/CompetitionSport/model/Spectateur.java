@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Spectateur extends Compte {
 	
-	@NotEmpty
+	//@NotEmpty
 	@JsonView(JsonViews.Common.class)
 	private LocalDate dateNaissance;
 
