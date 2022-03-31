@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
@@ -15,13 +16,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Organisateur extends Compte {
 
 	@NotEmpty
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Organisteur.class)
 	private String raisonSoc;
 	
-	@ManyToMany
+	@OneToMany
+	@JsonView(JsonViews.Organisteur.class)
 	private List<Terrain> terrains;
 	
-	@ManyToMany
+	@OneToMany
+	@JsonView(JsonViews.Organisteur.class)
 	private List<Logement> logements;
 	/*
 	@ElementCollection()
@@ -29,6 +32,7 @@ public class Organisateur extends Compte {
 	private List<Discipline> disciplines;*/
 	
 	@OneToMany(mappedBy = "organisateur")
+	@JsonView(JsonViews.Organisteur.class)
 	private List<Evenement> evenements;
 	
 	

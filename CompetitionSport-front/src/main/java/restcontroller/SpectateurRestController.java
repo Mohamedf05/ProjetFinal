@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -26,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import CompetitionSport.exception.SpectateurException;
 import CompetitionSport.model.Adresse;
 import CompetitionSport.model.JsonViews;
+import CompetitionSport.model.Organisateur;
 import CompetitionSport.model.Spectateur;
 import CompetitionSport.services.SpectateurService;
 
@@ -68,6 +70,13 @@ public class SpectateurRestController {
 	@JsonView(JsonViews.Common.class)
 	public void delete(@PathVariable Integer id) {
 		spectateurService.deleteById(id);
+	}
+	
+	@PutMapping("/{id}")
+	@JsonView(JsonViews.Common.class)
+	public Spectateur update(@PathVariable Integer id, @Valid @RequestBody Spectateur spectateur, BindingResult br) {
+		spectateur.setId(id);
+		return save(spectateur, br);
 	}
 	
 	@PatchMapping("/{id}")

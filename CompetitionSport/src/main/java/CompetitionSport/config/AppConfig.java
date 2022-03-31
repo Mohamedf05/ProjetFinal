@@ -57,6 +57,7 @@ public class AppConfig {
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		properties.setProperty("hibernate.format_sql", "true");
+		properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 		return properties;
 	}
 
