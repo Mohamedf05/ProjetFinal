@@ -24,7 +24,6 @@ public class TestRepos {
 	OrganisateurService organisateurService;
 	
 	@Test
-	@Disabled
 	void testEchecCreate(){
 		assertThrows(OrganisateurException.class, ()->{
 			organisateurService.save(new Organisateur());
@@ -33,7 +32,6 @@ public class TestRepos {
 	
 	@Test
 	@Transactional
-	@Disabled
 	void creationOrganisateurTest(){
 		Organisateur o = new Organisateur("Orga", "orga", "orga@orga", "orga8", "1", "orgavoie", "orgaVilel", "75698", "Ajc");
 		organisateurService.save(o);

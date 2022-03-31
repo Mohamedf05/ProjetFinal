@@ -13,6 +13,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,7 +27,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import CompetitionSport.exception.EvenementException;
 import CompetitionSport.model.Evenement;
 import CompetitionSport.model.JsonViews;
+import CompetitionSport.model.Organisateur;
+import CompetitionSport.model.Statut;
 import CompetitionSport.services.EvenementService;
+import CompetitionSport.services.OrganisateurService;
 
 
 @RestController
@@ -34,6 +38,8 @@ import CompetitionSport.services.EvenementService;
 public class EvenementRestController {
 	@Autowired
 	EvenementService evenementService;
+	@Autowired
+	OrganisateurService organisateurService;
 	
 	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	@GetMapping("")
@@ -56,16 +62,19 @@ public class EvenementRestController {
 	}
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@PostMapping("")
-	@JsonView(JsonViews.EvenementWithOrganisateur.class)
-	public Evenement create(@Valid @RequestBody Evenement evenement, BindingResult br) {
-		return save(evenement, br);
+	@PostMapping("/{id}")
+	public Evenement create(@PathVariable Integer id,@Valid @RequestBody Evenement evenement, BindingResult br) {
+		Organisateur organisateur=organisateurService.getById(id);
+		evenement.setOrganisateur(organisateur);
+				return save(evenement, br);
 	}
 
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	public Evenement update(@PathVariable Integer id, @Valid @RequestBody Evenement evenement, BindingResult br) {
 		evenement.setId(id);
+		Evenement evenementEnBase=evenementService.getById(id);
+		evenement.setOrganisateur(evenementEnBase.getOrganisateur());
 		return save(evenement, br);
 	}
 
@@ -76,24 +85,31 @@ public class EvenementRestController {
 		return evenementService.save(evenement);
 	}
 
-	
+	@PatchMapping("/{id}")
+	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	public Evenement partialUpdate(@PathVariable Integer id, @RequestBody Map<String, Object> fields)
 	{
 		Evenement evenement=evenementService.getById(id);
 		fields.forEach((k, v) ->
 		{
-			if (k.equals("dateDebut")) {
-				List<Integer> dateRecuperee = (List<Integer>) v;
-				evenement.setDateDebut(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
-			}
-			else if(k.equals("dateFin")) {
-				List<Integer> dateRecuperee = (List<Integer>) v;
-				evenement.setDateFin(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
-			}
-			else {
-				Field field = ReflectionUtils.findField(Evenement.class, k);
-				ReflectionUtils.makeAccessible(field);
-				ReflectionUtils.setField(field, evenement, v);
+			if (!k.equals("organisateur"))
+			{
+				if (k.equals("dateDebut")) {
+					List<Integer> dateRecuperee = (List<Integer>) v;
+					evenement.setDateDebut(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
+				}
+				else if(k.equals("dateFin")) {
+					List<Integer> dateRecuperee = (List<Integer>) v;
+					evenement.setDateFin(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
+				}
+				else if(k.equals("statut")){
+					evenement.setStatut(Statut.valueOf(v.toString()));
+				}
+				else{
+					Field field = ReflectionUtils.findField(Evenement.class, k);
+					ReflectionUtils.makeAccessible(field);
+					ReflectionUtils.setField(field, evenement, v);
+				}
 			}
 			
 		});

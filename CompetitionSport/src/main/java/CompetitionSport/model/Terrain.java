@@ -1,13 +1,17 @@
 package CompetitionSport.model;
 
-import java.util.List;
+import java.util.Set;
 
+import javax.management.relation.Role;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,9 +35,13 @@ public class Terrain {
 	@JsonView(JsonViews.Common.class)
 	@NotNull
 	private Adresse adresse;
-	@ElementCollection()
+	@JsonView(JsonViews.Common.class)
 	@Enumerated(EnumType.STRING)
-	private List<Discipline> disciplines;
+	@ElementCollection(targetClass = Discipline.class, fetch = FetchType.EAGER)
+	@CollectionTable(name = "terrain_discipline", foreignKey = @ForeignKey(name = "terrain_discipline_terrain_id_fk"))
+	@Column(columnDefinition = "ENUM('Athletisme', 'Baseball', 'Basketball', 'Boxe', 'Cyclisme', 'Equitation', 'Handball', 'Football', 'Judo', 'Natation', 'Skate', 'Tennis')")
+	@NotNull
+	private Set<Discipline> disciplines;
 	@JsonView(JsonViews.Common.class)
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Courts', 'Dojo', 'Gymnase', 'Hippodrome', 'Piscine', 'Piste', 'Skatepark', 'Stade', 'Velodrome')")
@@ -55,7 +63,7 @@ public class Terrain {
 		this.typeTerrain = typeTerrain;
 	}
 
-	public Terrain(Integer id, String nom, Adresse adresse, List<Discipline> disciplines, TypeTerrain typeTerrain) {
+	public Terrain(Integer id, String nom, Adresse adresse, Set<Discipline> disciplines, TypeTerrain typeTerrain) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -102,13 +110,13 @@ public class Terrain {
 
 
 
-	public List<Discipline> getDisciplines() {
+	public Set<Discipline> getDisciplines() {
 		return disciplines;
 	}
 
 
 
-	public void setDisciplines(List<Discipline> disciplines) {
+	public void setDisciplines(Set<Discipline> disciplines) {
 		this.disciplines = disciplines;
 	}
 
