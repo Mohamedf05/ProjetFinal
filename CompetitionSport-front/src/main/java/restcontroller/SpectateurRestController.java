@@ -2,6 +2,7 @@ package restcontroller;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import CompetitionSport.exception.SpectateurException;
 import CompetitionSport.model.Adresse;
 import CompetitionSport.model.JsonViews;
+import CompetitionSport.model.Logement;
 import CompetitionSport.model.Organisateur;
 import CompetitionSport.model.Spectateur;
 import CompetitionSport.services.SpectateurService;
@@ -38,7 +40,7 @@ public class SpectateurRestController {
 
 	@Autowired
 	private SpectateurService spectateurService;
-	
+
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
 	public List<Spectateur> getAll() {
@@ -51,56 +53,64 @@ public class SpectateurRestController {
 		return spectateurService.getById(id);
 	}
 	
+	@GetMapping("/{id}/reservation")
+	@JsonView(JsonViews.CompteWithReservation.class)
+	public Spectateur getByIdSpectateur(@PathVariable Integer id) {
+		return spectateurService.getById(id);
+	}
+
 	private Spectateur save(Spectateur spectateur, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new SpectateurException();
 		}
 		return spectateurService.save(spectateur);
 	}
-	
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Spectateur create(@Valid @RequestBody Spectateur spectateur, BindingResult br) {
 		return save(spectateur, br);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@JsonView(JsonViews.Common.class)
 	public void delete(@PathVariable Integer id) {
 		spectateurService.deleteById(id);
 	}
-	
+
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Spectateur update(@PathVariable Integer id, @Valid @RequestBody Spectateur spectateur, BindingResult br) {
 		spectateur.setId(id);
 		return save(spectateur, br);
 	}
-	
+
 	@PatchMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Spectateur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Spectateur spectateur = spectateurService.getById(id);
-		fields.forEach((k, v) -> {
-			if (k.equals("dateNaissance")) {
-				List<Integer> dateRecuperee = (List<Integer>) v;
+		fields.forEach((key, value) -> {
+			if (key.equals("dateNaissance")) {
+				List<Integer> dateRecuperee = (List<Integer>) value;
 				spectateur.setDateNaissance(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
-			} else if (k.equals("adresse")) {
-				List <String> adresseRecuperee = (List<String>) v;
+			} 
+			else if (key.equals("adresse")) {
+				LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
 				Adresse adresse = new Adresse();
-				adresse.setNumero(adresseRecuperee.get(0));
-				adresse.setVoie(adresseRecuperee.get(1));
-				adresse.setVille(adresseRecuperee.get(2));
-				adresse.setCp(adresseRecuperee.get(3));
-				spectateur.setAdresse(adresse);
-				
-			} else {
-				Field field = ReflectionUtils.findField(Spectateur.class, k);
+				adresseMap.forEach((k,v)->{
+					Field field = ReflectionUtils.findField(Adresse.class, k);
+					ReflectionUtils.makeAccessible(field);
+					ReflectionUtils.setField(field, adresse, v);
+				});
+
+				spectateur.setAdresse(adresse);}
+
+
+			else{
+				Field field = ReflectionUtils.findField(Spectateur.class, key);
 				ReflectionUtils.makeAccessible(field);
-				ReflectionUtils.setField(field, spectateur, v);
-			}
+				ReflectionUtils.setField(field, spectateur, value);}
 		});
 		return spectateurService.save(spectateur);
 	}

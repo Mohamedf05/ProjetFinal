@@ -1,6 +1,7 @@
 package restcontroller;
 
 import java.lang.reflect.Field;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,14 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import CompetitionSport.exception.OrganisateurException;
 import CompetitionSport.model.Adresse;
+import CompetitionSport.model.Evenement;
 import CompetitionSport.model.JsonViews;
+import CompetitionSport.model.Logement;
 import CompetitionSport.model.Organisateur;
-import CompetitionSport.model.Spectateur;
+import CompetitionSport.model.Reservation;
+import CompetitionSport.services.EvenementService;
 import CompetitionSport.services.OrganisateurService;
+import CompetitionSport.services.ReservationService;
 
 
 @RestController
@@ -37,68 +42,91 @@ public class OrganisateurRestController {
 
 	@Autowired
 	private OrganisateurService organisateurService;
+	@Autowired
+	private EvenementService evenementService;
+
 	
+
 	@GetMapping("")
-	@JsonView(JsonViews.Organisteur.class)
+	@JsonView(JsonViews.Common.class)
 	public List<Organisateur> getAll() {
 		return organisateurService.getAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Organisteur.class)
+	@JsonView(JsonViews.Common.class)
 	public Organisateur getById(@PathVariable Integer id) {
 		return organisateurService.getById(id);
 	}
 	
+	@GetMapping("/{id}/evenement")
+	@JsonView(JsonViews.OrganisteurWithEvenements.class)
+	public List<Evenement> getByIdWithEvenement(@PathVariable Integer id) {
+		return evenementService.getAllbyOrganisateur(id);
+	}
+
 	private Organisateur save(Organisateur organisateur, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new OrganisateurException();
 		}
 		return organisateurService.save(organisateur);
 	}
-	
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Organisteur.class)
+	@JsonView(JsonViews.Common.class)
 	public Organisateur create(@Valid @RequestBody Organisateur organisateur, BindingResult br) {
 		return save(organisateur, br);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@JsonView(JsonViews.Organisteur.class)
 	public void delete(@PathVariable Integer id) {
 		organisateurService.deleteById(id);
 	}
-	
+
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.Organisteur.class)
+	@JsonView(JsonViews.Common.class)
 	public Organisateur update(@PathVariable Integer id, @Valid @RequestBody Organisateur organisateur, BindingResult br) {
+
+		Organisateur organisateurEnBase = organisateurService.getById(id);
+		organisateur.setTerrains(organisateurEnBase.getTerrains());	
+
+		organisateur.setLogements(organisateurEnBase.getLogements());	
+
+		organisateur.setEvenements(organisateurEnBase.getEvenements());	
+
 		organisateur.setId(id);
 		return save(organisateur, br);
 	}
-	
+
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Organisteur.class)
+	@JsonView(JsonViews.Common.class)
 	public Organisateur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Organisateur organisateur = organisateurService.getById(id);
-		fields.forEach((k, v) -> {
-			if (k.equals("adresse")) {
-				List <String> adresseRecuperee = (List<String>) v;
-				Adresse adresse = new Adresse();
-				adresse.setNumero(adresseRecuperee.get(0));
-				adresse.setVoie(adresseRecuperee.get(1));
-				adresse.setVille(adresseRecuperee.get(2));
-				adresse.setCp(adresseRecuperee.get(3));
-				organisateur.setAdresse(adresse);
-				
-			} else {
-				Field field = ReflectionUtils.findField(Spectateur.class, k);
-				ReflectionUtils.makeAccessible(field);
-				ReflectionUtils.setField(field, organisateur, v);
+		fields.forEach((key, value) -> {
+
+			if (!(key.equals("terrains") || key.equals("logements") || key.equals("evenements"))) {
+				if (key.equals("adresse")) {
+					LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
+					Adresse adresse = new Adresse();
+					adresseMap.forEach((k,v)->{
+						Field field = ReflectionUtils.findField(Adresse.class, k);
+						ReflectionUtils.makeAccessible(field);
+						ReflectionUtils.setField(field, adresse, v);
+					});
+
+					organisateur.setAdresse(adresse);}
+
+
+				else{
+					Field field = ReflectionUtils.findField(Logement.class, key);
+					ReflectionUtils.makeAccessible(field);
+					ReflectionUtils.setField(field, organisateur, value);}
 			}
+
 		});
 		return organisateurService.save(organisateur);
 	}
-	
+
 }

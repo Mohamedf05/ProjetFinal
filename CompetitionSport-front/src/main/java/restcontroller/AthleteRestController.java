@@ -2,6 +2,7 @@ package restcontroller;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +28,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import CompetitionSport.exception.AthleteException;
 import CompetitionSport.model.Adresse;
 import CompetitionSport.model.Athlete;
+import CompetitionSport.model.Epreuve;
 import CompetitionSport.model.JsonViews;
+import CompetitionSport.model.Logement;
+import CompetitionSport.model.Reservation;
 import CompetitionSport.services.AthleteService;
 
 
@@ -37,69 +41,84 @@ public class AthleteRestController {
 
 	@Autowired
 	private AthleteService athleteService;
-	
+
 	@GetMapping("")
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
+	@JsonView(JsonViews.Common.class)
 	public List<Athlete> getAll() {
 		return athleteService.getAll();
 	}
 
-	@GetMapping("/{id}")
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
-	public Athlete getById(@PathVariable Integer id) {
-		return athleteService.getById(id);
+	@GetMapping("/{id}/epreuve")
+	@JsonView(JsonViews.AthleteEpreuve.class)
+	public Athlete getByIdWithEpreuve(@PathVariable Integer id) {
+		return (Athlete) athleteService.getById(id);
 	}
 	
+	@GetMapping("/{id}/reservation")
+	@JsonView(JsonViews.CompteWithReservation.class)
+	public List<Reservation> getByIdWithReservation(@PathVariable Integer id) {
+		return athleteService.getByIdWithReservation(id);
+	}
+
 	private Athlete save(Athlete athlete, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new AthleteException();
 		}
 		return athleteService.save(athlete);
 	}
-	
+
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
+	@JsonView(JsonViews.Common.class)
 	public Athlete create(@Valid @RequestBody Athlete athlete, BindingResult br) {
 		return save(athlete, br);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	public void delete(@PathVariable Integer id) {
 		athleteService.deleteById(id);
 	}
-	
+
 	@PutMapping("/{id}")
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
+	@JsonView(JsonViews.Common.class)
 	public Athlete update(@PathVariable Integer id, @Valid @RequestBody Athlete athlete, BindingResult br) {
+
+		Athlete athleteEnBase = athleteService.getById(id);
+		athlete.setEpreuves(athleteEnBase.getEpreuves());		
 		athlete.setId(id);
 		return save(athlete, br);
 	}
-	
+
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
+	@JsonView(JsonViews.Common.class)
 	public Athlete partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Athlete athlete = athleteService.getById(id);
-		fields.forEach((k, v) -> {
-			if (k.equals("dateNaissance")) {
-				List<Integer> dateRecuperee = (List<Integer>) v;
-				athlete.setDateNaissance(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
-			} else if (k.equals("adresse")) {
-				List <String> adresseRecuperee = (List<String>) v;
-				Adresse adresse = new Adresse();
-				adresse.setNumero(adresseRecuperee.get(0));
-				adresse.setVoie(adresseRecuperee.get(1));
-				adresse.setVille(adresseRecuperee.get(2));
-				adresse.setCp(adresseRecuperee.get(3));
-				athlete.setAdresse(adresse);
-				
-			} else {
-				Field field = ReflectionUtils.findField(Athlete.class, k);
-				ReflectionUtils.makeAccessible(field);
-				ReflectionUtils.setField(field, athlete, v);
+		fields.forEach((key, value) -> {
+
+			if(!key.equals("epreuves")) {
+				if (key.equals("dateNaissance")) {
+					List<Integer> dateRecuperee = (List<Integer>) value;
+					athlete.setDateNaissance(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
+				} 
+				else if (key.equals("adresse")) {
+					LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
+					Adresse adresse = new Adresse();
+					adresseMap.forEach((k,v)->{
+						Field field = ReflectionUtils.findField(Adresse.class, k);
+						ReflectionUtils.makeAccessible(field);
+						ReflectionUtils.setField(field, adresse, v);
+					});
+
+					athlete.setAdresse(adresse);}
+
+
+				else{
+					Field field = ReflectionUtils.findField(Athlete.class, key);
+					ReflectionUtils.makeAccessible(field);
+					ReflectionUtils.setField(field, athlete, value);}
 			}
+
 		});
 		return athleteService.save(athlete);
 	}

@@ -24,13 +24,21 @@ public class JsonViews {
 
 	}
 	
-	public static class AthleteWirhEpreuve extends Common {
+	public static class AthleteWithEpreuve extends Common {
 
 	}
 	
-	public static class Organisteur extends Common {
+	public static class CompteWithReservation {
+
+	}
+	
+	public static class OrganisteurWithEvenements extends Common {
 
 	}
 	
 
+	public static class AthleteEpreuve {
+		
+	}
+	
 }

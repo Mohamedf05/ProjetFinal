@@ -11,13 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonView(JsonViews.Organisteur.class)
 public class Logement {
 
 	@JsonView(JsonViews.Common.class)
@@ -25,11 +26,14 @@ public class Logement {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@JsonView(JsonViews.Common.class)
+	@NotEmpty
 	private String nom;
 	@JsonView(JsonViews.Common.class)
+	@NotNull
 	@Embedded
 	private Adresse adresse;
 	@JsonView(JsonViews.Common.class)
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Camping', 'Hotel', 'Villa', 'Village_Vacances')")
 	private TypeLogement typeLogement;

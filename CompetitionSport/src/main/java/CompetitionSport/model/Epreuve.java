@@ -22,7 +22,6 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-@JsonView(JsonViews.AthleteWirhEpreuve.class)
 public class Epreuve {
 	
 	@Id

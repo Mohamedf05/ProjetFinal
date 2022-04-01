@@ -4,13 +4,14 @@ import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Spectateur extends Compte {
 	
-	//@NotEmpty
+	@NotNull
 	@JsonView(JsonViews.Common.class)
 	private LocalDate dateNaissance;
 

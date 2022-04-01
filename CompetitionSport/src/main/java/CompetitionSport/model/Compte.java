@@ -46,6 +46,7 @@ public abstract class Compte {
 	protected Adresse adresse;
 	
 	@OneToMany(mappedBy = "compte")
+	@JsonView(JsonViews.CompteWithReservation.class)
 	protected List<Reservation> reservations;
 	
 	@Version
