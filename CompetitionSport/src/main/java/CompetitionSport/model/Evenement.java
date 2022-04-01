@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
+@JsonView(JsonViews.Organisteur.class)
 public class Evenement {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
