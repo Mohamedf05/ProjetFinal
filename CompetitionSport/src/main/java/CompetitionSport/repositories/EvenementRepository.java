@@ -11,5 +11,5 @@ import CompetitionSport.model.Evenement;
 public interface EvenementRepository extends JpaRepository<Evenement, Integer> {
 
     @Query("SELECT DISTINCT e from Evenement e JOIN FETCH e.organisateur o where o.id=:identifiant")
-	List<Evenement> findByOrganisateur(@Param("identifiant") Integer numero);
+	public List<Evenement> findByOrganisateur(@Param("identifiant") Integer numero);
 }

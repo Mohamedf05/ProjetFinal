@@ -24,25 +24,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import CompetitionSport.exception.AthleteException;
-import CompetitionSport.model.Adresse;
+import CompetitionSport.exception.EpreuveException;
 import CompetitionSport.model.Athlete;
+import CompetitionSport.model.Discipline;
 import CompetitionSport.model.Epreuve;
 import CompetitionSport.model.Evenement;
 import CompetitionSport.model.JsonViews;
-import CompetitionSport.model.Organisateur;
 import CompetitionSport.model.Reservation;
 import CompetitionSport.services.EpreuveService;
+import CompetitionSport.services.EvenementService;
 
 @RestController
 @RequestMapping("/api/epreuve")
 public class EpreuveRestController {
 	@Autowired
 	EpreuveService epreuveService;
-
+	@Autowired
+	EvenementService evenementService;
+	
 	@GetMapping("")
 	public List<Epreuve> getAll()
 	{
+		System.out.println(1);
 		return epreuveService.getAll();
 	}
 
@@ -60,15 +63,13 @@ public class EpreuveRestController {
 		Epreuve epreuve=epreuveService.getById(id); 
 		return epreuve.getReservations();
 	}
-
-	private Epreuve save(Epreuve epreuve, BindingResult br) {
-		if (br.hasErrors()) {
-			throw new AthleteException();
-		}
-		return epreuveService.save(epreuve);
+	
+	@GetMapping("/{id}")//id de l'evenement
+	public List<Epreuve> getAllByEvenement(Integer id)
+	{
+		return epreuveService.getAllByEvenement(id);
 	}
-
-	@JsonView(JsonViews.EpreuveWithAthlete.class)
+	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
@@ -77,10 +78,56 @@ public class EpreuveRestController {
 
 	@JsonView(JsonViews.EpreuveWithAthlete.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@PostMapping("/{id}")
+	@PostMapping("/{id}")//id de l'evenement
 	public Epreuve create(@PathVariable Integer id,@Valid @RequestBody Epreuve epreuve, BindingResult br) {
-
-		return save(epreuve, br);
+		Evenement evenementEnBase=evenementService.getById(id);
+		epreuve.setEvenement(evenementEnBase);
+		return save(epreuve,br);
+				
+	}
+	
+	@PutMapping("/{id}")//id de l'epreuve
+	public Epreuve update(@PathVariable Integer id,@Valid @RequestBody Epreuve epreuve, BindingResult br)
+	{
+		Epreuve epreuveEnBase=epreuveService.getById(id);
+		epreuve.setEvenement(epreuveEnBase.getEvenement());
+		epreuve.setId(id);
+		return save(epreuve,br);
+	}
+	
+	private Epreuve save(Epreuve epreuve,BindingResult br)
+	{
+		if(br.hasErrors()) {
+			throw new EpreuveException();
+		}
+		return epreuveService.save(epreuve);
+	}
+	
+	@PatchMapping("/{id}")
+	public Epreuve partialUpdate(@PathVariable Integer id,@RequestBody Map<String,Object> fields)
+	{
+		Epreuve epreuve=epreuveService.getById(id);
+		fields.forEach((k,v) ->
+		{
+			if(v.equals("evenement"))
+			{
+				if (k.equals("date")) {
+					List<Integer> dateRecuperee = (List<Integer>) v;
+					epreuve.setDate(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
+				}
+				else if(k.equals("discipline")){
+					epreuve.setDiscipline(Discipline.valueOf(v.toString()));
+				}
+				else {
+					Field field=ReflectionUtils.findField(Epreuve.class, k);
+					ReflectionUtils.makeAccessible(field);
+					ReflectionUtils.setField(field, epreuve, v);
+				}
+			}
+			
+		});
+		
+		return epreuveService.save(epreuve);
 	}
 
 	@JsonView(JsonViews.EpreuveWithAthlete.class)
