@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -29,14 +31,16 @@ public class Reservation {
 	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
 	private Statut statut;
 	@JsonView(JsonViews.Common.class)
+	@NotNull
 	private LocalDate date;
 	@JsonView(JsonViews.Common.class)
+	@NotNull
 	private LocalTime heure;
 	@JsonView(JsonViews.Common.class)
 	@ManyToOne
 	@JoinColumn(name="compte_fk")
 	private Compte compte;
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@ManyToOne
 	@JoinColumn(name="epreuve_fk")
 	private Epreuve epreuve;
@@ -44,6 +48,10 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name="logement_fk")
 	private Logement logement;
+	@JsonView(JsonViews.Common.class)
+	private LocalDate dateDebut;
+	@JsonView(JsonViews.Common.class)
+	private LocalDate dateFin;
 	
 	@Version
 	protected int version;
@@ -51,9 +59,8 @@ public class Reservation {
 	public Reservation() {
 	}
 	
-	public Reservation(Compte compte, Epreuve epreuve, Logement logement) {
+	public Reservation(Compte compte, Logement logement) {
 		this.compte = compte;
-		this.epreuve = epreuve;
 		this.logement = logement;
 		this.statut=Statut.A_Venir;
 		this.date=LocalDate.now();
@@ -147,6 +154,22 @@ public class Reservation {
 		this.version = version;
 	}
 
+
+	public LocalDate getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(LocalDate dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public LocalDate getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(LocalDate dateFin) {
+		this.dateFin = dateFin;
+	}
 
 	@Override
 	public String toString() {
