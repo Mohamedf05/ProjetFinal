@@ -8,7 +8,7 @@ spring:
       max-total: 10
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: 
-    url: jdbc:mysql://localhost:8080/competitionsport
+    url: jdbc:mysql://localhost:3306/competitionsport
     username: root
   jpa:
     hibernate:
