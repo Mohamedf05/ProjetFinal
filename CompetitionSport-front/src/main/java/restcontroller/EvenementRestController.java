@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import CompetitionSport.exception.EvenementException;
+import CompetitionSport.model.Epreuve;
 import CompetitionSport.model.Evenement;
 import CompetitionSport.model.JsonViews;
 import CompetitionSport.model.Organisateur;
 import CompetitionSport.model.Statut;
+import CompetitionSport.services.EpreuveService;
 import CompetitionSport.services.EvenementService;
 import CompetitionSport.services.OrganisateurService;
 
@@ -40,8 +42,10 @@ public class EvenementRestController {
 	EvenementService evenementService;
 	@Autowired
 	OrganisateurService organisateurService;
+	@Autowired
+	EpreuveService epreuveService;
 	
-	@JsonView(JsonViews.EvenementWithOrganisateur.class)
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("")
 	public List<Evenement> getAll()
 	{
@@ -50,10 +54,24 @@ public class EvenementRestController {
 	
 	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	@GetMapping("/{id}")
-	public List<Evenement> getAllByOrganisateur(@PathVariable Integer id)
+	public Evenement getAllByOrganisateur(@PathVariable Integer id)
 	{
-		return evenementService.getAllbyOrganisateur(id);
+		return evenementService.getById(id);
 	}
+	
+	@JsonView(JsonViews.EvenementWithEpreuve.class)
+	@GetMapping("/epreuves/{id}")
+	public List<Epreuve> getAllByEvenement(Integer id)
+	{
+		return epreuveService.getAllByEvenement(id);
+	}
+	
+//	@JsonView(JsonViews.EvenementWithOrganisateur.class)
+//	@GetMapping("/{id}")
+//	public List<Evenement> getAllByOrganisateur(@PathVariable Integer id)
+//	{
+//		return evenementService.getAllbyOrganisateur(id);
+//	}
 	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
@@ -61,6 +79,7 @@ public class EvenementRestController {
 		evenementService.delete(id);
 	}
 	
+	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/{id}")//id organisateur
 	public Evenement create(@PathVariable Integer id,@Valid @RequestBody Evenement evenement, BindingResult br) {
