@@ -11,7 +11,11 @@ import org.springframework.stereotype.Service;
 
 import CompetitionSport.exception.AthleteException;
 import CompetitionSport.model.Athlete;
+import CompetitionSport.model.Epreuve;
+import CompetitionSport.model.Reservation;
 import CompetitionSport.repositories.AthleteRepository;
+import CompetitionSport.repositories.CompteRepository;
+import CompetitionSport.repositories.EpreuveRepository;
 import CompetitionSport.repositories.ReservationRepository;
 
 
@@ -20,9 +24,11 @@ public class AthleteService {
 
 
 	@Autowired
-	private AthleteRepository athleteRepo;
+	private AthleteRepository athleteRepo;	
 	@Autowired
 	private ReservationRepository reservationRepo;
+	@Autowired
+	private EpreuveRepository epreuveRepo;
 	
 	@Autowired
 	private Validator validator;
@@ -45,15 +51,19 @@ public class AthleteService {
 	}
 
 	public Athlete getById(Integer id) {
-		return athleteRepo.findById(id).orElseThrow(() -> {
+		return athleteRepo.findByIdWithEpreuves(id).orElseThrow(() -> {
 			throw new AthleteException("id inconnu");
 		});
 	}
+	
+	
 
-	public Athlete getByNumeroWithReservation(Integer id) {
-		return athleteRepo.findByIdWithReservations(id).orElseThrow(() -> {
-			throw new AthleteException("id inconnu");
-		});
+	public List<Reservation> getByIdWithReservation(Integer id) {
+		return reservationRepo.findByIdWithReservations(id);	
+	}
+	
+	public List<Epreuve> getByIdWithEpreuve(Integer id) {
+		return epreuveRepo.findByAthleteWithEpreuve(id);
 	}
 
 	public void delete(Athlete athlete) {

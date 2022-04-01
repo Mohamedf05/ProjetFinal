@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import CompetitionSport.exception.SpectateurException;
 import CompetitionSport.model.Spectateur;
+import CompetitionSport.repositories.CompteRepository;
 import CompetitionSport.repositories.ReservationRepository;
 import CompetitionSport.repositories.SpectateurRepository;
 
@@ -15,7 +16,8 @@ public class SpectateurService {
 
 	@Autowired
 	private SpectateurRepository spectateurRepo;
-	
+	@Autowired
+	private CompteRepository compteRepository;
 	@Autowired
 	private ReservationRepository reservationRepo;
 
@@ -24,7 +26,7 @@ public class SpectateurService {
 	}
 
 	public Spectateur getById(Integer id) {
-		return spectateurRepo.findById(id).orElseThrow(SpectateurException::new);
+		return (Spectateur) compteRepository.findByIdWithReservations(id).orElseThrow(SpectateurException::new);
 	}
 
 	public Spectateur save(Spectateur spectateur) {

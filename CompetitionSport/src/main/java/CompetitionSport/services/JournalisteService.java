@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import CompetitionSport.exception.JournalisteException;
 import CompetitionSport.model.Journaliste;
+import CompetitionSport.repositories.CompteRepository;
 import CompetitionSport.repositories.JournalisteRepository;
 import CompetitionSport.repositories.ReservationRepository;
 
@@ -17,6 +18,8 @@ public class JournalisteService {
 	@Autowired
 	private JournalisteRepository journalisteRepo;
 	@Autowired
+	private CompteRepository compteRepository;
+	@Autowired
 	private ReservationRepository reservationRepo;
 
 	public List<Journaliste> getAll() {
@@ -24,7 +27,7 @@ public class JournalisteService {
 	}
 
 	public Journaliste getById(Integer id) {
-		return journalisteRepo.findById(id).orElseThrow(JournalisteException::new);
+		return (Journaliste) compteRepository.findByIdWithReservations(id).orElseThrow(JournalisteException::new);
 	}
 
 	public Journaliste save(Journaliste journaliste) {

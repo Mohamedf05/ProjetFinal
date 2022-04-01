@@ -22,7 +22,13 @@ public class ReservationService {
 	public Reservation getById(Integer id) {
 		return reservationRepo.findById(id).orElseThrow(ReservationException::new);
 	}
-
+	
+	public List<Reservation> getAllbyOrganisateur(Integer id)
+    {
+    	return reservationRepo.findByIdWithReservations(id);
+    	
+    }
+	
 	public Reservation save(Reservation reservation) {
 		if (reservation.getId() != null) {
 			Reservation reservationEnBase = getById(reservation.getId());
