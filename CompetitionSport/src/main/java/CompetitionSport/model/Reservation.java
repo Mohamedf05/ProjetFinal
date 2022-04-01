@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -25,12 +26,15 @@ public class Reservation {
 	private Integer id;
 	
 	@JsonView(JsonViews.Common.class)
+	@NotEmpty
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
 	private Statut statut;
 	@JsonView(JsonViews.Common.class)
+	@NotEmpty
 	private LocalDate date;
 	@JsonView(JsonViews.Common.class)
+	@NotEmpty
 	private LocalTime heure;
 	@JsonView(JsonViews.Common.class)
 	@ManyToOne
