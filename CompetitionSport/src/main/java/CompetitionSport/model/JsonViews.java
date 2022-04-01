@@ -36,6 +36,9 @@ public class JsonViews {
 
 	}
 	
+	public static class ReservationWithEpreuve extends Common {
+
+	}
 
 	public static class AthleteEpreuve {
 		
