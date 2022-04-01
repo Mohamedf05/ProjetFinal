@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -14,12 +15,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Athlete extends Compte {
 	
-	//@NotEmpty
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
+	@NotNull
+	@JsonView(JsonViews.Common.class)
 	private LocalDate dateNaissance;
 	
 	@ManyToMany(mappedBy = "participants")
-	@JsonView(JsonViews.AthleteWirhEpreuve.class)
+	@JsonView(JsonViews.AthleteEpreuve.class)
 	private List<Epreuve> epreuves;
 
 	public Athlete() {

@@ -3,10 +3,7 @@ package CompetitionSport.model;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
@@ -16,15 +13,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Organisateur extends Compte {
 
 	@NotEmpty
-	@JsonView(JsonViews.Organisteur.class)
+	@JsonView(JsonViews.Common.class)
 	private String raisonSoc;
 	
 	@OneToMany
-	@JsonView(JsonViews.Organisteur.class)
 	private List<Terrain> terrains;
 	
 	@OneToMany
-	@JsonView(JsonViews.Organisteur.class)
 	private List<Logement> logements;
 	/*
 	@ElementCollection()
@@ -32,7 +27,7 @@ public class Organisateur extends Compte {
 	private List<Discipline> disciplines;*/
 	
 	@OneToMany(mappedBy = "organisateur")
-	@JsonView(JsonViews.Organisteur.class)
+	@JsonView(JsonViews.OrganisteurWithEvenements.class)
 	private List<Evenement> evenements;
 	
 	

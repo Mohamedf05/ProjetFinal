@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@JsonView(JsonViews.Organisteur.class)
 public class Logement {
 
 	@JsonView(JsonViews.Common.class)

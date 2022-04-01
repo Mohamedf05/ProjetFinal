@@ -1,6 +1,7 @@
 package restcontroller;
 
 import java.lang.reflect.Field;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import CompetitionSport.exception.JournalisteException;
 import CompetitionSport.model.Adresse;
 import CompetitionSport.model.Journaliste;
 import CompetitionSport.model.JsonViews;
+import CompetitionSport.model.Logement;
 import CompetitionSport.services.JournalisteService;
 
 
@@ -49,6 +51,12 @@ public class JournalisteRestController {
 		return journalisteService.getById(id);
 	}
 	
+	@GetMapping("/{id}/reservation")
+	@JsonView(JsonViews.CompteWithReservation.class)
+	public Journaliste getByIdJournaliste(@PathVariable Integer id) {
+		return journalisteService.getById(id);
+	}
+	
 	private Journaliste save(Journaliste journaliste, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new JournalisteException();
@@ -65,7 +73,6 @@ public class JournalisteRestController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@JsonView(JsonViews.Common.class)
 	public void delete(@PathVariable Integer id) {
 		journalisteService.deleteById(id);
 	}
@@ -81,22 +88,23 @@ public class JournalisteRestController {
 	@JsonView(JsonViews.Common.class)
 	public Journaliste partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Journaliste journaliste = journalisteService.getById(id);
-		fields.forEach((k, v) -> {
-		
-			if (k.equals("adresse")) {
-				List <String> adresseRecuperee = (List<String>) v;
+		fields.forEach((key, value) -> {
+			if (key.equals("adresse")) {
+				LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
 				Adresse adresse = new Adresse();
-				adresse.setNumero(adresseRecuperee.get(0));
-				adresse.setVoie(adresseRecuperee.get(1));
-				adresse.setVille(adresseRecuperee.get(2));
-				adresse.setCp(adresseRecuperee.get(3));
-				journaliste.setAdresse(adresse);
-				
-			} else {
-				Field field = ReflectionUtils.findField(Journaliste.class, k);
+				adresseMap.forEach((k,v)->{
+					Field field = ReflectionUtils.findField(Adresse.class, k);
+					ReflectionUtils.makeAccessible(field);
+					ReflectionUtils.setField(field, adresse, v);
+				});
+
+				journaliste.setAdresse(adresse);}
+
+
+			else{
+				Field field = ReflectionUtils.findField(Journaliste.class, key);
 				ReflectionUtils.makeAccessible(field);
-				ReflectionUtils.setField(field, journaliste, v);
-			}
+				ReflectionUtils.setField(field, journaliste, value);}
 		});
 		return journalisteService.save(journaliste);
 	}
