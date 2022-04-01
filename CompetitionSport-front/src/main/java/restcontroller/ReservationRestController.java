@@ -1,14 +1,19 @@
 package restcontroller;
 
+import java.lang.reflect.Field;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,8 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import CompetitionSport.exception.ReservationException;
+import CompetitionSport.model.Evenement;
 import CompetitionSport.model.JsonViews;
 import CompetitionSport.model.Reservation;
+import CompetitionSport.model.Statut;
 import CompetitionSport.services.CompteService;
 import CompetitionSport.services.EpreuveService;
 import CompetitionSport.services.ReservationService;
@@ -39,13 +46,13 @@ public class ReservationRestController {
 	@Autowired
 	private EpreuveService epreuveService;
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@GetMapping("")
 	public List<Reservation> getAll() {
 		return reservationService.getAll();
 	}
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@GetMapping("/{id}")
 	public Reservation getById(@PathVariable Integer id) {
 		return reservationService.getById(id);
@@ -60,7 +67,7 @@ public class ReservationRestController {
 	}
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PostMapping("")
 	public Reservation create(@Valid @RequestBody Reservation reservation, BindingResult br) {
 		return save(reservation, br);}
@@ -73,8 +80,30 @@ public class ReservationRestController {
 	}
 	
 	
-	
-	
+	@JsonView(JsonViews.Common.class)
+	@PatchMapping("/{id}")
+	public Reservation partialUpdate(@PathVariable Integer id, @RequestBody Map<String, Object> fields)
+	{
+		Reservation reservation=reservationService.getById(id);
+		fields.forEach((k, v) ->
+		{
+				if (k.equals("dateDebut")) {
+					List<Integer> dateRecuperee = (List<Integer>) v;
+					reservation.setDateDebut(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
+				}
+				else if(k.equals("dateFin")) {
+					List<Integer> dateRecuperee = (List<Integer>) v;
+					reservation.setDateFin(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
+				}
+				else if (k.equals("statut")){
+					reservation.setStatut(Statut.valueOf(v.toString()));
+				}
+				
+			
+		});
+		
+		return reservationService.save(reservation);
+	}
 	
 	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
