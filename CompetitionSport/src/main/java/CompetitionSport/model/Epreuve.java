@@ -5,35 +5,47 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Epreuve {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView(JsonViews.Common.class)
+	@NotEmpty
 	private Integer id;
 	
+	@NotEmpty
+	@ManyToOne
 	@JsonView(JsonViews.Common.class)
+	@JoinColumn(name="evenement_fk")
+	private Evenement evenement;
+	
+	@JsonView(JsonViews.Common.class)
+	@NotEmpty
 	private  int maxParticipant;
 	
 	@JsonView(JsonViews.Common.class)
-	private LocalDate dateDebut;
+	@NotEmpty
+	private LocalDate date;
 	
+	@NotEmpty
 	@JsonView(JsonViews.Common.class)
-	private LocalDate dateFin;
-	
-	@JsonView(JsonViews.Common.class)
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "Enum('Athletisme', 'Baseball', 'Basketball', 'Boxe', 'Cyclisme', 'Equitation', 'Handball', 'Football', 'Judo', 'Natation', 'Skate', 'Tennis')")
 	private Discipline discipline;
 	
@@ -56,20 +68,20 @@ public class Epreuve {
 	
 	public Epreuve() {}
 	
-	public Epreuve(Integer id, int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline,
+	public Epreuve(Integer id,Evenement evenement, int maxParticipant, LocalDate date, Discipline discipline,
 			 Score score) {
 		this.id = id;
+		this.evenement=evenement;
 		this.maxParticipant = maxParticipant;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
+		this.date = date;
 		this.discipline = discipline;
 		this.score = score;
 	}
 
-	public Epreuve(int maxParticipant, LocalDate dateDebut, LocalDate dateFin, Discipline discipline) {
+	public Epreuve(Evenement evenement,int maxParticipant, LocalDate date, Discipline discipline) {
+		this.evenement=evenement;
 		this.maxParticipant = maxParticipant;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
+		this.date = date;
 		this.discipline = discipline;
 	}
 	
@@ -94,14 +106,10 @@ public class Epreuve {
 	}
 
 
-	public LocalDate getDateDebut() {
-		return dateDebut;
+	public LocalDate getDate() {
+		return date;
 	}
 
-
-	public LocalDate getDateFin() {
-		return dateFin;
-	}
 
 
 	public Discipline getDiscipline() {
@@ -134,13 +142,8 @@ public class Epreuve {
 	}
 
 
-	public void setDateDebut(LocalDate dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-
-
-	public void setDateFin(LocalDate dateFin) {
-		this.dateFin = dateFin;
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 
 
@@ -177,9 +180,17 @@ public class Epreuve {
 
 	@Override
 	public String toString() {
-		return "Epreuve [id=" + id + ", maxParticipant=" + maxParticipant + ", dateDebut=" + dateDebut + ", dateFin="
-				+ dateFin + ", discipline=" + discipline + ", participants=" + participants + ", terrain=" + terrain
+		return "Epreuve [id=" + id + ", maxParticipant=" + maxParticipant + ", date=" + date
+				 + ", discipline=" + discipline + ", participants=" + participants + ", terrain=" + terrain
 				+ "]";
+	}
+
+	public Evenement getEvenement() {
+		return evenement;
+	}
+
+	public void setEvenement(Evenement evenement) {
+		this.evenement = evenement;
 	}
 
 }
