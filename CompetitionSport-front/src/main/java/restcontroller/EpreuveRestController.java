@@ -2,6 +2,7 @@ package restcontroller;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,8 +32,10 @@ import CompetitionSport.model.Epreuve;
 import CompetitionSport.model.Evenement;
 import CompetitionSport.model.JsonViews;
 import CompetitionSport.model.Reservation;
+import CompetitionSport.model.Terrain;
 import CompetitionSport.services.EpreuveService;
 import CompetitionSport.services.EvenementService;
+import CompetitionSport.services.TerrainService;
 
 @RestController
 @RequestMapping("/api/epreuve")
@@ -41,12 +44,21 @@ public class EpreuveRestController {
 	EpreuveService epreuveService;
 	@Autowired
 	EvenementService evenementService;
+	@Autowired
+	TerrainService terrainService;
 	
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("")
 	public List<Epreuve> getAll()
 	{
-		System.out.println(1);
 		return epreuveService.getAll();
+	}
+	
+	@JsonView(JsonViews.Common.class)
+	@GetMapping("/{id}")
+	public Epreuve getAllByEvenement(@PathVariable Integer id)
+	{
+		return epreuveService.getById(id);
 	}
 	
 	@JsonView(JsonViews.EpreuveWithAthlete.class)
@@ -64,18 +76,13 @@ public class EpreuveRestController {
 		return epreuve.getReservations();
 	}
 	
-	@GetMapping("/{id}")//id de l'evenement
-	public List<Epreuve> getAllByEvenement(Integer id)
-	{
-		return epreuveService.getAllByEvenement(id);
-	}
-	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
 		epreuveService.delete(id);
 	}
 	
+	@JsonView(JsonViews.Common.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/{id}")//id de l'evenement
 	public Epreuve create(@PathVariable Integer id,@Valid @RequestBody Epreuve epreuve, BindingResult br) {
@@ -85,6 +92,7 @@ public class EpreuveRestController {
 				
 	}
 	
+	@JsonView(JsonViews.Common.class)
 	@PutMapping("/{id}")//id de l'epreuve
 	public Epreuve update(@PathVariable Integer id,@Valid @RequestBody Epreuve epreuve, BindingResult br)
 	{
@@ -102,13 +110,14 @@ public class EpreuveRestController {
 		return epreuveService.save(epreuve);
 	}
 	
+	@JsonView(JsonViews.Common.class)
 	@PatchMapping("/{id}")
 	public Epreuve partialUpdate(@PathVariable Integer id,@RequestBody Map<String,Object> fields)
 	{
 		Epreuve epreuve=epreuveService.getById(id);
 		fields.forEach((k,v) ->
 		{
-			if(v.equals("evenement"))
+			if(!k.equals("evenement"))
 			{
 				if (k.equals("date")) {
 					List<Integer> dateRecuperee = (List<Integer>) v;
@@ -116,6 +125,13 @@ public class EpreuveRestController {
 				}
 				else if(k.equals("discipline")){
 					epreuve.setDiscipline(Discipline.valueOf(v.toString()));
+				}
+				else if(k.equals("terrain"))
+				{
+					LinkedHashMap<String, Integer> terrainMap = (LinkedHashMap<String, Integer>) v;
+					Integer idTerrain=terrainMap.get("id");
+					Terrain terrain=terrainService.getById(idTerrain);
+					epreuve.setTerrain(terrain);
 				}
 				else {
 					Field field=ReflectionUtils.findField(Epreuve.class, k);
