@@ -9,8 +9,14 @@ public class JsonViews {
 	public static class EvenementWithOrganisateur extends Common {
 
 	}
+	public static class EvenementWithEpreuve extends Common {
+
+	}
 
 	public static class EpreuveWithAthlete extends Common {
+
+	}
+	public static class EpreuveWithEvenement extends Common {
 
 	}
 
@@ -29,6 +35,7 @@ public class JsonViews {
 	public static class OrganisteurWithEvenements extends Common {
 
 	}
+	
 
 	public static class AthleteEpreuve {
 		

@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -26,24 +27,23 @@ public class Epreuve {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonView(JsonViews.Common.class)
-	@NotEmpty
 	private Integer id;
 	
-	@NotEmpty
+	@NotNull
 	@ManyToOne
 	@JsonView(JsonViews.Common.class)
 	@JoinColumn(name="evenement_fk")
 	private Evenement evenement;
 	
 	@JsonView(JsonViews.Common.class)
-	@NotEmpty
+	@NotNull
 	private  int maxParticipant;
 	
 	@JsonView(JsonViews.Common.class)
-	@NotEmpty
+	@NotNull
 	private LocalDate date;
 	
-	@NotEmpty
+	@NotNull
 	@JsonView(JsonViews.Common.class)
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "Enum('Athletisme', 'Baseball', 'Basketball', 'Boxe', 'Cyclisme', 'Equitation', 'Handball', 'Football', 'Judo', 'Natation', 'Skate', 'Tennis')")
