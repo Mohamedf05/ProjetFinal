@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 
@@ -13,11 +14,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Athlete extends Compte {
 	
-	@NotEmpty
-	@JsonView(JsonViews.Common.class)
+	//@NotEmpty
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	private LocalDate dateNaissance;
 	
 	@ManyToMany(mappedBy = "participants")
+	@JsonView(JsonViews.AthleteWirhEpreuve.class)
 	private List<Epreuve> epreuves;
 
 	public Athlete() {

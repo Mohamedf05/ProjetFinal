@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -38,13 +39,13 @@ public class OrganisateurRestController {
 	private OrganisateurService organisateurService;
 	
 	@GetMapping("")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Organisteur.class)
 	public List<Organisateur> getAll() {
 		return organisateurService.getAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Organisteur.class)
 	public Organisateur getById(@PathVariable Integer id) {
 		return organisateurService.getById(id);
 	}
@@ -58,20 +59,27 @@ public class OrganisateurRestController {
 	
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Organisteur.class)
 	public Organisateur create(@Valid @RequestBody Organisateur organisateur, BindingResult br) {
 		return save(organisateur, br);
 	}
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Organisteur.class)
 	public void delete(@PathVariable Integer id) {
 		organisateurService.deleteById(id);
 	}
 	
+	@PutMapping("/{id}")
+	@JsonView(JsonViews.Organisteur.class)
+	public Organisateur update(@PathVariable Integer id, @Valid @RequestBody Organisateur organisateur, BindingResult br) {
+		organisateur.setId(id);
+		return save(organisateur, br);
+	}
+	
 	@PatchMapping("/{id}")
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.Organisteur.class)
 	public Organisateur partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
 		Organisateur organisateur = organisateurService.getById(id);
 		fields.forEach((k, v) -> {
