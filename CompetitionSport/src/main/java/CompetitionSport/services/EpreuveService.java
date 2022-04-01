@@ -25,6 +25,11 @@ public class EpreuveService {
     public List<Epreuve> getAll() {
 		return epreuveRepo.findAll();
 	}
+    
+    public List<Epreuve> getAllByEvenement(Integer id)
+    {
+    	return epreuveRepo.findByEvenement(id);
+    }
 
 	public Epreuve getById(Integer id) {
 		return epreuveRepo.findById(id).orElseThrow(EpreuveException::new);

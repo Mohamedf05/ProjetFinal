@@ -1,6 +1,7 @@
 package CompetitionSport.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -51,8 +53,11 @@ public class Evenement {
 	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	private Organisateur organisateur;
 	
+	@OneToMany(mappedBy = "evenement")
+	private List<Epreuve> epreuves;
+	
 	@Version
-	protected int version;
+	protected int version; 
 	
 	public Evenement (){}
 	
@@ -141,6 +146,14 @@ public class Evenement {
 	public String toString() {
 		return "Evenement [id=" + id + ", nom=" + nom + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", ville="
 				+ ville + ", statut=" + statut + "]";
+	}
+
+	public List<Epreuve> getEpreuves() {
+		return epreuves;
+	}
+
+	public void setEpreuves(List<Epreuve> epreuves) {
+		this.epreuves = epreuves;
 	}
 
 	

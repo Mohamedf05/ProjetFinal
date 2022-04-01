@@ -62,7 +62,7 @@ public class EvenementRestController {
 	}
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@PostMapping("/{id}")
+	@PostMapping("/{id}")//id organisateur
 	public Evenement create(@PathVariable Integer id,@Valid @RequestBody Evenement evenement, BindingResult br) {
 		Organisateur organisateur=organisateurService.getById(id);
 		evenement.setOrganisateur(organisateur);
