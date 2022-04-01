@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
+@JsonView(JsonViews.Organisteur.class)
 public class Terrain {
 
 	@JsonView(JsonViews.Common.class)
