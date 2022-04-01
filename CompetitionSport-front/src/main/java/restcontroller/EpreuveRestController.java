@@ -48,7 +48,7 @@ public class EpreuveRestController {
 		System.out.println(1);
 		return epreuveService.getAll();
 	}
-
+	
 	@JsonView(JsonViews.EpreuveWithAthlete.class)
 	@GetMapping("/{id}/participants")
 	public List<Athlete> getAllParticipant(@PathVariable Integer id)
@@ -75,8 +75,7 @@ public class EpreuveRestController {
 	public void delete(@PathVariable Integer id) {
 		epreuveService.delete(id);
 	}
-
-	@JsonView(JsonViews.EpreuveWithAthlete.class)
+	
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/{id}")//id de l'evenement
 	public Epreuve create(@PathVariable Integer id,@Valid @RequestBody Epreuve epreuve, BindingResult br) {
@@ -129,31 +128,5 @@ public class EpreuveRestController {
 		
 		return epreuveService.save(epreuve);
 	}
-
-	@JsonView(JsonViews.EpreuveWithAthlete.class)
-	@PutMapping("/{id}")
-	public Epreuve update(@PathVariable Integer id, @Valid @RequestBody Epreuve epreuve, BindingResult br) {
-		epreuve.setId(id);
-		return save(epreuve, br);
-	}
-
-	@PatchMapping("/{id}")
-	public Epreuve partialUpdate(@RequestBody Map<String, Object> fields, @PathVariable Integer id) {
-		Epreuve epreuve = epreuveService.getById(id);
-		fields.forEach((k, v) -> {
-			if (k.equals("dateDebut")) {
-				List<Integer> dateRecuperee = (List<Integer>) v;
-				epreuve.setDateDebut(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
-			}else if (k.equals("dateFin")) {
-				List<Integer> dateRecuperee = (List<Integer>) v;
-				epreuve.setDateFin(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
-		} else {
-			Field field = ReflectionUtils.findField(Epreuve.class, k);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, epreuve, v);
-		}
-	});
-		return epreuveService.save(epreuve);
-}
 
 }
