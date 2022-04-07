@@ -47,7 +47,6 @@ public abstract class Compte implements UserDetails {
 	protected String mail;
 	
 	@NotEmpty
-	@JsonView(JsonViews.Common.class)
 	protected String password;
 	
 	@Embedded

@@ -1,6 +1,7 @@
 package soprajc.CompetitionSpring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,21 +20,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.antMatcher("api/**")
+		http.antMatcher("/api/**")
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.csrf().ignoringAntMatchers("/api/**")
 			.and()
 			.authorizeHttpRequests()
 				.antMatchers(HttpMethod.POST).permitAll()
-				.antMatchers("/api/athlete/**").permitAll()
+				.antMatchers(HttpMethod.GET,"/api/athlete").permitAll()
+				.antMatchers("/api/athlete/**").hasRole("ATHLETE")
 				.antMatchers("/api/epreuve/**").hasAnyRole("ATHLETE","ORGANISATEUR")
 				.antMatchers("/api/journaliste/**").hasRole("JOURNALISTE")
 				.antMatchers("/api/logement/**").hasRole("ORGANISATEUR")
-				.antMatchers("/api/organisateur").hasRole("ORGANISATEUR")
-				.antMatchers("/api/reservation").authenticated()
-				.antMatchers("api/spectateur").hasRole("SPECTATEUR")
-				.antMatchers("api/terrain").hasRole("ORGANISATEUR")
+				.antMatchers("/api/organisateur/**").hasRole("ORGANISATEUR")
+				.antMatchers("/api/reservation/**").authenticated()
+				.antMatchers("/api/spectateur/**").hasRole("SPECTATEUR")
+				.antMatchers("/api/terrain/**").hasRole("ORGANISATEUR")
 			.and()
 			.httpBasic();
 	}
@@ -43,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService);
 	}
 	
+	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
