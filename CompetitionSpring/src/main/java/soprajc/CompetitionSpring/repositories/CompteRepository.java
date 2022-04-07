@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import soprajc.CompetitionSpring.model.Compte;
 
 public interface CompteRepository extends JpaRepository<Compte, Integer> {
+	
+	Optional<Compte> findByMail(String mail);
 
 	Optional<Compte> findByMailAndPassword(String mail, String password);
 	
