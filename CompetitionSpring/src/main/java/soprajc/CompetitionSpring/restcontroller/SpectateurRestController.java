@@ -10,8 +10,10 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -34,10 +36,13 @@ import soprajc.CompetitionSpring.services.SpectateurService;
 
 @RestController
 @RequestMapping("/api/spectateur")
+@CrossOrigin(origins = "*")
 public class SpectateurRestController {
 
 	@Autowired
 	private SpectateurService spectateurService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
@@ -61,6 +66,7 @@ public class SpectateurRestController {
 		if (br.hasErrors()) {
 			throw new SpectateurException();
 		}
+		spectateur.setPassword(passwordEncoder.encode(spectateur.getPassword()));
 		return spectateurService.save(spectateur);
 	}
 
