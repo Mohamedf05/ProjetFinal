@@ -10,7 +10,7 @@ import CompetitionSport.model.Epreuve;
 import CompetitionSport.model.Evenement;
 
 public interface EpreuveRepository extends JpaRepository<Epreuve, Integer> {
-	@Query("SELECT DISTINCT e from Epreuve e JOIN FETCH e.evenement ev where ev.id=:identifiant")
+	@Query("SELECT DISTINCT e from Epreuve e LEFT JOIN FETCH e.evenement ev where ev.id=:identifiant")
 	public List<Epreuve> findByEvenement(@Param("identifiant") Integer numero);
 	
 	@Query("SELECT DISTINCT e from Epreuve e JOIN FETCH e.participants p where p.id=:id")
