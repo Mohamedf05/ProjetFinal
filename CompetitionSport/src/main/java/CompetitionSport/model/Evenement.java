@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
+@JsonView(JsonViews.Organisteur.class)
 public class Evenement {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -53,6 +54,7 @@ public class Evenement {
 	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	private Organisateur organisateur;
 	
+	@JsonView(JsonViews.EvenementWithEpreuve.class)
 	@OneToMany(mappedBy = "evenement")
 	private List<Epreuve> epreuves;
 	
