@@ -84,11 +84,6 @@ public class LogementRestController {
 					ReflectionUtils.makeAccessible(field);
 					ReflectionUtils.setField(field, adresse, v);
 					});
-				
-//				adresse.setNumero(adresseRecuperee.get(0));
-//				adresse.setVoie(adresseRecuperee.get(1));
-//				adresse.setVille(adresseRecuperee.get(2));
-//				adresse.setCp(adresseRecuperee.get(3));
 				logement.setAdresse(adresse);}
 				
 			else if(key.equals("typeLogement")){
