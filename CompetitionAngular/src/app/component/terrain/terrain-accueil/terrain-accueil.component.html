@@ -1,1 +1,41 @@
 <p>terrain-accueil works!</p>
+
+<table class="table">
+  <tr>
+    <td>ID</td>
+    <td>Nom</td>
+    <td>Numero</td>
+    <td>Voie</td>
+    <td>Code postal</td>
+    <td>Ville</td>
+    <td>Disciplines</td>
+    <td>Type Terrain</td>
+  </tr>
+  <tr *ngFor="let t of terrains">
+    <td>{{ t.id }}</td>
+    <td>{{ t.nom }}</td>
+    <td>{{ t.adresse?.numero }}</td>
+    <td>{{ t.adresse?.voie }}</td>
+    <td>{{ t.adresse?.cp }}</td>
+    <td>{{ t.adresse?.ville }}</td>
+    <td>{{ t.disciplines }}</td>
+    <td>{{ t.typeTerrain }}</td>
+    <td>
+      <a
+        [routerLink]="['/terrain', 'edit', t.id]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Editer</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(t.id!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+
+<a routerLink="/terrain/edit" routerLinkActive="active" class="btn btn-link"
+  >Ajouter un terrain</a
+>
