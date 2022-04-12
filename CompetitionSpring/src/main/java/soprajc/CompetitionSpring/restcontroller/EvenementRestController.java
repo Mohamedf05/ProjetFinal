@@ -56,9 +56,16 @@ public class EvenementRestController {
 	
 	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	@GetMapping("/{id}")
-	public Evenement getAllByOrganisateur(@PathVariable Integer id)
+	public Evenement getById(@PathVariable Integer id)
 	{
 		return evenementService.getById(id);
+	}
+	
+	@JsonView(JsonViews.EvenementWithOrganisateur.class)
+	@GetMapping("/nom/{nom}")
+	public Evenement getByName(@PathVariable String nom)
+	{
+		return evenementService.getByNom(nom);
 	}
 	
 	@JsonView(JsonViews.EvenementWithEpreuve.class)
@@ -67,13 +74,6 @@ public class EvenementRestController {
 	{
 		return epreuveService.getAllByEvenement(id);
 	}
-	
-//	@JsonView(JsonViews.EvenementWithOrganisateur.class)
-//	@GetMapping("/{id}")
-//	public List<Evenement> getAllByOrganisateur(@PathVariable Integer id)
-//	{
-//		return evenementService.getAllbyOrganisateur(id);
-//	}
 	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")

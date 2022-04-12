@@ -1,0 +1,46 @@
+<div class="card text-center">
+  <h1>Liste des epreuves</h1>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Indentifiant</th>
+        <th scope="col">Evenement</th>
+        <th scope="col">Date</th>
+        <th scope="col">Discipline</th>
+        <th scope="col">Terrain</th>
+        <th scope="col">Participant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of epreuves">
+        <td>{{ e.id }}</td>
+        <td>{{ e.evenement?.nom }}</td>
+        <td>{{ e.date | date: "dd/MM/yyyy" }}</td>
+        <td>{{ e.discipline }}</td>
+        <td>{{ e.terrain?.nom }}</td>
+        <td>{{ e.maxParticipant }}</td>
+        <td>
+          <a
+            [routerLink]="['/epreuve/list']"
+            routerLinkActive="active"
+            class="btn btn-outline-info"
+            >consulter</a
+          >
+          <a
+            [routerLink]="['/epreuve/edit/' + e.id]"
+            routerLinkActive="active"
+            class="btn btn-outline-warning"
+            >Editer</a
+          >
+
+          <a
+            (click)="delete(e.id)"
+            routerLinkActive="active"
+            class="btn btn-outline-danger"
+            >supprimer</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

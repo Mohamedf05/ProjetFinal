@@ -31,6 +31,10 @@ public class EvenementService {
     	return evenementRepo.findByOrganisateur(id);
     	
     }
+    
+    public Evenement getByNom(String nom) {
+    	return evenementRepo.findByNom(nom);
+    }
 
 	public Evenement getById(Integer id) {
 		return evenementRepo.findById(id).orElseThrow(EvenementException::new);

@@ -12,4 +12,5 @@ public interface EvenementRepository extends JpaRepository<Evenement, Integer> {
 
     @Query("SELECT DISTINCT e from Evenement e JOIN FETCH e.organisateur o where o.id=:identifiant")
 	public List<Evenement> findByOrganisateur(@Param("identifiant") Integer numero);
+    public Evenement findByNom(String nom);
 }
