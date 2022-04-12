@@ -77,9 +77,6 @@ public class JournalisteRestController {
 		if (br.hasErrors()) {
 			throw new JournalisteException();
 		}
-		if(journaliste.getPassword()!=null) {
-			journaliste.setPassword(passwordEncoder.encode(journaliste.getPassword()));
-		}
 		return journalisteService.save(journaliste);
 	}
 	
@@ -87,6 +84,7 @@ public class JournalisteRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Journaliste create(@Valid @RequestBody Journaliste journaliste, BindingResult br) {
+		journaliste.setPassword(passwordEncoder.encode(journaliste.getPassword()));
 		return save(journaliste, br);
 	}
 	
@@ -100,6 +98,7 @@ public class JournalisteRestController {
 	@JsonView(JsonViews.Common.class)
 	public Journaliste update(@PathVariable Integer id, @Valid @RequestBody Journaliste journaliste, BindingResult br) {
 		journaliste.setId(id);
+		journaliste.setPassword(journalisteService.getById(id).getPassword());
 		return save(journaliste, br);
 	}
 	

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         );
         localStorage.setItem('role', value);
         this.err = false;
-        this.router.navigateByUrl('/inscription');
+        this.router.navigateByUrl('/home');
       },
       error: (error: any) => {
         console.log(error);
