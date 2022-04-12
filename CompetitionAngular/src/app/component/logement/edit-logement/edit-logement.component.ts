@@ -50,20 +50,6 @@ export class EditLogementComponent implements OnInit {
     });
   }
 
-  // save() {
-  //   this.logement.adresse = this.adresse;
-
-  //   if (this.logement.id) {
-  //     this.logementService.update(this.logement).subscribe((result) => {
-  //       this.goList();
-  //     });
-  //   } else {
-  //     this.logementService.create(this.logement).subscribe((result) => {
-  //       this.goList();
-  //     });
-  //   }
-  // }
-
   goList() {
     this.router.navigateByUrl('/logement');
   }
@@ -86,7 +72,6 @@ export class EditLogementComponent implements OnInit {
       },
       typeLogement: this.form.get('types')?.value,
     };
-    console.log(o);
     if (this.logement.id) {
       this.logementService.update(o, this.logement.id).subscribe((ok) => {
         this.router.navigateByUrl('/logement');

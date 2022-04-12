@@ -84,9 +84,6 @@ public class AthleteRestController {
 		if (br.hasErrors()) {
 			throw new AthleteException();
 		}
-		if(athlete.getPassword()!=null) {
-			athlete.setPassword(passwordEncoder.encode(athlete.getPassword()));
-		}
 		return athleteService.save(athlete);
 	}
 	
@@ -94,6 +91,7 @@ public class AthleteRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Athlete create(@Valid @RequestBody Athlete athlete, BindingResult br) {
+		athlete.setPassword(passwordEncoder.encode(athlete.getPassword()));
 		return save(athlete, br);
 	}
 
@@ -106,8 +104,8 @@ public class AthleteRestController {
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Athlete update(@PathVariable Integer id, @Valid @RequestBody Athlete athlete, BindingResult br) {
-	
 		athlete.setId(id);
+		athlete.setPassword(athleteService.getById(id).getPassword());
 		return save(athlete, br);
 	}
 

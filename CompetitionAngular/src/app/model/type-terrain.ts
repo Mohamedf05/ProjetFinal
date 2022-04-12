@@ -1,5 +1,5 @@
 export enum TypeTerrain {
-  Court = 'Courts',
+  Courts = 'Courts',
   Dojo = 'Dojo',
   Gymnase = 'Gymnase',
   Hippodrome = 'Hippodrome',

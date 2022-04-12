@@ -1,3 +1,4 @@
+import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { JournalisteReservationComponent } from './component/journaliste/journaliste-reservation/journaliste-reservation.component';
 import { SpectateurReservationComponent } from './component/spectateur/spectateur-reservation/spectateur-reservation.component';
 import { OrganisateurReservationComponent } from './component/organisateur/organisateur-reservation/organisateur-reservation.component';
@@ -28,7 +29,6 @@ import { ListEvenementComponent } from './component/evenement/list-evenement/lis
 import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
 import { Routes } from '@angular/router';
-import { HomeComponent } from './component/home/home.component';
 
 export const routes: Routes = [
   { path: 'athlete', component: AthleteAccueilComponent },
@@ -45,6 +45,7 @@ export const routes: Routes = [
   { path: 'evenement/list', component: ListEvenementComponent },
   { path: 'evenement/edit/:id', component: EditEvenementComponent },
   { path: 'evenement/edit', component: EditEvenementComponent },
+  { path: 'epreuve', component: EpreuveAccueiComponent },
   { path: 'epreuve/list', component: ListEpreuveComponent },
   { path: 'epreuve/edit/:idEvenement', component: EditEpreuveComponent },
   { path: 'epreuve/edit/:id', component: EditEpreuveComponent },
@@ -88,4 +89,6 @@ export const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'terrain', component: TerrainAccueilComponent },
+  { path: 'terrain/edit', component: TerrainEditComponent },
+  { path: 'terrain/edit/:id', component: TerrainEditComponent },
 ];

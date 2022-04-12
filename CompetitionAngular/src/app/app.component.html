@@ -1,14 +1,7 @@
 <div class="banniere">
   <a routerLink="/home" routerLinkActive="active" class="btn btn-link">Home</a>
+  <span *ngIf="isAutenticated()">Bonjour {{ login }}</span>
 </div>
-
-<div>
-  <a routerLink="/logement" routerLinkActive="active" class="btn btn-link"
-    >Les logements</a
-  >
-</div>
-
-
 
 <a routerLink="/athlete" routerLinkActive="active" class="btn btn-link"
   >Athlete</a
@@ -33,8 +26,23 @@
 <a routerLink="/inscription" routerLinkActive="active" class="btn btn-link"
   >inscription</a
 >
-<span *ngIf="isAutenticated()">Bonjour {{ login }}</span>
+
 <button *ngIf="isAutenticated()" (click)="logout()" class="btn btn-link">
   logout
 </button>
+
+<a routerLink="/terrain" routerLinkActive="active" class="btn btn-link"
+  >Terrains</a
+>
+
+<a routerLink="/logement" routerLinkActive="active" class="btn btn-link"
+  >Logements</a
+>
+<a routerLink="/evenement" routerLinkActive="active" class="btn btn-link"
+  >Evenement</a
+>
+
+<a routerLink="/epreuve" routerLinkActive="active" class="btn btn-link"
+  >Epreuve</a
+>
 <router-outlet></router-outlet>

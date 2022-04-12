@@ -50,34 +50,5 @@ public class TerrainService {
 	public void delete(Integer id) {
 		terrainRepository.deleteById(id);
 	}
-	
-	/*
-	public void create(Terrain t) {
-		if (t.getNom() == null) {
-			throw new TerrainException("Le nom doit �tre d�fini");
-		}
-		if (t.getAdresse() == null) {
-			throw new TerrainException("L'adresse doit �tre d�finie");
-		}
-		if (t.getTypeTerrain() == null) {
-			throw new TerrainException("Le type de terrain doit �tre d�fini");
-		}
-		terrainRepository.save(t);
-	}
-	
-	public void update(Terrain t) {
-		if (t.getNom() == null) {
-			throw new TerrainException("Le nom doit �tre d�fini");
-		}
-		if (t.getAdresse() == null) {
-			throw new TerrainException("L'adresse doit �tre d�finie");
-		}
-		if (t.getTypeTerrain() == null) {
-			throw new TerrainException("Le type de terrain doit �tre d�fini");
-		}
-		terrainRepository.save(t);
-	}
-	
-*/
 
 }
