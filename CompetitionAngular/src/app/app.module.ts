@@ -33,6 +33,7 @@ import { AthleteEpreuveComponent } from './component/athlete/athlete-epreuve/ath
 import { OrganisateurReservationComponent } from './component/organisateur/organisateur-reservation/organisateur-reservation.component';
 import { SpectateurReservationComponent } from './component/spectateur/spectateur-reservation/spectateur-reservation.component';
 import { JournalisteReservationComponent } from './component/journaliste/journaliste-reservation/journaliste-reservation.component';
+import { EditLogementComponent } from './component/logement/edit-logement/edit-logement.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { JournalisteReservationComponent } from './component/journaliste/journal
     OrganisateurReservationComponent,
     SpectateurReservationComponent,
     JournalisteReservationComponent,
+    EditLogementComponent,
   ],
   imports: [
     BrowserModule,

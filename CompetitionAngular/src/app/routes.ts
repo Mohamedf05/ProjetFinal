@@ -17,6 +17,9 @@ import { JournalisteAccueilComponent } from './component/journaliste/journaliste
 import { SpectateurAccueilComponent } from './component/spectateur/spectateur-accueil/spectateur-accueil.component';
 import { OrganisateurAccueilComponent } from './component/organisateur/organisateur-accueil/organisateur-accueil.component';
 import { AthleteAccueilComponent } from './component/athlete/athlete-accueil/athlete-accueil.component';
+import { EditLogementComponent } from './component/logement/edit-logement/edit-logement.component';
+import { LogementComponent } from './component/logement/logement/logement.component';
+import { HomeComponent } from './component/home/home.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -25,6 +28,11 @@ export const routes: Routes = [
   { path: 'athlete/edit/:id', component: AthleteEditComponent },
   { path: 'athlete/:id/epreuve', component: AthleteEpreuveComponent },
   { path: 'athlete/:id/reservation', component: AthleteReservationComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'logement', component: LogementComponent },
+  { path: 'logement/edit', component: EditLogementComponent },
+  { path: 'logement/edit/:id', component: EditLogementComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   { path: 'organisateur', component: OrganisateurAccueilComponent },
   { path: 'organisateur/edit', component: OrganisateurEditComponent },

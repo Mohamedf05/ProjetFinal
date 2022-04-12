@@ -1,1 +1,39 @@
-<p>logement works!</p>
+<div>
+  <h1>Liste des logements</h1>
+</div>
+<div>
+  <table class="table">
+    <tr *ngFor="let l of logements">
+      <td>{{ l.id }}</td>
+      <td>{{ l.nom }}</td>
+      <td>{{ l.adresse?.numero }}</td>
+      <td>{{ l.adresse?.voie }}</td>
+      <td>{{ l.adresse?.ville }}</td>
+      <td>{{ l.adresse?.cp }}</td>
+      <td>{{ l.typeLogement }}</td>
+      <td>
+        <a
+          [routerLink]="['/logement', 'edit', l.id]"
+          routerLinkActive="active"
+          class="btn btn-outline-primary"
+          >Modifier</a
+        >
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="delete(l.id!)">
+          Supprimer
+        </button>
+      </td>
+    </tr>
+  </table>
+  <a
+    routerLink="/logement/edit"
+    routerLinkActive="active"
+    class="btn btn-outline-success"
+    >Ajouter un logement</a
+  >
+
+  <a routerLink="/home" routerLinkActive="active" class="btn btn-outline-dark">
+    Retour Accueil</a
+  >
+</div>

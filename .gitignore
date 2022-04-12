@@ -5,3 +5,4 @@ target/
 .DS_Store
 bin/
 .metadata/
+CompetitionSpring/hs_err_pid5236.log
