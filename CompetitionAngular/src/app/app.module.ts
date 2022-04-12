@@ -1,3 +1,5 @@
+import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
+import { EditEvenementComponent } from './component/evenement/edit-evenement/edit-evenement.component';
 import { routes } from './routes';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,7 +13,6 @@ import { OrganisateurAccueilComponent } from './component/organisateur/organisat
 import { AthleteAccueilComponent } from './component/athlete/athlete-accueil/athlete-accueil.component';
 import { SpectateurAccueilComponent } from './component/spectateur/spectateur-accueil/spectateur-accueil.component';
 import { JournalisteAccueilComponent } from './component/journaliste/journaliste-accueil/journaliste-accueil.component';
-import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
 import { EvenementAccueilComponent } from './component/evenement/evenement-accueil/evenement-accueil.component';
 import { LogementComponent } from './component/logement/logement/logement.component';
 import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
@@ -34,6 +35,10 @@ import { OrganisateurReservationComponent } from './component/organisateur/organ
 import { SpectateurReservationComponent } from './component/spectateur/spectateur-reservation/spectateur-reservation.component';
 import { JournalisteReservationComponent } from './component/journaliste/journaliste-reservation/journaliste-reservation.component';
 import { EditLogementComponent } from './component/logement/edit-logement/edit-logement.component';
+import { IncaseComponent } from './component/evenement/incase/incase.component';
+import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epreuve.component';
+import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
+import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +51,6 @@ import { EditLogementComponent } from './component/logement/edit-logement/edit-l
     AthleteAccueilComponent,
     SpectateurAccueilComponent,
     JournalisteAccueilComponent,
-    EpreuveComponent,
     EvenementAccueilComponent,
     LogementComponent,
     TerrainAccueilComponent,
@@ -65,6 +69,12 @@ import { EditLogementComponent } from './component/logement/edit-logement/edit-l
     SpectateurReservationComponent,
     JournalisteReservationComponent,
     EditLogementComponent,
+    IncaseComponent,
+    EditEvenementComponent,
+    ListEvenementComponent,
+    ListEpreuveComponent,
+    EpreuveAccueiComponent,
+    EditEpreuveComponent,
   ],
   imports: [
     BrowserModule,

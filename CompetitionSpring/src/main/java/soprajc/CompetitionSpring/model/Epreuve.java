@@ -29,14 +29,14 @@ public class Epreuve {
 	@JsonView(JsonViews.Common.class)
 	private Integer id;
 	
-	@NotNull
+	//@NotNull
 	@ManyToOne
 	@JsonView(JsonViews.Common.class)
 	@JoinColumn(name="evenement_fk")
 	private Evenement evenement;
 	
 	@JsonView(JsonViews.Common.class)
-	@NotNull
+	//@NotNull
 	private  int maxParticipant;
 	
 	@JsonView(JsonViews.Common.class)
@@ -178,12 +178,7 @@ public class Epreuve {
 		this.version = version;
 	}
 
-	@Override
-	public String toString() {
-		return "Epreuve [id=" + id + ", maxParticipant=" + maxParticipant + ", date=" + date
-				 + ", discipline=" + discipline + ", participants=" + participants + ", terrain=" + terrain
-				+ "]";
-	}
+	
 
 	public Evenement getEvenement() {
 		return evenement;
@@ -192,5 +187,13 @@ public class Epreuve {
 	public void setEvenement(Evenement evenement) {
 		this.evenement = evenement;
 	}
+
+	@Override
+	public String toString() {
+		return "Epreuve [id=" + id + ", evenement=" + evenement + ", maxParticipant=" + maxParticipant + ", date="
+				+ date + ", discipline=" + discipline + ", terrain=" + terrain + "]";
+	}
+	
+	
 
 }

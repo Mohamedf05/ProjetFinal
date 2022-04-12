@@ -20,6 +20,11 @@ import { AthleteAccueilComponent } from './component/athlete/athlete-accueil/ath
 import { EditLogementComponent } from './component/logement/edit-logement/edit-logement.component';
 import { LogementComponent } from './component/logement/logement/logement.component';
 import { HomeComponent } from './component/home/home.component';
+import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
+import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epreuve.component';
+import { EditEvenementComponent } from './component/evenement/edit-evenement/edit-evenement.component';
+import { EvenementAccueilComponent } from './component/evenement/evenement-accueil/evenement-accueil.component';
+import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -33,6 +38,13 @@ export const routes: Routes = [
   { path: 'logement/edit', component: EditLogementComponent },
   { path: 'logement/edit/:id', component: EditLogementComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'evenement', component: EvenementAccueilComponent },
+  { path: 'evenement/list', component: ListEvenementComponent },
+  { path: 'evenement/edit/:id', component: EditEvenementComponent },
+  { path: 'evenement/edit', component: EditEvenementComponent },
+  { path: 'epreuve/list', component: ListEpreuveComponent },
+  { path: 'epreuve/edit/:idEvenement', component: EditEpreuveComponent },
+  { path: 'epreuve/edit/:id', component: EditEpreuveComponent },
 
   { path: 'organisateur', component: OrganisateurAccueilComponent },
   { path: 'organisateur/edit', component: OrganisateurEditComponent },

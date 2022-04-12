@@ -1,0 +1,22 @@
+<section class="home-blog bottom-padding">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let e of evenements" class="col-lg-4 col-md-6 col-sm-6">
+        <div class="single-blogs mb-30">
+          <div class="blog-img blog-img2">
+            <a href="#"><img src="assets/images/image.jpg" alt="" /></a>
+          </div>
+          <div class="blogs-cap">
+            <h6>
+              <a href="#">TEST</a>
+            </h6>
+            <p>{{ e.nom }}</p>
+            <p>{{ e.dateDebut }}</p>
+            <p>{{ e.ville }}</p>
+            <p>{{ e.statut }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

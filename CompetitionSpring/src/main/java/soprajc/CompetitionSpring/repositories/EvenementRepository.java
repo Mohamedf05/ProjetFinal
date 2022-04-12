@@ -21,4 +21,5 @@ public interface EvenementRepository extends JpaRepository<Evenement, Integer> {
 	@Transactional
 	@Query("update Evenement e set e.organisateur=null where e.organisateur=:organisateur")
 	void setOrganisateurEvenementToNull(@Param("organisateur")Organisateur organisateur);
+    public Evenement findByNom(String nom);
 }
