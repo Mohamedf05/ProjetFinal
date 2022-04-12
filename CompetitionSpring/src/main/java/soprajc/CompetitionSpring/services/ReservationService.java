@@ -20,7 +20,8 @@ public class ReservationService {
 	}
 
 	public Reservation getById(Integer id) {
-		return reservationRepo.findById(id).orElseThrow(ReservationException::new);
+		Reservation reservation = reservationRepo.findById(id).orElseThrow(ReservationException::new);
+		return reservation;
 	}
 	
 	public List<Reservation> getAllbyOrganisateur(Integer id)

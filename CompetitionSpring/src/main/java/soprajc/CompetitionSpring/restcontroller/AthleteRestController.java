@@ -30,8 +30,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import soprajc.CompetitionSpring.exception.AthleteException;
 import soprajc.CompetitionSpring.model.Adresse;
 import soprajc.CompetitionSpring.model.Athlete;
+import soprajc.CompetitionSpring.model.Epreuve;
 import soprajc.CompetitionSpring.model.JsonViews;
 import soprajc.CompetitionSpring.model.Reservation;
+import soprajc.CompetitionSpring.repositories.CompteRepository;
 import soprajc.CompetitionSpring.services.AthleteService;
 
 
@@ -42,9 +44,17 @@ public class AthleteRestController {
 
 	@Autowired
 	private AthleteService athleteService;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private CompteRepository compteRepo;
+
+	@GetMapping("/search/{email}")
+	@JsonView(JsonViews.Common.class)
+	public boolean checkEmail(@PathVariable String email) {
+		return compteRepo.findByMail(email).isPresent();
+	}
 
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
@@ -52,12 +62,18 @@ public class AthleteRestController {
 		return athleteService.getAll();
 	}
 
-	@GetMapping("/{id}/epreuve")
-	@JsonView(JsonViews.AthleteEpreuve.class)
-	public Athlete getByIdWithEpreuve(@PathVariable Integer id) {
+	@GetMapping("/{id}")
+	@JsonView(JsonViews.Common.class)
+	public Athlete getById(@PathVariable Integer id) {
 		return (Athlete) athleteService.getById(id);
 	}
-	
+
+	@GetMapping("/{id}/epreuve")
+	@JsonView(JsonViews.AthleteEpreuve.class)
+	public List<Epreuve> getByIdWithEpreuve(@PathVariable Integer id) {
+		return athleteService.getByIdWithEpreuve(id);
+	}
+
 	@GetMapping("/{id}/reservation")
 	@JsonView(JsonViews.CompteWithReservation.class)
 	public List<Reservation> getByIdWithReservation(@PathVariable Integer id) {
@@ -68,10 +84,12 @@ public class AthleteRestController {
 		if (br.hasErrors()) {
 			throw new AthleteException();
 		}
-		athlete.setPassword(passwordEncoder.encode(athlete.getPassword()));
+		if(athlete.getPassword()!=null) {
+			athlete.setPassword(passwordEncoder.encode(athlete.getPassword()));
+		}
 		return athleteService.save(athlete);
 	}
-
+	
 	@PostMapping("")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
@@ -88,9 +106,7 @@ public class AthleteRestController {
 	@PutMapping("/{id}")
 	@JsonView(JsonViews.Common.class)
 	public Athlete update(@PathVariable Integer id, @Valid @RequestBody Athlete athlete, BindingResult br) {
-
-		Athlete athleteEnBase = athleteService.getById(id);
-		athlete.setEpreuves(athleteEnBase.getEpreuves());		
+	
 		athlete.setId(id);
 		return save(athlete, br);
 	}
@@ -101,28 +117,26 @@ public class AthleteRestController {
 		Athlete athlete = athleteService.getById(id);
 		fields.forEach((key, value) -> {
 
-			if(!key.equals("epreuves")) {
-				if (key.equals("dateNaissance")) {
-					List<Integer> dateRecuperee = (List<Integer>) value;
-					athlete.setDateNaissance(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
-				} 
-				else if (key.equals("adresse")) {
-					LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
-					Adresse adresse = new Adresse();
-					adresseMap.forEach((k,v)->{
-						Field field = ReflectionUtils.findField(Adresse.class, k);
-						ReflectionUtils.makeAccessible(field);
-						ReflectionUtils.setField(field, adresse, v);
-					});
-
-					athlete.setAdresse(adresse);}
-
-
-				else{
-					Field field = ReflectionUtils.findField(Athlete.class, key);
+			if (key.equals("dateNaissance")) {
+				List<Integer> dateRecuperee = (List<Integer>) value;
+				athlete.setDateNaissance(LocalDate.of(dateRecuperee.get(0), dateRecuperee.get(1), dateRecuperee.get(2)));
+			} 
+			else if (key.equals("adresse")) {
+				LinkedHashMap<String, String> adresseMap = (LinkedHashMap<String, String>) value;
+				Adresse adresse = new Adresse();
+				adresseMap.forEach((k,v)->{
+					Field field = ReflectionUtils.findField(Adresse.class, k);
 					ReflectionUtils.makeAccessible(field);
-					ReflectionUtils.setField(field, athlete, value);}
-			}
+					ReflectionUtils.setField(field, adresse, v);
+				});
+
+				athlete.setAdresse(adresse);}
+
+
+			else{
+				Field field = ReflectionUtils.findField(Athlete.class, key);
+				ReflectionUtils.makeAccessible(field);
+				ReflectionUtils.setField(field, athlete, value);}
 
 		});
 		return athleteService.save(athlete);

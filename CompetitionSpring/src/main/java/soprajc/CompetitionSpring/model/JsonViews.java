@@ -40,7 +40,7 @@ public class JsonViews {
 
 	}
 
-	public static class AthleteEpreuve {
+	public static class AthleteEpreuve extends Common{
 		
 	}
 	

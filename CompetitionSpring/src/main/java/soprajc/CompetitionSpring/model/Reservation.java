@@ -21,36 +21,43 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Reservation {
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('En_Cours','A_Venir','Termine')")
 	private Statut statut;
-	@JsonView(JsonViews.Common.class)
+	
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	@NotNull
 	private LocalDate date;
-	@JsonView(JsonViews.Common.class)
+	
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	@NotNull
 	private LocalTime heure;
+	
 	@JsonView(JsonViews.Common.class)
 	@ManyToOne
 	@JoinColumn(name="compte_fk")
 	private Compte compte;
+	
 	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@ManyToOne
 	@JoinColumn(name="epreuve_fk")
 	private Epreuve epreuve;
-	@JsonView(JsonViews.Common.class)
+	
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	@ManyToOne
 	@JoinColumn(name="logement_fk")
 	private Logement logement;
-	@JsonView(JsonViews.Common.class)
+	
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	private LocalDate dateDebut;
-	@JsonView(JsonViews.Common.class)
+	
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	private LocalDate dateFin;
 	
 	@Version

@@ -16,6 +16,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -46,9 +47,11 @@ public abstract class Compte implements UserDetails {
 	@JsonView(JsonViews.Common.class)
 	protected String mail;
 	
-	@NotEmpty
+	//@NotEmpty
+	//@JsonView(JsonViews.Common.class)
 	protected String password;
 	
+	@NotNull
 	@Embedded
 	@JsonView(JsonViews.Common.class)
 	protected Adresse adresse;

@@ -1,1 +1,62 @@
-<p>spectateur-accueil works!</p>
+<div class="card">
+  <div class="card-header">Liste des spectateurs</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>nom</th>
+          <th>prenom</th>
+          <th>Date de naissance</th>
+          <th>Email</th>
+          <th>Numero</th>
+          <th>Voie</th>
+          <th>Ville</th>
+          <th>Code postal</th>
+          <th>Reservation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of spectateurs">
+          <th>{{ s.id }}</th>
+          <td>{{ s.nom }}</td>
+          <td>{{ s.prenom }}</td>
+          <td>{{ s.dateNaissance }}</td>
+          <td>{{ s.mail }}</td>
+          <td>{{ s.adresse.numero }}</td>
+          <td>{{ s.adresse.voie }}</td>
+          <td>{{ s.adresse.ville }}</td>
+          <td>{{ s.adresse.cp }}</td>
+          <td>
+            <a
+              [routerLink]="['/spectateur', s.id, 'reservation']"
+              routerLinkActive="active"
+              class="btn btn-link"
+              >Liste des reservations</a
+            >
+          </td>
+          <td>
+            <a
+              [routerLink]="['/spectateur', 'edit', s.id]"
+              routerLinkActive="active"
+              class="btn btn-primary"
+              >editer</a
+            >
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="delete(s.id!)">
+              supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a
+      routerLink="/spectateur/edit"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >ajouter un spectateur</a
+    >
+  </div>
+</div>

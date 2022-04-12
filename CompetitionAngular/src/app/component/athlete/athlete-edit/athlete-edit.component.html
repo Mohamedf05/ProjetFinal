@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header">Modifier un athlete</div>
+  <div class="card-body">
+    <div class="form-group">
+      <label>id:</label>
+      <input
+        readonly
+        class="form-control"
+        placeholder="genereation auto"
+        [(ngModel)]="compte.id"
+      />
+    </div>
+    <div class="form-group">
+      <label>Nom:</label>
+      <input class="form-control" [(ngModel)]="compte.nom" />
+      <label>Prenom:</label>
+      <input class="form-control" [(ngModel)]="compte.prenom" />
+      <label>Date de naissance:</label>
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="compte.dateNaissance"
+      />
+      <label>Email:</label>
+      <input type="email" class="form-control" [(ngModel)]="compte.mail" />
+      <label>Numero:</label>
+      <input class="form-control" [(ngModel)]="adresse.numero" />
+      <label>Voie:</label>
+      <input class="form-control" [(ngModel)]="adresse.voie" />
+      <label>Ville:</label>
+      <input class="form-control" [(ngModel)]="adresse.ville" />
+      <label>Code postale:</label>
+      <input class="form-control" [(ngModel)]="adresse.cp" />
+    </div>
+    <div>
+      <button (click)="save()" class="btn btn-success">enregistrer</button>
+      <a routerLink="/athlete" class="btn btn-warning">annuler</a>
+    </div>
+  </div>
+</div>

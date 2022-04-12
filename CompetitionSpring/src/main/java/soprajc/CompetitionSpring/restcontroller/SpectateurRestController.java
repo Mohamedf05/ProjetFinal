@@ -30,7 +30,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import soprajc.CompetitionSpring.exception.SpectateurException;
 import soprajc.CompetitionSpring.model.Adresse;
 import soprajc.CompetitionSpring.model.JsonViews;
+import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.model.Spectateur;
+import soprajc.CompetitionSpring.repositories.CompteRepository;
 import soprajc.CompetitionSpring.services.SpectateurService;
 
 
@@ -43,6 +45,14 @@ public class SpectateurRestController {
 	private SpectateurService spectateurService;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private CompteRepository compteRepo;
+	
+	@GetMapping("/search/{email}")
+	@JsonView(JsonViews.Common.class)
+	public boolean checkEmail(@PathVariable String email) {
+		return compteRepo.findByMail(email).isPresent();
+	}
 
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
@@ -58,15 +68,17 @@ public class SpectateurRestController {
 	
 	@GetMapping("/{id}/reservation")
 	@JsonView(JsonViews.CompteWithReservation.class)
-	public Spectateur getByIdSpectateur(@PathVariable Integer id) {
-		return spectateurService.getById(id);
+	public List<Reservation> getByIdWithReservation(@PathVariable Integer id) {
+		return spectateurService.getByIdWithReservations(id);
 	}
 
 	private Spectateur save(Spectateur spectateur, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new SpectateurException();
 		}
-		spectateur.setPassword(passwordEncoder.encode(spectateur.getPassword()));
+		if(spectateur.getPassword()!=null) {
+			spectateur.setPassword(passwordEncoder.encode(spectateur.getPassword()));
+		}
 		return spectateurService.save(spectateur);
 	}
 

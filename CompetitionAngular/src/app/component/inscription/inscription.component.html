@@ -1,1 +1,19 @@
-<p>inscription works!</p>
+<div class="mt-4 col-8 offset-2">
+  <div class="card">
+    <div class="card-header">Choix du compte</div>
+    <div class="card-body">
+      <form (ngSubmit)="submit()" [formGroup]="inscriptionForm">
+        <p>Type compte :</p>
+        <select class="form-select" formControlName="typeCompte">
+          <option value="athlete">Athlete</option>
+          <option value="organisateur">Organisateur</option>
+          <option value="spectateur">Spectateur</option>
+          <option value="journaliste">Journaliste</option>
+        </select>
+        <br />
+        <button type="submit" class="btn btn-success">Inscription</button>
+        <a routerLink="/home" class="btn btn-warning">retour home</a>
+      </form>
+    </div>
+  </div>
+</div>

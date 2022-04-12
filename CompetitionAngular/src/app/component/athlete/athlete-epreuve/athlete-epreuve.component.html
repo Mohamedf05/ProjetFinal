@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">Liste des épreuves</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Date</th>
+          <th>discipline</th>
+          <th>Nombre de participant maximum</th>
+          <th>Terrain</th>
+          <th>Evenement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of epreuves">
+          <th>{{ e.id }}</th>
+          <td>{{ e.date }}</td>
+          <td>{{ e.discipline }}</td>
+          <td>{{ e.maxParticipant }}</td>
+          <td>{{ e.terrain.typeTerrain }}</td>
+          <td>{{ e.evenement.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

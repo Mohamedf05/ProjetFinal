@@ -1,3 +1,67 @@
+import { JournalisteReservationComponent } from './component/journaliste/journaliste-reservation/journaliste-reservation.component';
+import { SpectateurReservationComponent } from './component/spectateur/spectateur-reservation/spectateur-reservation.component';
+import { OrganisateurReservationComponent } from './component/organisateur/organisateur-reservation/organisateur-reservation.component';
+import { AthleteReservationComponent } from './component/athlete/athlete-reservation/athlete-reservation.component';
+import { AthleteEpreuveComponent } from './component/athlete/athlete-epreuve/athlete-epreuve.component';
+import { JournalisteEditComponent } from './component/journaliste/journaliste-edit/journaliste-edit.component';
+import { SpectateurEditComponent } from './component/spectateur/spectateur-edit/spectateur-edit.component';
+import { OrganisateurEditComponent } from './component/organisateur/organisateur-edit/organisateur-edit.component';
+import { AthleteEditComponent } from './component/athlete/athlete-edit/athlete-edit.component';
+import { LoginComponent } from './component/login/login.component';
+import { InscriptionSpectateurComponent } from './component/inscription-spectateur/inscription-spectateur.component';
+import { InscriptionJournalisteComponent } from './component/inscription-journaliste/inscription-journaliste.component';
+import { InscriptionOrganisateurComponent } from './component/inscription-organisateur/inscription-organisateur.component';
+import { InscriptionAthleteComponent } from './component/inscription-athlete/inscription-athlete.component';
+import { InscriptionComponent } from './component/inscription/inscription.component';
+import { JournalisteAccueilComponent } from './component/journaliste/journaliste-accueil/journaliste-accueil.component';
+import { SpectateurAccueilComponent } from './component/spectateur/spectateur-accueil/spectateur-accueil.component';
+import { OrganisateurAccueilComponent } from './component/organisateur/organisateur-accueil/organisateur-accueil.component';
+import { AthleteAccueilComponent } from './component/athlete/athlete-accueil/athlete-accueil.component';
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: 'athlete', component: AthleteAccueilComponent },
+  { path: 'athlete/edit', component: AthleteEditComponent },
+  { path: 'athlete/edit/:id', component: AthleteEditComponent },
+  { path: 'athlete/:id/epreuve', component: AthleteEpreuveComponent },
+  { path: 'athlete/:id/reservation', component: AthleteReservationComponent },
+
+  { path: 'organisateur', component: OrganisateurAccueilComponent },
+  { path: 'organisateur/edit', component: OrganisateurEditComponent },
+  { path: 'organisateur/edit/:id', component: OrganisateurEditComponent },
+  {
+    path: 'organisateur/:id/reservation',
+    component: OrganisateurReservationComponent,
+  },
+
+  { path: 'spectateur', component: SpectateurAccueilComponent },
+  { path: 'spectateur/edit', component: SpectateurEditComponent },
+  { path: 'spectateur/edit/:id', component: SpectateurEditComponent },
+  {
+    path: 'spectateur/:id/reservation',
+    component: SpectateurReservationComponent,
+  },
+
+  { path: 'journaliste', component: JournalisteAccueilComponent },
+  { path: 'journaliste/edit', component: JournalisteEditComponent },
+  { path: 'journaliste/edit/:id', component: JournalisteEditComponent },
+  {
+    path: 'journaliste/:id/reservation',
+    component: JournalisteReservationComponent,
+  },
+
+  { path: 'inscription', component: InscriptionComponent },
+
+  { path: 'inscription/athlete', component: InscriptionAthleteComponent },
+  {
+    path: 'inscription/organisateur',
+    component: InscriptionOrganisateurComponent,
+  },
+  {
+    path: 'inscription/journaliste',
+    component: InscriptionJournalisteComponent,
+  },
+  { path: 'inscription/spectateur', component: InscriptionSpectateurComponent },
+
+  { path: 'login', component: LoginComponent },
+];
