@@ -86,9 +86,6 @@ public class OrganisateurRestController {
 		if (br.hasErrors()) {
 			throw new OrganisateurException();
 		}
-		if(organisateur.getPassword()!=null) {
-			organisateur.setPassword(passwordEncoder.encode(organisateur.getPassword()));
-		}
 		return organisateurService.save(organisateur);
 	}
 
@@ -96,6 +93,7 @@ public class OrganisateurRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Organisateur create(@Valid @RequestBody Organisateur organisateur, BindingResult br) {
+		organisateur.setPassword(passwordEncoder.encode(organisateur.getPassword()));
 		return save(organisateur, br);
 	}
 
@@ -117,6 +115,8 @@ public class OrganisateurRestController {
 		organisateur.setEvenements(organisateurEnBase.getEvenements());	
 
 		organisateur.setId(id);
+		
+		organisateur.setPassword(organisateurService.getById(id).getPassword());
 		return save(organisateur, br);
 	}
 

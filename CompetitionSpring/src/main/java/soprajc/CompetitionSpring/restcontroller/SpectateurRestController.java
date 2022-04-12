@@ -76,9 +76,6 @@ public class SpectateurRestController {
 		if (br.hasErrors()) {
 			throw new SpectateurException();
 		}
-		if(spectateur.getPassword()!=null) {
-			spectateur.setPassword(passwordEncoder.encode(spectateur.getPassword()));
-		}
 		return spectateurService.save(spectateur);
 	}
 
@@ -86,6 +83,7 @@ public class SpectateurRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.Common.class)
 	public Spectateur create(@Valid @RequestBody Spectateur spectateur, BindingResult br) {
+		spectateur.setPassword(passwordEncoder.encode(spectateur.getPassword()));
 		return save(spectateur, br);
 	}
 
@@ -99,6 +97,7 @@ public class SpectateurRestController {
 	@JsonView(JsonViews.Common.class)
 	public Spectateur update(@PathVariable Integer id, @Valid @RequestBody Spectateur spectateur, BindingResult br) {
 		spectateur.setId(id);
+		spectateur.setPassword(spectateurService.getById(id).getPassword());
 		return save(spectateur, br);
 	}
 
