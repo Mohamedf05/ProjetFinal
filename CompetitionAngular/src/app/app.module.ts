@@ -20,6 +20,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { InscriptionAthleteComponent } from './component/inscription-athlete/inscription-athlete.component';
+import { InscriptionOrganisateurComponent } from './component/inscription-organisateur/inscription-organisateur.component';
+import { InscriptionSpectateurComponent } from './component/inscription-spectateur/inscription-spectateur.component';
+import { InscriptionJournalisteComponent } from './component/inscription-journaliste/inscription-journaliste.component';
+import { AthleteEditComponent } from './component/athlete/athlete-edit/athlete-edit.component';
+import { OrganisateurEditComponent } from './component/organisateur/organisateur-edit/organisateur-edit.component';
+import { SpectateurEditComponent } from './component/spectateur/spectateur-edit/spectateur-edit.component';
+import { JournalisteEditComponent } from './component/journaliste/journaliste-edit/journaliste-edit.component';
+import { AthleteReservationComponent } from './component/athlete/athlete-reservation/athlete-reservation.component';
+import { AthleteEpreuveComponent } from './component/athlete/athlete-epreuve/athlete-epreuve.component';
+import { OrganisateurReservationComponent } from './component/organisateur/organisateur-reservation/organisateur-reservation.component';
+import { SpectateurReservationComponent } from './component/spectateur/spectateur-reservation/spectateur-reservation.component';
+import { JournalisteReservationComponent } from './component/journaliste/journaliste-reservation/journaliste-reservation.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +50,19 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     LogementComponent,
     TerrainAccueilComponent,
     ReservationAccueilComponent,
+    InscriptionAthleteComponent,
+    InscriptionOrganisateurComponent,
+    InscriptionSpectateurComponent,
+    InscriptionJournalisteComponent,
+    AthleteEditComponent,
+    OrganisateurEditComponent,
+    SpectateurEditComponent,
+    JournalisteEditComponent,
+    AthleteReservationComponent,
+    AthleteEpreuveComponent,
+    OrganisateurReservationComponent,
+    SpectateurReservationComponent,
+    JournalisteReservationComponent,
   ],
   imports: [
     BrowserModule,

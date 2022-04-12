@@ -1,1 +1,68 @@
-<p>athlete-accueil works!</p>
+<div class="card">
+  <div class="card-header">Liste des athletes</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>nom</th>
+          <th>prenom</th>
+          <th>Date de naissance</th>
+          <th>Email</th>
+          <th>Numero</th>
+          <th>Voie</th>
+          <th>Ville</th>
+          <th>Code postal</th>
+          <th>Resrvation</th>
+          <th>Epreuve</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of athletes">
+          <th>{{ a.id }}</th>
+          <td>{{ a.nom }}</td>
+          <td>{{ a.prenom }}</td>
+          <td>{{ a.dateNaissance }}</td>
+          <td>{{ a.mail }}</td>
+          <td>{{ a.adresse.numero }}</td>
+          <td>{{ a.adresse.voie }}</td>
+          <td>{{ a.adresse.ville }}</td>
+          <td>{{ a.adresse.cp }}</td>
+          <td>
+            <a
+              [routerLink]="['/athlete', a.id, 'reservation']"
+              routerLinkActive="active"
+              class="btn btn-link"
+              >Liste des reservations</a
+            >
+          </td>
+          <td>
+            <a
+              [routerLink]="['/athlete', a.id, 'epreuve']"
+              routerLinkActive="active"
+              class="btn btn-link"
+              >Liste des épreuves</a
+            >
+          </td>
+          <td>
+            <a
+              [routerLink]="['/athlete', 'edit', a.id]"
+              routerLinkActive="active"
+              class="btn btn-primary"
+              >editer</a
+            >
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="delete(a.id!)">
+              supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a routerLink="/athlete/edit" routerLinkActive="active" class="btn btn-link"
+      >ajouter un athlete</a
+    >
+  </div>
+</div>

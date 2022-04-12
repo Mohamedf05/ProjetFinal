@@ -1,0 +1,126 @@
+<div class="mt-4 col-8 offset-2">
+  <div class="card">
+    <div class="card-header">Inscription Spectateur</div>
+    <div class="card-body">
+      <form (ngSubmit)="submit()" [formGroup]="form">
+        <div class="form-group">
+          <label>Nom:</label>
+          <input class="form-control" formControlName="nom" />
+          <label>Prenom:</label>
+          <input class="form-control" formControlName="prenom" />
+          <label>Date de naissance:</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="dateNaissance"
+          />
+        </div>
+
+        <div formGroupName="emailPasswordGroup">
+          <div class="form-group">
+            <label>email:</label>
+            <input type="email" class="form-control" formControlName="email" />
+            <div
+              *ngIf="
+                form.get('emailPasswordGroup.email')?.dirty &&
+                form.get('emailPasswordGroup.email')?.invalid
+              "
+            >
+              email incorrect
+            </div>
+            <div
+              *ngIf="
+                form.get('emailPasswordGroup.email')?.hasError('emailExist')
+              "
+            >
+              email deja utilise
+            </div>
+            <div
+              *ngIf="
+                form
+                  .get('emailPasswordGroup')
+                  ?.hasError('mailAndPasswordEquals')
+              "
+            >
+              le mail et le mot de passe sont identiques
+            </div>
+          </div>
+          <div formGroupName="passwordGroup">
+            <div class="form-group">
+              <label>mot de passe:</label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="password"
+              />
+              <div
+                *ngIf="
+                  form.get('emailPasswordGroup.passwordGroup.password')
+                    ?.dirty &&
+                  form.get('emailPasswordGroup.passwordGroup.password')?.invalid
+                "
+              >
+                doit faire en 5 et 25 caracteres avec
+                majuscule,minuscule,chiffre et caractere special(*_!@-)
+              </div>
+            </div>
+            <div class="form-group">
+              <label>ressaisir le mot de passe:</label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="confirm"
+              />
+            </div>
+            <div *ngIf="form.get('emailPasswordGroup.passwordGroup')?.invalid">
+              erreur mot de passe
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>numero:</label>
+          <input class="form-control" formControlName="numero" />
+          <div *ngIf="form.get('numero')?.dirty && form.get('numero')?.invalid">
+            information obligatoire
+          </div>
+        </div>
+        <div class="form-group">
+          <label>rue:</label>
+          <input class="form-control" formControlName="rue" />
+          <div *ngIf="form.get('rue')?.dirty && form.get('rue')?.invalid">
+            information obligatoire
+          </div>
+        </div>
+        <div class="form-group">
+          <label>code postal:</label>
+          <input class="form-control" formControlName="codePostal" />
+          <div
+            *ngIf="
+              form.get('codePostal')?.dirty && form.get('codePostal')?.invalid
+            "
+          >
+            information obligatoire
+          </div>
+        </div>
+        <div class="form-group">
+          <label>ville:</label>
+          <input class="form-control" formControlName="ville" />
+          <div *ngIf="form.get('ville')?.dirty && form.get('ville')?.invalid">
+            information obligatoire
+          </div>
+        </div>
+        <br />
+        <div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="form.invalid"
+          >
+            inscription
+          </button>
+          <a routerLink="/home" class="btn btn-warning">retour home</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,8 @@ import soprajc.CompetitionSpring.exception.JournalisteException;
 import soprajc.CompetitionSpring.model.Adresse;
 import soprajc.CompetitionSpring.model.Journaliste;
 import soprajc.CompetitionSpring.model.JsonViews;
+import soprajc.CompetitionSpring.model.Reservation;
+import soprajc.CompetitionSpring.repositories.CompteRepository;
 import soprajc.CompetitionSpring.services.JournalisteService;
 
 
@@ -43,6 +45,15 @@ public class JournalisteRestController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private CompteRepository compteRepo;
+	
+	@GetMapping("/search/{email}")
+	@JsonView(JsonViews.Common.class)
+	public boolean checkEmail(@PathVariable String email) {
+		return compteRepo.findByMail(email).isPresent();
+	}
 	
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
@@ -58,15 +69,17 @@ public class JournalisteRestController {
 	
 	@GetMapping("/{id}/reservation")
 	@JsonView(JsonViews.CompteWithReservation.class)
-	public Journaliste getByIdJournaliste(@PathVariable Integer id) {
-		return journalisteService.getById(id);
+	public List<Reservation> getByIdWithReservation(@PathVariable Integer id) {
+		return journalisteService.getByIdWithReservations(id);
 	}
 	
 	private Journaliste save(Journaliste journaliste, BindingResult br) {
 		if (br.hasErrors()) {
 			throw new JournalisteException();
 		}
-		journaliste.setPassword(passwordEncoder.encode(journaliste.getPassword()));
+		if(journaliste.getPassword()!=null) {
+			journaliste.setPassword(passwordEncoder.encode(journaliste.getPassword()));
+		}
 		return journalisteService.save(journaliste);
 	}
 	

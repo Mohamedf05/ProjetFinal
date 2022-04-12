@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -17,6 +17,7 @@ public class Athlete extends Compte {
 	
 	@NotNull
 	@JsonView(JsonViews.Common.class)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateNaissance;
 	
 	@ManyToMany(mappedBy = "participants")

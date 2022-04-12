@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -13,6 +15,7 @@ public class Spectateur extends Compte {
 	
 	@NotNull
 	@JsonView(JsonViews.Common.class)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateNaissance;
 
 	public Spectateur() {
