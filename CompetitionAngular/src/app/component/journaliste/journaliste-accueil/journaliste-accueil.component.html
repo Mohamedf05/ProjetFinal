@@ -1,1 +1,62 @@
-<p>journaliste-accueil works!</p>
+<div class="card">
+  <div class="card-header">Liste des journalistes</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Entreprise</th>
+          <th>Email:</th>
+          <th>Numero</th>
+          <th>Voie</th>
+          <th>Ville</th>
+          <th>Code postal</th>
+          <th>Reservation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let j of journalistes">
+          <th>{{ j.id }}</th>
+          <td>{{ j.nom }}</td>
+          <td>{{ j.prenom }}</td>
+          <td>{{ j.entreprise }}</td>
+          <td>{{ j.mail }}</td>
+          <td>{{ j.adresse.numero }}</td>
+          <td>{{ j.adresse.voie }}</td>
+          <td>{{ j.adresse.ville }}</td>
+          <td>{{ j.adresse.cp }}</td>
+          <td>
+            <a
+              [routerLink]="['/journaliste', j.id, 'reservation']"
+              routerLinkActive="active"
+              class="btn btn-link"
+              >Liste des reservations</a
+            >
+          </td>
+          <td>
+            <a
+              [routerLink]="['/journaliste', 'edit', j.id]"
+              routerLinkActive="active"
+              class="btn btn-primary"
+              >editer</a
+            >
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="delete(j.id!)">
+              supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a
+      routerLink="/journaliste/edit"
+      routerLinkActive="active"
+      class="btn btn-link"
+      >ajouter un journaliste</a
+    >
+  </div>
+</div>

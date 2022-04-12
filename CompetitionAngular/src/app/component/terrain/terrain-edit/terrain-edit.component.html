@@ -1,0 +1,66 @@
+<p>terrain-edit works!</p>
+
+<form (ngSubmit)="submit()" [formGroup]="form">
+  <div *ngIf="terrain.id">
+    <label>Id:</label>
+    <input [value]="terrain.id" readonly class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Nom du terrain: </label>
+    <input type="text" class="form-control" formControlName="nom" />
+  </div>
+  <div class="form-group">
+    <label>Adresse: </label>
+    <div class="form-group">
+      <label>Numero: </label>
+      <input type="text" class="form-control" formControlName="numero" />
+    </div>
+    <div class="form-group">
+      <label>Voie: </label>
+      <input type="text" class="form-control" formControlName="voie" />
+    </div>
+    <div class="form-group">
+      <label>Ville: </label>
+      <input type="text" class="form-control" formControlName="ville" />
+    </div>
+    <div class="form-group">
+      <label>Code postal: </label>
+      <input type="text" class="form-control" formControlName="codePostal" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Type terrain:</label>
+    <select formControlName="typeTerrain">
+      <option *ngFor="let type of typeTerrains | keyvalue">
+        {{ type.key }}
+      </option>
+    </select>
+  </div>
+
+  Liste Discipline:
+  <table>
+    <tr *ngFor="let d of disciplines | keyvalue; let i = index">
+      <td>
+        <input
+          type="checkbox"
+          formArrayName="selectedDisciplines"
+          [value]="d.value"
+          (change)="onCheckBoxChange($event)"
+        />
+      </td>
+      <td>{{ d.value }}</td>
+    </tr>
+  </table>
+
+  <button
+    type="submit"
+    class="btn btn-outline-success"
+    [disabled]="form.invalid"
+  >
+    Valider
+  </button>
+</form>
+<div>
+  <a routerLink="/terrain">Retour terrain</a>
+</div>

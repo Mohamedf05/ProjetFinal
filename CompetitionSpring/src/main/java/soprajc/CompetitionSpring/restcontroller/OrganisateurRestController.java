@@ -32,6 +32,8 @@ import soprajc.CompetitionSpring.model.Evenement;
 import soprajc.CompetitionSpring.model.JsonViews;
 import soprajc.CompetitionSpring.model.Logement;
 import soprajc.CompetitionSpring.model.Organisateur;
+import soprajc.CompetitionSpring.model.Reservation;
+import soprajc.CompetitionSpring.repositories.CompteRepository;
 import soprajc.CompetitionSpring.services.EvenementService;
 import soprajc.CompetitionSpring.services.OrganisateurService;
 
@@ -47,8 +49,14 @@ public class OrganisateurRestController {
 	private EvenementService evenementService;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	@Autowired
+	private CompteRepository compteRepo;
 	
+	@GetMapping("/search/{email}")
+	@JsonView(JsonViews.Common.class)
+	public boolean checkEmail(@PathVariable String email) {
+		return compteRepo.findByMail(email).isPresent();
+	}
 
 	@GetMapping("")
 	@JsonView(JsonViews.Common.class)
@@ -62,6 +70,12 @@ public class OrganisateurRestController {
 		return organisateurService.getById(id);
 	}
 	
+	@GetMapping("/{id}/reservation")
+	@JsonView(JsonViews.CompteWithReservation.class)
+	public List<Reservation> getByIdWithReservation(@PathVariable Integer id) {
+		return organisateurService.getByIdWithReservation(id);
+	}
+	
 	@GetMapping("/{id}/evenement")
 	@JsonView(JsonViews.OrganisteurWithEvenements.class)
 	public List<Evenement> getByIdWithEvenement(@PathVariable Integer id) {
@@ -72,7 +86,9 @@ public class OrganisateurRestController {
 		if (br.hasErrors()) {
 			throw new OrganisateurException();
 		}
-		organisateur.setPassword(passwordEncoder.encode(organisateur.getPassword()));
+		if(organisateur.getPassword()!=null) {
+			organisateur.setPassword(passwordEncoder.encode(organisateur.getPassword()));
+		}
 		return organisateurService.save(organisateur);
 	}
 
