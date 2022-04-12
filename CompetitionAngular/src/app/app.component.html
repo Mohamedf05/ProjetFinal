@@ -1,1 +1,40 @@
-<app-epreuve-accuei></app-epreuve-accuei>
+<div class="banniere">
+  <a routerLink="/home" routerLinkActive="active" class="btn btn-link">Home</a>
+</div>
+
+<div>
+  <a routerLink="/logement" routerLinkActive="active" class="btn btn-link"
+    >Les logements</a
+  >
+</div>
+
+
+
+<a routerLink="/athlete" routerLinkActive="active" class="btn btn-link"
+  >Athlete</a
+>
+<a routerLink="/organisateur" routerLinkActive="active" class="btn btn-link"
+  >Organisateur</a
+>
+<a routerLink="/spectateur" routerLinkActive="active" class="btn btn-link"
+  >Spectateur</a
+>
+<a routerLink="/journaliste" routerLinkActive="active" class="btn btn-link"
+  >Journaliste</a
+>
+
+<a
+  *ngIf="!isAutenticated()"
+  routerLink="/login"
+  routerLinkActive="active"
+  class="btn btn-link"
+  >login</a
+>
+<a routerLink="/inscription" routerLinkActive="active" class="btn btn-link"
+  >inscription</a
+>
+<span *ngIf="isAutenticated()">Bonjour {{ login }}</span>
+<button *ngIf="isAutenticated()" (click)="logout()" class="btn btn-link">
+  logout
+</button>
+<router-outlet></router-outlet>

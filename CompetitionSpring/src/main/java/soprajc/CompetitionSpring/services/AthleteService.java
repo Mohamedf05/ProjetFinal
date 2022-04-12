@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import soprajc.CompetitionSpring.exception.AthleteException;
+import soprajc.CompetitionSpring.exception.LogementException;
 import soprajc.CompetitionSpring.model.Athlete;
 import soprajc.CompetitionSpring.model.Epreuve;
 import soprajc.CompetitionSpring.model.Reservation;
@@ -35,12 +36,12 @@ public class AthleteService {
 	public Athlete save(Athlete athlete) {
 		Set<ConstraintViolation<Athlete>> constraints = validator.validate(athlete);
 		if (!constraints.isEmpty()) {
-			throw new AthleteException("erreur de validation");
+			throw new LogementException("erreur de validation");
 		}
-
-		if (athlete.getId() != null) {
-			Athlete participantEnBase = getById(athlete.getId());
-			athlete.setVersion(participantEnBase.getVersion());
+		
+		if (athlete.getId()!=null) {
+			Athlete athleteEnBase = getById(athlete.getId());
+			athlete.setVersion(athleteEnBase.getVersion());
 		}
 		return athleteRepo.save(athlete);
 	}
@@ -50,12 +51,10 @@ public class AthleteService {
 	}
 
 	public Athlete getById(Integer id) {
-		return athleteRepo.findByIdWithEpreuves(id).orElseThrow(() -> {
+		return athleteRepo.findById(id).orElseThrow(() -> {
 			throw new AthleteException("id inconnu");
 		});
 	}
-	
-	
 
 	public List<Reservation> getByIdWithReservation(Integer id) {
 		return reservationRepo.findByIdWithReservations(id);	
