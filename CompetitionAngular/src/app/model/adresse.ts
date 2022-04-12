@@ -13,7 +13,6 @@ export class Adresse {
   public set numero(value: string | undefined) {
     this._numero = value;
   }
-
   public get voie(): string | undefined {
     return this._voie;
   }
@@ -21,7 +20,6 @@ export class Adresse {
   public set voie(value: string | undefined) {
     this._voie = value;
   }
-
   public get ville(): string | undefined {
     return this._ville;
   }
@@ -29,7 +27,6 @@ export class Adresse {
   public set ville(value: string | undefined) {
     this._ville = value;
   }
-
   public get cp(): string | undefined {
     return this._cp;
   }

@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { EditLogementComponent } from './component/logement/edit-logement/edit-logement.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     LogementComponent,
     TerrainAccueilComponent,
     ReservationAccueilComponent,
+    EditLogementComponent,
   ],
   imports: [
     BrowserModule,
