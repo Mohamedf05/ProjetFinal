@@ -39,6 +39,7 @@ import { IncaseComponent } from './component/evenement/incase/incase.component';
 import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epreuve.component';
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
+import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epre
     ListEpreuveComponent,
     EpreuveAccueiComponent,
     EditEpreuveComponent,
+    TerrainEditComponent,
   ],
   imports: [
     BrowserModule,

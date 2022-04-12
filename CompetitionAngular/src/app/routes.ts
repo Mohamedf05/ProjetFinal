@@ -25,7 +25,10 @@ import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epre
 import { EditEvenementComponent } from './component/evenement/edit-evenement/edit-evenement.component';
 import { EvenementAccueilComponent } from './component/evenement/evenement-accueil/evenement-accueil.component';
 import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
+import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
+import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
 import { Routes } from '@angular/router';
+import { HomeComponent } from './component/home/home.component';
 
 export const routes: Routes = [
   { path: 'athlete', component: AthleteAccueilComponent },
@@ -84,4 +87,5 @@ export const routes: Routes = [
   { path: 'inscription/spectateur', component: InscriptionSpectateurComponent },
 
   { path: 'login', component: LoginComponent },
+  { path: 'terrain', component: TerrainAccueilComponent },
 ];
