@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EpreuveComponent implements OnInit {
   epreuve: Epreuve = new Epreuve();
+  role: string | undefined = localStorage.getItem('role')!;
 
   constructor(
     private epreuveService: EpreuveService,

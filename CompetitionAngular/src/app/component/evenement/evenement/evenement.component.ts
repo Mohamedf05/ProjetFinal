@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class EvenementComponent implements OnInit {
   evenement: Evenement = new Evenement();
 
+  role: string | undefined = localStorage.getItem('role')!;
+
   constructor(
     private evenementService: EvenementService,
     private router: Router

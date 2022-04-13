@@ -14,8 +14,18 @@
   </table>
 </div>
 <div>
-  <button class="btn btn-link" (click)="modifier()">Modifier l'épreuve</button>
-  <a (click)="delete(epreuve.id)" routerLinkActive="active" class="btn btn-link"
+  <a
+    *ngIf="role == 'organisateur'"
+    (click)="modifier()"
+    routerLinkActive="active"
+    class="btn btn-outline-warning"
+    >Modifier l'épreuve</a
+  >
+  <a
+    *ngIf="role == 'organisateur'"
+    (click)="delete(epreuve.id)"
+    routerLinkActive="active"
+    class="btn btn-outline-danger"
     >supprimer</a
   >
 
