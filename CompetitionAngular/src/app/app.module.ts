@@ -40,6 +40,8 @@ import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epre
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BanniereComponent } from './component/banniere/banniere.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-e
     EpreuveAccueiComponent,
     EditEpreuveComponent,
     TerrainEditComponent,
+    BanniereComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-e
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
