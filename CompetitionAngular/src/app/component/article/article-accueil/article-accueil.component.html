@@ -1,0 +1,37 @@
+<p>article-accueil works!</p>
+
+<table class="table">
+  <tr>
+    <td>ID</td>
+    <td>Titre</td>
+    <td>Corps</td>
+    <td>Image</td>
+    <td>Date</td>
+    <td>Journaliste</td>
+  </tr>
+  <tr *ngFor="let a of articles">
+    <td>{{ a.id }}</td>
+    <td>{{ a.titre }}</td>
+    <td>{{ a.corps }}</td>
+    <td>{{ a.image }}</td>
+    <td>{{ a.date }}</td>
+    <td>{{ a.journaliste?.prenom }} {{ a.journaliste?.nom }}</td>
+    <td>
+      <a
+        [routerLink]="['/article', 'edit', a.id]"
+        routerLinkActive="active"
+        class="btn btn-outline-primary"
+        >Editer</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(a.id!)" class="btn btn-outline-danger">
+        Supprimer
+      </button>
+    </td>
+  </tr>
+</table>
+
+<a routerLink="/article/edit" routerLinkActive="active" class="btn btn-link"
+  >Ajouter un article</a
+>

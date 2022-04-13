@@ -40,6 +40,8 @@ import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epre
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
+import { ArticleEditComponent } from './component/article/article-edit/article-edit.component';
+import { ArticleAccueilComponent } from './component/article/article-accueil/article-accueil.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-e
     EpreuveAccueiComponent,
     EditEpreuveComponent,
     TerrainEditComponent,
+    ArticleEditComponent,
+    ArticleAccueilComponent,
   ],
   imports: [
     BrowserModule,
