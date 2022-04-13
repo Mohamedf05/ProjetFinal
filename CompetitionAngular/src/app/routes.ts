@@ -1,3 +1,5 @@
+import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
+import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { JournalisteReservationComponent } from './component/journaliste/journaliste-reservation/journaliste-reservation.component';
 import { SpectateurReservationComponent } from './component/spectateur/spectateur-reservation/spectateur-reservation.component';
@@ -28,7 +30,10 @@ import { EvenementAccueilComponent } from './component/evenement/evenement-accue
 import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
 import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
+import { ArticleAccueilComponent } from './component/article/article-accueil/article-accueil.component';
+import { ArticleEditComponent } from './component/article/article-edit/article-edit.component';
 import { Routes } from '@angular/router';
+import { EvenementComponent } from './component/evenement/evenement/evenement.component';
 
 export const routes: Routes = [
   { path: 'athlete', component: AthleteAccueilComponent },
@@ -45,10 +50,12 @@ export const routes: Routes = [
   { path: 'evenement/list', component: ListEvenementComponent },
   { path: 'evenement/edit/:id', component: EditEvenementComponent },
   { path: 'evenement/edit', component: EditEvenementComponent },
+  { path: 'evenement/consulter', component: EvenementComponent },
   { path: 'epreuve', component: EpreuveAccueiComponent },
+  { path: 'epreuve/consulter/:id', component: EpreuveComponent },
   { path: 'epreuve/list', component: ListEpreuveComponent },
-  { path: 'epreuve/edit/:idEvenement', component: EditEpreuveComponent },
   { path: 'epreuve/edit/:id', component: EditEpreuveComponent },
+  { path: 'epreuve/edit', component: EditEpreuveComponent },
 
   { path: 'organisateur', component: OrganisateurAccueilComponent },
   { path: 'organisateur/edit', component: OrganisateurEditComponent },
@@ -91,4 +98,8 @@ export const routes: Routes = [
   { path: 'terrain', component: TerrainAccueilComponent },
   { path: 'terrain/edit', component: TerrainEditComponent },
   { path: 'terrain/edit/:id', component: TerrainEditComponent },
+  { path: 'article', component: ArticleAccueilComponent },
+  { path: 'article/read/:id', component: ArticleLectureComponent },
+  { path: 'article/edit', component: ArticleEditComponent },
+  { path: 'article/edit/:id', component: ArticleEditComponent },
 ];

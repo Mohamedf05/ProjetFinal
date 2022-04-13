@@ -40,6 +40,11 @@ import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epre
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
+import { ArticleEditComponent } from './component/article/article-edit/article-edit.component';
+import { ArticleAccueilComponent } from './component/article/article-accueil/article-accueil.component';
+import { EvenementComponent } from './component/evenement/evenement/evenement.component';
+import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
+import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BanniereComponent } from './component/banniere/banniere.component';
 
@@ -79,6 +84,11 @@ import { BanniereComponent } from './component/banniere/banniere.component';
     EpreuveAccueiComponent,
     EditEpreuveComponent,
     TerrainEditComponent,
+    ArticleEditComponent,
+    ArticleAccueilComponent,
+    EvenementComponent,
+    EpreuveComponent,
+    ArticleLectureComponent,
     BanniereComponent,
   ],
   imports: [

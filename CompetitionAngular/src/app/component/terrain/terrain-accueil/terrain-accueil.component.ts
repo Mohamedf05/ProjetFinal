@@ -28,4 +28,8 @@ export class TerrainAccueilComponent implements OnInit {
       this.list();
     });
   }
+
+  get role() {
+    return localStorage.getItem('role');
+  }
 }

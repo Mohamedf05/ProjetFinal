@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -28,12 +29,14 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.CompetitionSpring.exception.OrganisateurException;
 import soprajc.CompetitionSpring.model.Adresse;
+import soprajc.CompetitionSpring.model.Compte;
 import soprajc.CompetitionSpring.model.Evenement;
 import soprajc.CompetitionSpring.model.JsonViews;
 import soprajc.CompetitionSpring.model.Logement;
 import soprajc.CompetitionSpring.model.Organisateur;
 import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.repositories.CompteRepository;
+import soprajc.CompetitionSpring.repositories.OrganisateurRepository;
 import soprajc.CompetitionSpring.services.EvenementService;
 import soprajc.CompetitionSpring.services.OrganisateurService;
 
@@ -51,6 +54,8 @@ public class OrganisateurRestController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private CompteRepository compteRepo;
+	@Autowired
+	private OrganisateurRepository organisateurRepo;
 	
 	@GetMapping("/search/{email}")
 	@JsonView(JsonViews.Common.class)
@@ -68,6 +73,11 @@ public class OrganisateurRestController {
 	@JsonView(JsonViews.Common.class)
 	public Organisateur getById(@PathVariable Integer id) {
 		return organisateurService.getById(id);
+	}
+	@GetMapping("/login/{login}")
+	@JsonView(JsonViews.Common.class)
+	public Optional<Organisateur> getByLogin(@PathVariable String login) {
+		return organisateurRepo.findByMail(login);
 	}
 	
 	@GetMapping("/{id}/reservation")

@@ -23,11 +23,4 @@ export class ListEpreuveComponent implements OnInit {
       this.epreuves = result;
     });
   }
-
-  delete(id?: number | undefined): void {
-    this.epreuveService.delete(id!).subscribe((result) => {
-      this.router.navigateByUrl('/epreuve/list');
-      this.ngOnInit();
-    });
-  }
 }

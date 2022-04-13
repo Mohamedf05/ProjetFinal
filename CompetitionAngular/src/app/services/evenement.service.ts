@@ -1,3 +1,4 @@
+import { OrganisateurService } from './organisateur.service';
 import { Evenement } from '../model/evenement';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +10,10 @@ import { Injectable } from '@angular/core';
 export class EvenementService {
   private static URL: string = 'http://localhost:8080/compet/api/evenement';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private organisateurService: OrganisateurService
+  ) {}
 
   public getAll(): Observable<Evenement[]> {
     return this.http.get<Evenement[]>(EvenementService.URL);
@@ -21,10 +25,13 @@ export class EvenementService {
   public get(id: number): Observable<Evenement> {
     return this.http.get<Evenement>(EvenementService.URL + '/' + id);
   }
+  public getbyName(nom: string): Observable<Evenement> {
+    return this.http.get<Evenement>(EvenementService.URL + '/nom/' + nom);
+  }
 
   public create(evenement: Evenement): Observable<Evenement> {
     return this.http.post<Evenement>(
-      EvenementService.URL + '/4',
+      EvenementService.URL + '/',
       this.evenementToJson(evenement)
     );
   }

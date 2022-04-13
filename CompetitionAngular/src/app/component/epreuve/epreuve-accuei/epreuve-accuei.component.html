@@ -1,6 +1,10 @@
+<app-list-epreuve></app-list-epreuve>
+<button class="btn btn-link" routerLink="/evenement/consulter">Retour</button>
 <a routerLink="/epreuve/list" routerLinkActive="active" class="btn btn-link"
   >liste des epreuves</a
 >
-<button class="btn btn-link" (click)="ajouter()">Ajouter une epreuve</button>
+<button *ngIf="role == 'organisateur'" class="btn btn-link" (click)="ajouter()">
+  Ajouter une epreuve
+</button>
 
 <router-outlet></router-outlet>

@@ -21,23 +21,10 @@
         <td>{{ e.statut }}</td>
         <td>
           <a
-            [routerLink]="['/evenement/list']"
+            (click)="consulter(e.nom!)"
             routerLinkActive="active"
             class="btn btn-outline-info"
             >consulter</a
-          >
-          <a
-            [routerLink]="['/evenement/edit/' + e.id]"
-            routerLinkActive="active"
-            class="btn btn-outline-warning"
-            >Editer</a
-          >
-
-          <a
-            (click)="delete(e.id)"
-            routerLinkActive="active"
-            class="btn btn-outline-danger"
-            >supprimer</a
           >
         </td>
       </tr>

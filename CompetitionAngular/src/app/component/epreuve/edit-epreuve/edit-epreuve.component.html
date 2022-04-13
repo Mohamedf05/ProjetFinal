@@ -6,29 +6,61 @@
   <div class="form-group">
     <label>Discipline:</label>
     <select formControlName="discipline" class="form-control">
+      <option>choisir une discipline</option>
       <option *ngFor="let d of disciplines | keyvalue">
         {{ d.key }}
       </option>
     </select>
+    <div
+      *ngIf="form.get('discipline')?.dirty && form.get('discipline')?.invalid"
+      style="color: red"
+    >
+      information obligatoire
+    </div>
   </div>
   <div class="form-group">
     <label>Terraain:</label>
     <select formControlName="terrain" class="form-control">
+      <option selected>choisir un terrain</option>
       <option *ngFor="let t of terrains" [value]="t.id">
         {{ t.id }}
         <div></div>
         {{ t.nom }}
       </option>
     </select>
+    <div
+      *ngIf="form.get('terrain')?.dirty && form.get('terrain')?.invalid"
+      style="color: red"
+    >
+      information obligatoire
+    </div>
   </div>
   <div class="form-group">
     <label>Date:</label>
     <input type="date" formControlName="date" class="form-control" />
+    <div
+      *ngIf="form.get('date')?.dirty && form.get('date')?.invalid"
+      style="color: red"
+    >
+      information obligatoire
+    </div>
+    <div
+      *ngIf="form.get('date')?.hasError('dateNotConsistent')"
+      style="color: red"
+    >
+      dates incohérentes
+    </div>
   </div>
 
   <div class="form-group">
-    <label>Nombre maximaximal de participants:</label>
+    <label>Nombre maximal de participants:</label>
     <input formControlName="participant" class="form-control" />
+    <div
+      *ngIf="form.get('participant')?.dirty && form.get('participant')?.invalid"
+      style="color: red"
+    >
+      information obligatoire
+    </div>
   </div>
 
   <div>
@@ -39,6 +71,6 @@
     >
       enregistrer
     </button>
-    <a routerLink="/epreuve/list" class="btn btn-outline-warning">annuler</a>
+    <a (click)="annuler(epreuve.id)" class="btn btn-outline-warning">annuler</a>
   </div>
 </form>

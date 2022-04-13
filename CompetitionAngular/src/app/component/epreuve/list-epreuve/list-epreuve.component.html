@@ -21,23 +21,10 @@
         <td>{{ e.maxParticipant }}</td>
         <td>
           <a
-            [routerLink]="['/epreuve/list']"
+            [routerLink]="['/epreuve/consulter/' + e.id]"
             routerLinkActive="active"
             class="btn btn-outline-info"
             >consulter</a
-          >
-          <a
-            [routerLink]="['/epreuve/edit/' + e.id]"
-            routerLinkActive="active"
-            class="btn btn-outline-warning"
-            >Editer</a
-          >
-
-          <a
-            (click)="delete(e.id)"
-            routerLinkActive="active"
-            class="btn btn-outline-danger"
-            >supprimer</a
           >
         </td>
       </tr>
