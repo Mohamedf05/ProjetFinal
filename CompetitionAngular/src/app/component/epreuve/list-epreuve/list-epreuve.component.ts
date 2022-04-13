@@ -30,4 +30,7 @@ export class ListEpreuveComponent implements OnInit {
       this.ngOnInit();
     });
   }
+  get role() {
+    return localStorage.getItem('role');
+  }
 }

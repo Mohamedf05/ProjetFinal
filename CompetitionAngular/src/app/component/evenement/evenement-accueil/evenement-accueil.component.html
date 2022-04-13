@@ -1,6 +1,8 @@
 <a routerLink="/evenement/list" routerLinkActive="active" class="btn btn-link"
   >liste des evenements</a
 >
-<button class="btn btn-link" (click)="ajouter()">Ajouter un evenement</button>
+<button *ngIf="role == 'organisateur'" class="btn btn-link" (click)="ajouter()">
+  Ajouter un evenement
+</button>
 
 <router-outlet></router-outlet>
