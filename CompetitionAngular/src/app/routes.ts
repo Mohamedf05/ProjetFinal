@@ -28,6 +28,8 @@ import { EvenementAccueilComponent } from './component/evenement/evenement-accue
 import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
 import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
+import { ArticleAccueilComponent } from './component/article/article-accueil/article-accueil.component';
+import { ArticleEditComponent } from './component/article/article-edit/article-edit.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -91,4 +93,7 @@ export const routes: Routes = [
   { path: 'terrain', component: TerrainAccueilComponent },
   { path: 'terrain/edit', component: TerrainEditComponent },
   { path: 'terrain/edit/:id', component: TerrainEditComponent },
+  { path: 'article', component: ArticleAccueilComponent },
+  { path: 'article/edit', component: ArticleEditComponent },
+  { path: 'article/edit/:id', component: ArticleEditComponent },
 ];

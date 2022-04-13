@@ -1,4 +1,3 @@
-import { Terrain } from './../model/terrain';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
