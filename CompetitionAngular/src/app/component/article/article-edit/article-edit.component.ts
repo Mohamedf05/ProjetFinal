@@ -90,6 +90,7 @@ export class ArticleEditComponent implements OnInit {
         //this.shortLink = event.link;
 
         this.loading = false; // Flag variable
+        this.router.navigateByUrl('/article');
       }
     });
   }

@@ -3,6 +3,7 @@ package soprajc.CompetitionSpring.restcontroller;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -59,12 +60,11 @@ public class ArticleRestController {
 	@PostMapping("/{id}")
 	private void uploadFile(@PathVariable Integer id, @RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
 		if(file.getContentType().contains("image")) {
-		String URL = articleService.uploadFile(file);
-		articleService.getById(id).setImage(URL);
+		String image = articleService.uploadFile(file);
+		articleService.getById(id).setImage(image);
 		articleService.save(articleService.getById(id));
-		//return URL;
 		}
-		else {System.out.println("Mauvais format"); }
+		else {System.out.println("Mauvais format");}
 	}
 		
 	@GetMapping("")

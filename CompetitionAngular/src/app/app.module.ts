@@ -44,6 +44,7 @@ import { ArticleEditComponent } from './component/article/article-edit/article-e
 import { ArticleAccueilComponent } from './component/article/article-accueil/article-accueil.component';
 import { EvenementComponent } from './component/evenement/evenement/evenement.component';
 import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
+import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component'
     ArticleAccueilComponent,
     EvenementComponent,
     EpreuveComponent,
+    ArticleLectureComponent,
   ],
   imports: [
     BrowserModule,
