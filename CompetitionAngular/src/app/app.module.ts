@@ -45,6 +45,8 @@ import { ArticleAccueilComponent } from './component/article/article-accueil/art
 import { EvenementComponent } from './component/evenement/evenement/evenement.component';
 import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
 import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BanniereComponent } from './component/banniere/banniere.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,7 @@ import { ArticleLectureComponent } from './component/article/article-lecture/art
     EvenementComponent,
     EpreuveComponent,
     ArticleLectureComponent,
+    BanniereComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ import { ArticleLectureComponent } from './component/article/article-lecture/art
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

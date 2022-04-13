@@ -1,1 +1,66 @@
-<p>home works!</p>
+<div class="home">
+  <p>Bienvenue sur Perfect Match!</p>
+
+  <ngb-carousel
+    [showNavigationArrows]="false"
+    [showNavigationIndicators]="true"
+    [keyboard]="true"
+    [pauseOnHover]="true"
+    [wrap]="true"
+    [interval]="12000"
+  >
+    <ng-template ngbSlide id="firstSlide">
+      <div class="picsum-img-wrapper">
+        <a routerLink="/organisateur" routerLinkActive="active"
+          ><img
+            class="d-block w-100"
+            src="./assets/images/Sportcitation.jpg"
+            alt="Sportcitation"
+        /></a>
+      </div>
+      <div class="carousel-caption">
+        <h5>Organisateur</h5>
+        <p>
+          Vous êtes organisateur d'événèments et vous voulez créer un évènement
+          digne des Jeux Olympiques alors lancez vous !
+        </p>
+      </div>
+    </ng-template>
+
+    <ng-template ngbSlide id="secondSlide">
+      <div class="picsum-img-wrapper">
+        <a routerLink="/evenement" routerLinkActive="active">
+          <img
+            class="d-block w-100"
+            src="./assets/images/colisee.jpg"
+            alt="Colisee"
+        /></a>
+      </div>
+      <div class="carousel-caption">
+        <h5>Evenements</h5>
+        <p>
+          Pour suivre tous les évènements à la une et ne rien rater des
+          compétitions proches de chez vous.
+        </p>
+      </div>
+    </ng-template>
+
+    <ng-template ngbSlide id="thirdSlide">
+      <div class="picsum-img-wrapper">
+        <a routerLink="/athlete" routerLinkActive="active"
+          ><img
+            class="d-block w-100"
+            src="./assets/images/coupe.jpg"
+            alt="Coupe"
+        /></a>
+      </div>
+      <div class="carousel-caption">
+        <h5>Athlètes</h5>
+        <p>
+          Vous êtes athlètes et vous souhaitez participer à des évènements sur
+          mesure ? N'attendez plus pour vous inscrire !
+        </p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
