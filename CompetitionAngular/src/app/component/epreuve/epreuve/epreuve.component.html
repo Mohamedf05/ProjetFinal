@@ -1,0 +1,28 @@
+<div class="card text-center">
+  <h1>Epreuve numero &nbsp;{{ epreuve.id }}</h1>
+  <table class="table table-dark">
+    <tbody>
+      <tr>
+        <th scope="col">Discipline</th>
+        <td>{{ epreuve.discipline }}</td>
+      </tr>
+      <tr>
+        <th scope="col">Terrain</th>
+        <td>{{ epreuve.terrain?.nom }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <button class="btn btn-link" (click)="modifier()">Modifier l'épreuve</button>
+  <a (click)="delete(epreuve.id)" routerLinkActive="active" class="btn btn-link"
+    >supprimer</a
+  >
+
+  <a routerLink="" routerLinkActive="active" class="btn btn-link"
+    >Liste des participant</a
+  >
+</div>
+<div>
+  <button class="btn btn-link" routerLink="/epreuve">Retour</button>
+</div>
