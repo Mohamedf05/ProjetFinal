@@ -13,6 +13,7 @@
       <td>{{ l.typeLogement }}</td>
       <td>
         <a
+          *ngIf="role == 'organisateur'"
           [routerLink]="['/logement', 'edit', l.id]"
           routerLinkActive="active"
           class="btn btn-outline-primary"
@@ -20,13 +21,18 @@
         >
       </td>
       <td>
-        <button class="btn btn-outline-danger" (click)="delete(l.id!)">
+        <button
+          *ngIf="role == 'organisateur'"
+          class="btn btn-outline-danger"
+          (click)="delete(l.id!)"
+        >
           Supprimer
         </button>
       </td>
     </tr>
   </table>
   <a
+    *ngIf="role == 'organisateur'"
     routerLink="/logement/edit"
     routerLinkActive="active"
     class="btn btn-outline-success"

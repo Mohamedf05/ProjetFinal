@@ -13,4 +13,7 @@ export class EpreuveAccueiComponent implements OnInit {
   ajouter(): void {
     this.router.navigateByUrl('/epreuve/edit/1');
   }
+  get role() {
+    return localStorage.getItem('role');
+  }
 }

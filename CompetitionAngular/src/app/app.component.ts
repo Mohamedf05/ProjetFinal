@@ -15,6 +15,10 @@ export class AppComponent {
     return localStorage.getItem('login');
   }
 
+  get role() {
+    return localStorage.getItem('role');
+  }
+
   isAutenticated() {
     return this.authService.isAutenticated();
   }
