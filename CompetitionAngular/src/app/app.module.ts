@@ -42,6 +42,7 @@ import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epre
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
 import { ArticleEditComponent } from './component/article/article-edit/article-edit.component';
 import { ArticleAccueilComponent } from './component/article/article-accueil/article-accueil.component';
+import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { ArticleAccueilComponent } from './component/article/article-accueil/art
     TerrainEditComponent,
     ArticleEditComponent,
     ArticleAccueilComponent,
+    ArticleLectureComponent,
   ],
   imports: [
     BrowserModule,

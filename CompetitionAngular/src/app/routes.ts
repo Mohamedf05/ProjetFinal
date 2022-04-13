@@ -1,3 +1,4 @@
+import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { JournalisteReservationComponent } from './component/journaliste/journaliste-reservation/journaliste-reservation.component';
 import { SpectateurReservationComponent } from './component/spectateur/spectateur-reservation/spectateur-reservation.component';
@@ -94,6 +95,7 @@ export const routes: Routes = [
   { path: 'terrain/edit', component: TerrainEditComponent },
   { path: 'terrain/edit/:id', component: TerrainEditComponent },
   { path: 'article', component: ArticleAccueilComponent },
+  { path: 'article/read/:id', component: ArticleLectureComponent },
   { path: 'article/edit', component: ArticleEditComponent },
   { path: 'article/edit/:id', component: ArticleEditComponent },
 ];
