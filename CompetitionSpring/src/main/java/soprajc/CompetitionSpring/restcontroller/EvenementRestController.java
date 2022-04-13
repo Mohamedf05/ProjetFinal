@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -83,10 +84,10 @@ public class EvenementRestController {
 	
 	@JsonView(JsonViews.EvenementWithOrganisateur.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@PostMapping("/{id}")//id organisateur
-	public Evenement create(@PathVariable Integer id,@Valid @RequestBody Evenement evenement, BindingResult br) {
-		Organisateur organisateur=organisateurService.getById(id);
-		evenement.setOrganisateur(organisateur);
+	@PostMapping("")
+	public Evenement create(@AuthenticationPrincipal Organisateur compte,@Valid @RequestBody Evenement evenement, BindingResult br) {
+		
+		evenement.setOrganisateur(compte);
 				return save(evenement, br);
 	}
 

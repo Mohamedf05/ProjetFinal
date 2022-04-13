@@ -21,13 +21,13 @@ export class ListEvenementComponent implements OnInit {
     this.evenementService.getAll().subscribe((result) => {
       this.evenements = result;
     });
+    localStorage.removeItem('evenement');
   }
 
-  delete(id?: number | undefined): void {
-    this.evenementService.delete(id!).subscribe((result) => {
-      this.router.navigateByUrl('/evenement/list');
-      this.ngOnInit();
-    });
+  consulter(nom: string): void {
+    localStorage.setItem('evenement', nom);
+
+    this.router.navigateByUrl('/evenement/consulter');
   }
   get role() {
     return localStorage.getItem('role');

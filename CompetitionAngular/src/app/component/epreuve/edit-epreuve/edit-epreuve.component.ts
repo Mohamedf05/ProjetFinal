@@ -1,3 +1,5 @@
+import { Evenement } from './../../../model/evenement';
+import { EvenementService } from './../../../services/evenement.service';
 import { Terrain } from './../../../model/terrain';
 import { TerrainService } from './../../../services/terrain.service';
 import { Discipline } from './../../../model/discipline';
@@ -24,13 +26,15 @@ export class EditEpreuveComponent implements OnInit {
   epreuve: Epreuve = new Epreuve();
   disciplines = Discipline;
   terrains: Terrain[] | undefined = [];
-
-  idEvenement: Number = 0;
+  evenement: Evenement = new Evenement();
+  dateDebut: Date | undefined = new Date();
+  dateFin: Date | undefined = new Date();
   constructor(
     private aR: ActivatedRoute,
     private router: Router,
     private epreuveService: EpreuveService,
-    private terrainService: TerrainService
+    private terrainService: TerrainService,
+    private evenementService: EvenementService
   ) {
     this.form = new FormGroup({
       participant: new FormControl('', Validators.required),
@@ -41,9 +45,6 @@ export class EditEpreuveComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.terrainService.getAll().subscribe((ok) => {
-      this.terrains = ok;
-    });
     this.aR.params.subscribe((params) => {
       if (params['id']) {
         this.epreuveService.get(params['id']).subscribe((e) => {
@@ -54,10 +55,31 @@ export class EditEpreuveComponent implements OnInit {
           this.form.get('terrain')?.setValue(e.terrain);
         });
       }
-      if (params['idEvenement']) {
-        this.idEvenement = params['idEvenement'];
-      }
     });
+    this.terrainService.getAll().subscribe((ok) => {
+      this.terrains = ok;
+    });
+  }
+
+  datesConsistent(control: AbstractControl): ValidationErrors | null | any {
+    let group = control as FormGroup;
+    let dateControl = new Date(group.get('date')?.value).getTime();
+
+    if (group.get('date')?.invalid) {
+      return null;
+    }
+    this.evenementService
+      .getbyName(localStorage.getItem('evenement')!)
+      .subscribe((e) => {
+        this.evenement = e;
+        this.dateDebut = e.dateDebut;
+        this.dateFin = e.dateFin;
+
+        return dateControl > this.dateFin?.getTime()! ||
+          dateControl < this.dateDebut?.getTime()!
+          ? { dateNotConsistent: true }
+          : null;
+      });
   }
 
   submit(): void {
@@ -74,20 +96,24 @@ export class EditEpreuveComponent implements OnInit {
         };
 
         if (this.epreuve.id) {
-          this.epreuveService.update(obj, this.epreuve.id).subscribe((ok) => {
-            this.router.navigateByUrl('/epreuve/list');
-          });
+          this.epreuveService
+            .update(obj, this.epreuve.id)
+            .subscribe((): void => {
+              this.router.navigateByUrl('/epreuve');
+            });
         } else {
-          this.aR.params.subscribe((params) => {
-            if (params['idEvenement']) {
-              this.epreuveService
-                .create(obj, params['idEvenement'])
-                .subscribe((ok) => {
-                  this.router.navigateByUrl('/epreuve/list');
-                });
-            }
+          this.epreuveService.create(obj).subscribe((): void => {
+            this.router.navigateByUrl('/epreuve');
           });
         }
       });
+  }
+
+  annuler(id: number | undefined): void {
+    this.aR.params.subscribe((param) => {
+      if (param['id']) {
+        this.router.navigateByUrl('/epreuve/consulter/' + id);
+      } else this.router.navigateByUrl('/epreuve');
+    });
   }
 }

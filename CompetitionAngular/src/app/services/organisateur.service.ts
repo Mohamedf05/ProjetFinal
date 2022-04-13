@@ -1,3 +1,4 @@
+import { Compte } from './../model/compte';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -19,6 +20,9 @@ export class OrganisateurService {
 
   public get(id: number): Observable<any> {
     return this.http.get<any>(OrganisateurService.URL + '/' + id);
+  }
+  public getByLogin(login: string): Observable<Compte> {
+    return this.http.get<Compte>(OrganisateurService.URL + '/login/' + login);
   }
 
   public getReservation(id: number): Observable<any> {
