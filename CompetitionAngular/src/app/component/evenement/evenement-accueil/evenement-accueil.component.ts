@@ -13,4 +13,7 @@ export class EvenementAccueilComponent implements OnInit {
   ajouter(): void {
     this.router.navigateByUrl('/evenement/edit');
   }
+  get role() {
+    return localStorage.getItem('role');
+  }
 }

@@ -3,16 +3,32 @@
   <span *ngIf="isAutenticated()">Bonjour {{ login }}</span>
 </div>
 
-<a routerLink="/athlete" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="role == 'organisateur'"
+  routerLink="/athlete"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Athlete</a
 >
-<a routerLink="/organisateur" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="role == 'organisateur'"
+  routerLink="/organisateur"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Organisateur</a
 >
-<a routerLink="/spectateur" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="role == 'organisateur'"
+  routerLink="/spectateur"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Spectateur</a
 >
-<a routerLink="/journaliste" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="role == 'organisateur'"
+  routerLink="/journaliste"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Journaliste</a
 >
 
@@ -23,26 +39,51 @@
   class="btn btn-link"
   >login</a
 >
-<a routerLink="/inscription" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="!isAutenticated()"
+  routerLink="/inscription"
+  routerLinkActive="active"
+  class="btn btn-link"
   >inscription</a
 >
 
-<button *ngIf="isAutenticated()" (click)="logout()" class="btn btn-link">
+<button
+  *ngIf="isAutenticated()"
+  routerLink="/home"
+  (click)="logout()"
+  class="btn btn-link"
+>
   logout
 </button>
 
-<a routerLink="/terrain" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="isAutenticated()"
+  routerLink="/terrain"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Terrains</a
 >
 
-<a routerLink="/logement" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="isAutenticated()"
+  routerLink="/logement"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Logements</a
 >
-<a routerLink="/evenement" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="isAutenticated()"
+  routerLink="/evenement"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Evenement</a
 >
 
-<a routerLink="/epreuve" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="isAutenticated()"
+  routerLink="/epreuve"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Epreuve</a
 >
 <router-outlet></router-outlet>

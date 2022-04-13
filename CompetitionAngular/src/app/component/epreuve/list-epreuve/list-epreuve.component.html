@@ -27,6 +27,7 @@
             >consulter</a
           >
           <a
+            *ngIf="role == 'organisateur'"
             [routerLink]="['/epreuve/edit/' + e.id]"
             routerLinkActive="active"
             class="btn btn-outline-warning"
@@ -34,6 +35,7 @@
           >
 
           <a
+            *ngIf="role == 'organisateur'"
             (click)="delete(e.id)"
             routerLinkActive="active"
             class="btn btn-outline-danger"

@@ -22,6 +22,7 @@
     <td>{{ t.typeTerrain }}</td>
     <td>
       <a
+        *ngIf="role == 'organisateur'"
         [routerLink]="['/terrain', 'edit', t.id]"
         routerLinkActive="active"
         class="btn btn-outline-primary"
@@ -29,13 +30,21 @@
       >
     </td>
     <td>
-      <button (click)="delete(t.id!)" class="btn btn-outline-danger">
+      <button
+        *ngIf="role == 'organisateur'"
+        (click)="delete(t.id!)"
+        class="btn btn-outline-danger"
+      >
         Supprimer
       </button>
     </td>
   </tr>
 </table>
 
-<a routerLink="/terrain/edit" routerLinkActive="active" class="btn btn-link"
+<a
+  *ngIf="role == 'organisateur'"
+  routerLink="/terrain/edit"
+  routerLinkActive="active"
+  class="btn btn-link"
   >Ajouter un terrain</a
 >
