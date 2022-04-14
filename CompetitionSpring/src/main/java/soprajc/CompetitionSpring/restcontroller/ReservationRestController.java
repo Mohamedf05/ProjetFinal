@@ -76,7 +76,7 @@ public class ReservationRestController {
 	public Reservation create(@Valid @RequestBody Reservation reservation,@AuthenticationPrincipal Compte compte, BindingResult br) {
 		
 		
-		
+		reservation.setCompte(compte);
 		reservation.setDate(LocalDate.now());
 		reservation.setHeure(LocalTime.now());
 		if(reservation.getDateFin().isBefore(LocalDate.now()))

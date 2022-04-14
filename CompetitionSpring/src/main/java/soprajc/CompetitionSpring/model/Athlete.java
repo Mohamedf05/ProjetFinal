@@ -56,6 +56,9 @@ public class Athlete extends Compte {
 	public void setEpreuves(Epreuve epreuve) {
 		Collections.addAll(this.epreuves, epreuve);
 	}
+	public void RemoveEpreuve(Epreuve epreuve) {
+		this.epreuves.remove(epreuve);
+	}
 	
 	@Override
 	public String toString() {
