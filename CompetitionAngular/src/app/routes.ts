@@ -1,6 +1,5 @@
 import { ParticipantComponent } from './component/epreuve/participant/participant.component';
 import { GuardService } from './services/guard.service';
-import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
 import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
 import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
@@ -154,10 +153,7 @@ export const routes: Routes = [
     path: 'reservation/edit/:id',
     component: ReservationEditComponent,
   },
-  {
-    path: 'reservation/:id/epreuve',
-    component: ReservationEpreuveComponent,
-  },
+
   { path: 'terrain', component: TerrainAccueilComponent },
   { path: 'terrain/edit', component: TerrainEditComponent },
   { path: 'terrain/edit/:id', component: TerrainEditComponent },

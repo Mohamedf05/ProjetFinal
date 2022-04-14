@@ -1,4 +1,3 @@
-import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
 import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
 import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
@@ -94,7 +93,6 @@ import { ParticipantComponent } from './component/epreuve/participant/participan
     BanniereComponent,
     ReservationAccueilComponent,
     ReservationEditComponent,
-    ReservationEpreuveComponent,
     ParticipantComponent,
   ],
   imports: [

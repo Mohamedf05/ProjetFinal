@@ -34,8 +34,8 @@ export class ReservationEditComponent implements OnInit {
     this.form = new FormGroup({
       dateDebut: new FormControl('', Validators.required),
       dateFin: new FormControl('', Validators.required),
-      logement: new FormControl('', Validators.required),
-      epreuve: new FormControl('', Validators.required),
+      logement: new FormControl(''),
+      epreuve: new FormControl(''),
     });
   }
 
@@ -45,7 +45,7 @@ export class ReservationEditComponent implements OnInit {
         this.logements = result;
       });
 
-      this.epreuveService.getAll().subscribe((result) => {
+      this.epreuveService.getAllEp().subscribe((result) => {
         this.epreuves = result;
       });
 
