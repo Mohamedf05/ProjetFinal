@@ -3,65 +3,26 @@
     <div class="col-lg-9" id="leftPart">
       <h2>Découvrez nos articles</h2>
       <div class="container">
-        <div class="row elements">
-          <div class="col-sm-4">
-            <img src="./assets/images/Rappy.png" alt="image article" />
+        <ng-container *ngFor="let article of articles; let i = index">
+          <div class="row elements" *ngIf="i > articles.length - 4">
+            <div class="col-sm-4">
+              <img [src]="article.image" alt="Image article" />
+            </div>
+            <div class="col-sm-8">
+              <h3>{{ article.titre }}</h3>
+              <p>
+                {{ article.corps }}
+              </p>
+              <button
+                class="btn btn-outline-info"
+                [routerLink]="['/article', 'read', article.id]"
+                routerLinkActive="active"
+              >
+                Consulter
+              </button>
+            </div>
           </div>
-          <div class="col-sm-8">
-            <h3>Titre</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed quo
-              architecto ea.
-            </p>
-            <button
-              class="btn btn-outline-info"
-              routerLink="/article/read/:id"
-              routerLinkActive="active"
-            >
-              Consulter
-            </button>
-          </div>
-        </div>
-
-        <div class="row elements">
-          <div class="col-sm-4">
-            <img src="" alt="" />
-          </div>
-          <div class="col-sm-8">
-            <h3>Titre</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed quo
-              architecto ea.
-            </p>
-            <button
-              class="btn btn-outline-info"
-              routerLink="/article/read/:id"
-              routerLinkActive="active"
-            >
-              Consulter
-            </button>
-          </div>
-        </div>
-
-        <div class="row elements">
-          <div class="col-sm-4">
-            <img src="" alt="" />
-          </div>
-          <div class="col-sm-8">
-            <h3>Titre</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed quo
-              architecto ea.
-            </p>
-            <button
-              class="btn btn-outline-info"
-              routerLink="/article/read/:id"
-              routerLinkActive="active"
-            >
-              Consulter
-            </button>
-          </div>
-        </div>
+        </ng-container>
       </div>
 
       <div class="col-lg-3" id="rightPart"></div>

@@ -3,7 +3,7 @@
     <tr>
       <td>ID</td>
       <td>Titre</td>
-      <td>Corps</td>
+      <td>Date</td>
       <td>Journaliste</td>
       <td>Action</td>
     </tr>
@@ -22,7 +22,7 @@
       </td>
       <td>
         <a
-          *ngIf="role == 'organisateur' || role == 'journaliste'"
+          *ngIf="journalisteId == a.journaliste?.id"
           [routerLink]="['/article', 'edit', a.id]"
           routerLinkActive="active"
           class="btn btn-outline-primary"
@@ -30,7 +30,11 @@
         >
       </td>
       <td>
-        <button (click)="delete(a.id!)" class="btn btn-outline-danger">
+        <button
+          *ngIf="journalisteId == a.journaliste?.id"
+          (click)="delete(a.id!)"
+          class="btn btn-outline-danger"
+        >
           Supprimer
         </button>
       </td>
@@ -38,6 +42,7 @@
   </table>
 
   <a
+    *ngIf="role == 'journaliste'"
     routerLink="/article/edit"
     routerLinkActive="active"
     class="btn btn-primary btn-sm"
