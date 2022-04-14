@@ -25,7 +25,7 @@
         </td>
         <td>
           <a
-            *ngIf="role == 'organisateur' || role == 'journaliste'"
+            *ngIf="journalisteId == a.journaliste?.id"
             [routerLink]="['/article', 'edit', a.id]"
             routerLinkActive="active"
             class="btn btn-primary"
@@ -33,7 +33,11 @@
           >
         </td>
         <td>
-          <button (click)="delete(a.id!)" class="btn btn-danger">
+          <button
+            *ngIf="journalisteId == a.journaliste?.id"
+            (click)="delete(a.id!)"
+            class="btn btn-danger"
+          >
             Supprimer
           </button>
         </td>
@@ -43,6 +47,7 @@
 
   <div>
     <a
+      *ngIf="role == 'journaliste'"
       routerLink="/article/edit"
       routerLinkActive="active"
       class="btn btn-primary btn-sm"
