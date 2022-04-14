@@ -44,12 +44,12 @@ public class Reservation {
 	@JoinColumn(name="compte_fk")
 	private Compte compte;
 	
-	//@JsonView(JsonViews.ReservationWithEpreuve.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@ManyToOne
 	@JoinColumn(name="epreuve_fk")
 	private Epreuve epreuve;
 	
-	//@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
+	@JsonView({JsonViews.Common.class, JsonViews.CompteWithReservation.class})
 	@ManyToOne
 	@JoinColumn(name="logement_fk")
 	private Logement logement;

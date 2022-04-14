@@ -30,6 +30,7 @@ import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.model.Statut;
 import soprajc.CompetitionSpring.services.CompteService;
 import soprajc.CompetitionSpring.services.EpreuveService;
+import soprajc.CompetitionSpring.services.LogementService;
 import soprajc.CompetitionSpring.services.ReservationService;
 
 @RestController
@@ -41,7 +42,7 @@ public class ReservationRestController {
 	private ReservationService reservationService;
 	
 	@Autowired
-	private CompteService compteService;
+	private LogementService logementService;
 	
 	@Autowired
 	private EpreuveService epreuveService;
@@ -67,7 +68,7 @@ public class ReservationRestController {
 	}
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PostMapping("")
 	public Reservation create(@Valid @RequestBody Reservation reservation, BindingResult br) {
 		reservation.setDate(LocalDate.now());
@@ -78,9 +79,11 @@ public class ReservationRestController {
 			reservation.setStatut(Statut.En_Cours);
 		else
 			reservation.setStatut(Statut.A_Venir);
+		reservation.setLogement(logementService.getById(reservation.getLogement().getId()));
+		reservation.setEpreuve(epreuveService.getById(reservation.getEpreuve().getId()));
 		return save(reservation, br);}
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PutMapping("/{id}")
 	public Reservation update(@PathVariable Integer id, @Valid @RequestBody Reservation reservation, BindingResult br) {
 		reservation.setId(id);
