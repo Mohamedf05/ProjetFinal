@@ -1,0 +1,21 @@
+<form (ngSubmit)="save()" [formGroup]="form">
+  <div class="card">
+    <div class="card-header">Modifier une reservation</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label>id:</label>
+        <input readonly class="form-control" placeholder="genereation auto" />
+
+        <label>Date début:</label>
+        <input type="date" class="form-control" formControlName="dateDebut" />
+
+        <label>Date fin:</label>
+        <input type="date" class="form-control" formControlName="dateFin" />
+      </div>
+      <div>
+        <button type="submit" class="btn btn-success">enregistrer</button>
+        <a routerLink="/reservation" class="btn btn-warning">annuler</a>
+      </div>
+    </div>
+  </div>
+</form>

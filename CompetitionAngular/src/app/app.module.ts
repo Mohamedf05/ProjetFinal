@@ -16,7 +16,6 @@ import { JournalisteAccueilComponent } from './component/journaliste/journaliste
 import { EvenementAccueilComponent } from './component/evenement/evenement-accueil/evenement-accueil.component';
 import { LogementComponent } from './component/logement/logement/logement.component';
 import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
-import { ReservationAccueilComponent } from './component/reservation-accueil/reservation-accueil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -47,7 +46,9 @@ import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component'
 import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BanniereComponent } from './component/banniere/banniere.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
+import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
+import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EpreuveComponent,
     ArticleLectureComponent,
     BanniereComponent,
+    ReservationEditComponent,
+    ReservationEpreuveComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,7 @@
+import { GuardService } from './services/guard.service';
+import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
+import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
+import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
 import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
@@ -65,20 +69,46 @@ export const routes: Routes = [
     component: OrganisateurReservationComponent,
   },
 
-  { path: 'spectateur', component: SpectateurAccueilComponent },
-  { path: 'spectateur/edit', component: SpectateurEditComponent },
-  { path: 'spectateur/edit/:id', component: SpectateurEditComponent },
+  {
+    path: 'spectateur',
+    component: SpectateurAccueilComponent,
+    canActivate: [GuardService],
+  },
+  {
+    path: 'spectateur/edit',
+    component: SpectateurEditComponent,
+    canActivate: [GuardService],
+  },
+  {
+    path: 'spectateur/edit/:id',
+    component: SpectateurEditComponent,
+    canActivate: [GuardService],
+  },
   {
     path: 'spectateur/:id/reservation',
     component: SpectateurReservationComponent,
+    canActivate: [GuardService],
   },
 
-  { path: 'journaliste', component: JournalisteAccueilComponent },
-  { path: 'journaliste/edit', component: JournalisteEditComponent },
-  { path: 'journaliste/edit/:id', component: JournalisteEditComponent },
+  {
+    path: 'journaliste',
+    component: JournalisteAccueilComponent,
+    canActivate: [GuardService],
+  },
+  {
+    path: 'journaliste/edit',
+    component: JournalisteEditComponent,
+    canActivate: [GuardService],
+  },
+  {
+    path: 'journaliste/edit/:id',
+    component: JournalisteEditComponent,
+    canActivate: [GuardService],
+  },
   {
     path: 'journaliste/:id/reservation',
     component: JournalisteReservationComponent,
+    canActivate: [GuardService],
   },
 
   { path: 'inscription', component: InscriptionComponent },
@@ -95,6 +125,38 @@ export const routes: Routes = [
   { path: 'inscription/spectateur', component: InscriptionSpectateurComponent },
 
   { path: 'login', component: LoginComponent },
+  {
+    path: 'terrain',
+    component: TerrainAccueilComponent,
+    canActivate: [GuardService],
+  },
+  {
+    path: 'terrain/edit',
+    component: TerrainEditComponent,
+    canActivate: [GuardService],
+  },
+  {
+    path: 'terrain/edit/:id',
+    component: TerrainEditComponent,
+    canActivate: [GuardService],
+  },
+
+  {
+    path: 'reservation',
+    component: ReservationAccueilComponent,
+  },
+  {
+    path: 'reservation/edit',
+    component: ReservationEditComponent,
+  },
+  {
+    path: 'reservation/edit/:id',
+    component: ReservationEditComponent,
+  },
+  {
+    path: 'reservation/:id/epreuve',
+    component: ReservationEpreuveComponent,
+  },
   { path: 'terrain', component: TerrainAccueilComponent },
   { path: 'terrain/edit', component: TerrainEditComponent },
   { path: 'terrain/edit/:id', component: TerrainEditComponent },
