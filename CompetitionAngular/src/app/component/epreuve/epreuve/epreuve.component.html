@@ -1,54 +1,56 @@
-<div class="card">
-  <div class="card-header">
-    <h3>Epreuve numero &nbsp;{{ epreuve.id }}</h3>
-  </div>
-  <div class="card-body">
-    <table class="table">
-      <tbody>
-        <tr>
-          <th scope="col">Discipline</th>
-          <td>{{ epreuve.discipline }}</td>
-        </tr>
-        <tr>
-          <th scope="col">Terrain</th>
-          <td>{{ epreuve.terrain?.nom }}</td>
-        </tr>
-        <tr>
-          <th scope="col">Date</th>
-          <td>{{ epreuve.date }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <button class="btn btn-outline-dark" routerLink="/epreuve">Retour</button>
-    <a
-      *ngIf="role == 'organisateur'"
-      (click)="modifier()"
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-      >Modifier l'épreuve</a
-    >
-    <a
-      *ngIf="role == 'organisateur'"
-      (click)="delete(epreuve.id)"
-      routerLinkActive="active"
-      class="btn btn-outline-danger"
-      >supprimer</a
-    >
-    <a
-      *ngIf="role == 'athlete'"
-      routerLink="/reservation/epreuve/{{ epreuve.id }}"
-      routerLinkActive="active"
-      class="btn btn-outline-success"
-      >S'inscrire à cette épreuve</a
-    >
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h3>Epreuve numero &nbsp;{{ epreuve.id }}</h3>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th scope="col">Discipline</th>
+            <td>{{ epreuve.discipline }}</td>
+          </tr>
+          <tr>
+            <th scope="col">Terrain</th>
+            <td>{{ epreuve.terrain?.nom }}</td>
+          </tr>
+          <tr>
+            <th scope="col">Date</th>
+            <td>{{ epreuve.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <button class="btn btn-dark" routerLink="/epreuve">Retour</button>
+      <a
+        *ngIf="role == 'organisateur'"
+        (click)="modifier()"
+        routerLinkActive="active"
+        class="btn btn-warning"
+        >Modifier l'épreuve</a
+      >
+      <a
+        *ngIf="role == 'organisateur'"
+        (click)="delete(epreuve.id)"
+        routerLinkActive="active"
+        class="btn btn-danger"
+        >Supprimer</a
+      >
+      <a
+        *ngIf="role == 'athlete'"
+        routerLink="/reservation/epreuve/{{ epreuve.id }}"
+        routerLinkActive="active"
+        class="btn btn-success"
+        >S'inscrire à cette épreuve</a
+      >
 
-    <a
-      routerLink="/epreuve/participants"
-      routerLinkActive="active"
-      class="btn btn-outline-info"
-      >Liste des participant</a
-    >
+      <a
+        routerLink="/epreuve/participants"
+        routerLinkActive="active"
+        class="btn btn-info"
+        >Liste des participants</a
+      >
+    </div>
   </div>
 </div>

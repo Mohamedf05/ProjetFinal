@@ -1,13 +1,13 @@
 <app-list-epreuve></app-list-epreuve>
-<button class="btn btn-outline-dark" routerLink="/evenement/consulter">
-  Retour
-</button>
-<button
-  *ngIf="role == 'organisateur'"
-  class="btn btn-outline-primary"
-  (click)="ajouter()"
->
-  Ajouter une epreuve
-</button>
+<div class="container">
+  <button class="btn btn-dark" routerLink="/evenement/consulter">Retour</button>
+  <button
+    *ngIf="role == 'organisateur'"
+    class="btn btn-primary"
+    (click)="ajouter()"
+  >
+    Ajouter une epreuve
+  </button>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

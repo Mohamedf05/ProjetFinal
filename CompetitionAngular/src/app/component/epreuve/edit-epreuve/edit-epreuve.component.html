@@ -1,76 +1,87 @@
-<form (ngSubmit)="submit()" [formGroup]="form">
-  <div class="form-group">
-    <label>Id:</label>
-    <input readonly class="form-control" placeholder="generation auto" />
-  </div>
-  <div class="form-group">
-    <label>Discipline:</label>
-    <select formControlName="discipline" class="form-control">
-      <option>Choisir une discipline</option>
-      <option *ngFor="let d of disciplines | keyvalue">
-        {{ d.key }}
-      </option>
-    </select>
-    <div
-      *ngIf="form.get('discipline')?.dirty && form.get('discipline')?.invalid"
-      class="alert alert-danger"
-    >
-      Information obligatoire !
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Terrain:</label>
-    <select formControlName="terrain" class="form-control">
-      <option selected>Choisir un terrain</option>
-      <option *ngFor="let t of terrains" [value]="t.id">
-        {{ t.id }}
-        <div></div>
-        {{ t.nom }}
-      </option>
-    </select>
-    <div
-      *ngIf="form.get('terrain')?.dirty && form.get('terrain')?.invalid"
-      class="alert alert-danger"
-    >
-      Information obligatoire !
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Date:</label>
-    <input type="date" formControlName="date" class="form-control" />
-    <div
-      *ngIf="form.get('date')?.dirty && form.get('date')?.invalid"
-      class="alert alert-danger"
-    >
-      Information obligatoire!
-    </div>
-    <div
-      *ngIf="form.get('date')?.hasError('dateNotConsistent')"
-      class="alert alert-danger"
-    >
-      Dates incohérentes !
-    </div>
-  </div>
+<div class="container">
+  <div class="card">
+    <div class="card-header">Modifier l'épreuve</div>
+    <div class="card-body">
+      <form (ngSubmit)="submit()" [formGroup]="form">
+        <div class="form-group">
+          <label>ID:</label>
+          <input readonly class="form-control" placeholder="generation auto" />
+        </div>
+        <div class="form-group">
+          <label>Discipline:</label>
+          <select formControlName="discipline" class="form-control">
+            <option>Choisir une discipline</option>
+            <option *ngFor="let d of disciplines | keyvalue">
+              {{ d.key }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              form.get('discipline')?.dirty && form.get('discipline')?.invalid
+            "
+            class="alert alert-danger"
+          >
+            Information obligatoire !
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Terrain:</label>
+          <select formControlName="terrain" class="form-control">
+            <option selected>Choisir un terrain</option>
+            <option *ngFor="let t of terrains" [value]="t.id">
+              {{ t.id }}
+              <div></div>
+              {{ t.nom }}
+            </option>
+          </select>
+          <div
+            *ngIf="form.get('terrain')?.dirty && form.get('terrain')?.invalid"
+            class="alert alert-danger"
+          >
+            Information obligatoire !
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Date:</label>
+          <input type="date" formControlName="date" class="form-control" />
+          <div
+            *ngIf="form.get('date')?.dirty && form.get('date')?.invalid"
+            class="alert alert-danger"
+          >
+            Information obligatoire!
+          </div>
+          <div
+            *ngIf="form.get('date')?.hasError('dateNotConsistent')"
+            class="alert alert-danger"
+          >
+            Dates incohérentes !
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label>Nombre maximal de participants:</label>
-    <input formControlName="participant" class="form-control" />
-    <div
-      *ngIf="form.get('participant')?.dirty && form.get('participant')?.invalid"
-      class="alert alert-danger"
-    >
-      Information obligatoire !
+        <div class="form-group">
+          <label>Nombre maximal de participants:</label>
+          <input formControlName="participant" class="form-control" />
+          <div
+            *ngIf="
+              form.get('participant')?.dirty && form.get('participant')?.invalid
+            "
+            class="alert alert-danger"
+          >
+            Information obligatoire !
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="form.invalid"
+          >
+            Valider
+          </button>
+          <a (click)="annuler(epreuve.id)" class="btn btn-warning">Annuler</a>
+        </div>
+      </form>
     </div>
   </div>
-
-  <div>
-    <button
-      type="submit"
-      class="btn btn-outline-success"
-      [disabled]="form.invalid"
-    >
-      Valider
-    </button>
-    <a (click)="annuler(epreuve.id)" class="btn btn-outline-warning">Annuler</a>
-  </div>
-</form>
+</div>

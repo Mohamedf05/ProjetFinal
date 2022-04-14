@@ -4,6 +4,10 @@
   margin: 1% 0% 0% 1%;
 }
 
+.container-fluid {
+  align-items: flex-end;
+}
+
 #logo {
   border: solid 2px;
   border-radius: 50%;
@@ -11,20 +15,11 @@
   height: 150px;
 }
 
-.login {
-  margin-top: 2.5%;
-  margin-right: -5%;
-  margin-left: 5%;
-  float: right;
-  background-color: burlywood;
-}
-
-.logout{
+.logout {
   margin-left: 15%;
-position: absolute;
-right:0;
+  position: absolute;
+  right: 0;
 }
-
 
 .btn btn-link {
   border-radius: 50%;
@@ -33,6 +28,17 @@ right:0;
 .container-fluid a {
   text-decoration: none;
   box-shadow: none;
+}
+
+.container-fluid span {
+  background-color: burlywood;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
 }
 
 #footer {

@@ -7,4 +7,16 @@
   <h5>Publié le {{ article.date }}</h5>
   <img [src]="article.image" alt="Image article" height="400" />
   <div>{{ article.corps }}</div>
+  <div>
+    <a class="btn btn-warning" routerLink="/article" routerLinkActive="active"
+      >Retour</a
+    >
+    <button
+      routerLink="/home"
+      routerLinkActive="-active"
+      class="btn btn-secondary"
+    >
+      Home
+    </button>
+  </div>
 </div>

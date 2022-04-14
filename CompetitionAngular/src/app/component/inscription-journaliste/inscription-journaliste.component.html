@@ -1,142 +1,149 @@
-<div class="mt-4 col-8 offset-2">
-  <div class="card">
-    <div class="card-header">Inscription Journaliste</div>
-    <div class="card-body">
-      <form (ngSubmit)="submit()" [formGroup]="form">
-        <div class="form-group">
-          <label>Nom:</label>
-          <input class="form-control" formControlName="nom" />
-          <label>Prenom:</label>
-          <input class="form-control" formControlName="prenom" />
-          <label>Entreprise:</label>
-          <input class="form-control" formControlName="entreprise" />
-        </div>
-
-        <div formGroupName="emailPasswordGroup">
+<div class="container">
+  <div class="mt-4 col-8 offset-2">
+    <div class="card">
+      <div class="card-header">Inscription Journaliste</div>
+      <div class="card-body">
+        <form (ngSubmit)="submit()" [formGroup]="form">
           <div class="form-group">
-            <label>Email:</label>
-            <input type="email" class="form-control" formControlName="email" />
-            <div
-              *ngIf="
-                form.get('emailPasswordGroup.email')?.dirty &&
-                form.get('emailPasswordGroup.email')?.invalid
-              "
-              class="alert alert-danger"
-            >
-              Email incorrect !
-            </div>
-            <div
-              *ngIf="
-                form.get('emailPasswordGroup.email')?.hasError('emailExist')
-              "
-              class="alert alert-danger"
-            >
-              Email déjà utilisé !
-            </div>
-            <div
-              *ngIf="
-                form
-                  .get('emailPasswordGroup')
-                  ?.hasError('mailAndPasswordEquals')
-              "
-              class="alert alert-danger"
-            >
-              Le mail et le mot de passe sont identiques !
-            </div>
+            <label>Nom:</label>
+            <input class="form-control" formControlName="nom" />
+            <label>Prenom:</label>
+            <input class="form-control" formControlName="prenom" />
+            <label>Entreprise:</label>
+            <input class="form-control" formControlName="entreprise" />
           </div>
-          <div formGroupName="passwordGroup">
+
+          <div formGroupName="emailPasswordGroup">
             <div class="form-group">
-              <label>Mot de passe:</label>
+              <label>Email:</label>
               <input
-                type="password"
+                type="email"
                 class="form-control"
-                formControlName="password"
+                formControlName="email"
               />
               <div
                 *ngIf="
-                  form.get('emailPasswordGroup.passwordGroup.password')
-                    ?.dirty &&
-                  form.get('emailPasswordGroup.passwordGroup.password')?.invalid
+                  form.get('emailPasswordGroup.email')?.dirty &&
+                  form.get('emailPasswordGroup.email')?.invalid
                 "
-                class="alert alert-warning"
+                class="alert alert-danger"
               >
-                doit faire entre 5 et 25 caractères avec
-                majuscule,minuscule,chiffre et caractère spécial(*_!@-)
+                Email incorrect !
+              </div>
+              <div
+                *ngIf="
+                  form.get('emailPasswordGroup.email')?.hasError('emailExist')
+                "
+                class="alert alert-danger"
+              >
+                Email déjà utilisé !
+              </div>
+              <div
+                *ngIf="
+                  form
+                    .get('emailPasswordGroup')
+                    ?.hasError('mailAndPasswordEquals')
+                "
+                class="alert alert-danger"
+              >
+                Le mail et le mot de passe sont identiques !
               </div>
             </div>
-            <div class="form-group">
-              <label>Ressaisir le mot de passe:</label>
-              <input
-                type="password"
-                class="form-control"
-                formControlName="confirm"
-              />
+            <div formGroupName="passwordGroup">
+              <div class="form-group">
+                <label>Mot de passe:</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                />
+                <div
+                  *ngIf="
+                    form.get('emailPasswordGroup.passwordGroup.password')
+                      ?.dirty &&
+                    form.get('emailPasswordGroup.passwordGroup.password')
+                      ?.invalid
+                  "
+                  class="alert alert-warning"
+                >
+                  doit faire entre 5 et 25 caractères avec
+                  majuscule,minuscule,chiffre et caractère spécial(*_!@-)
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Ressaisir le mot de passe:</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="confirm"
+                />
+              </div>
+              <div
+                *ngIf="
+                  form.get('emailPasswordGroup.passwordGroup')?.invalid &&
+                  form.get('emailPasswordGroup.passwordGroup')?.dirty
+                "
+                class="alert alert-danger"
+              >
+                Erreur de mot de passe !
+              </div>
             </div>
+          </div>
+          <div class="form-group">
+            <label>Numero:</label>
+            <input class="form-control" formControlName="numero" />
+            <div
+              *ngIf="form.get('numero')?.dirty && form.get('numero')?.invalid"
+              class="alert alert-danger"
+            >
+              Information obligatoire !
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Rue:</label>
+            <input class="form-control" formControlName="rue" />
+            <div
+              *ngIf="form.get('rue')?.dirty && form.get('rue')?.invalid"
+              class="alert alert-danger"
+            >
+              Information obligatoire
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Code postal:</label>
+            <input class="form-control" formControlName="codePostal" />
             <div
               *ngIf="
-                form.get('emailPasswordGroup.passwordGroup')?.invalid &&
-                form.get('emailPasswordGroup.passwordGroup')?.dirty
+                form.get('codePostal')?.dirty && form.get('codePostal')?.invalid
               "
               class="alert alert-danger"
             >
-              Erreur de mot de passe !
+              Information obligatoire !
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Numero:</label>
-          <input class="form-control" formControlName="numero" />
-          <div
-            *ngIf="form.get('numero')?.dirty && form.get('numero')?.invalid"
-            class="alert alert-danger"
-          >
-            Information obligatoire !
+          <div class="form-group">
+            <label>Ville:</label>
+            <input class="form-control" formControlName="ville" />
+            <div
+              *ngIf="form.get('ville')?.dirty && form.get('ville')?.invalid"
+              class="alert alert-danger"
+            >
+              Information obligatoire !
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Rue:</label>
-          <input class="form-control" formControlName="rue" />
-          <div
-            *ngIf="form.get('rue')?.dirty && form.get('rue')?.invalid"
-            class="alert alert-danger"
-          >
-            Information obligatoire
+          <br />
+          <div>
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="form.invalid"
+            >
+              Valider
+            </button>
+            <a routerLink="/home" class="btn btn-warning">Retour</a>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Code postal:</label>
-          <input class="form-control" formControlName="codePostal" />
-          <div
-            *ngIf="
-              form.get('codePostal')?.dirty && form.get('codePostal')?.invalid
-            "
-            class="alert alert-danger"
-          >
-            Information obligatoire !
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Ville:</label>
-          <input class="form-control" formControlName="ville" />
-          <div
-            *ngIf="form.get('ville')?.dirty && form.get('ville')?.invalid"
-            class="alert alert-danger"
-          >
-            Information obligatoire !
-          </div>
-        </div>
-        <br />
-        <div>
-          <button
-            type="submit"
-            class="btn btn-success"
-            [disabled]="form.invalid"
-          >
-            Valider
-          </button>
-          <a routerLink="/home" class="btn btn-warning">Retour</a>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>

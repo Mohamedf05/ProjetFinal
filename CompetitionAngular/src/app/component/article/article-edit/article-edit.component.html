@@ -1,7 +1,7 @@
 <div class="container">
   <form (ngSubmit)="submit()" [formGroup]="form">
     <div *ngIf="article.id">
-      <label>Id:</label>
+      <label>ID:</label>
       <input [value]="article.id" readonly class="form-control" />
     </div>
     <div class="form-group">
@@ -19,11 +19,7 @@
 Tapez votre article</textarea
       >
     </div>
-    <button
-      type="submit"
-      class="btn btn-outline-success"
-      [disabled]="form.invalid"
-    >
+    <button type="submit" class="btn btn-success" [disabled]="form.invalid">
       Valider
     </button>
   </form>
@@ -43,13 +39,10 @@ Tapez votre article</textarea
   </div>
 
   <div>
-    <button (click)="onUpload()" class="btn btn-outline-success">
+    <button (click)="onUpload()" class="btn btn-success">
       Valider envoi image
     </button>
-    <a
-      class="btn btn-outline-warning"
-      routerLink="/article"
-      routerLinkActive="active"
+    <a class="btn btn-warning" routerLink="/article" routerLinkActive="active"
       >Retour liste article</a
     >
   </div>
