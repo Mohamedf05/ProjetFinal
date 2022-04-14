@@ -23,8 +23,12 @@
           <td>{{ r.dateFin }}</td>
           <td>{{ r.heure }}</td>
           <td>{{ r.statut }}</td>
-          <td>{{ r.logement.id }}</td>
-          <td>{{ r.epreuve.id }}</td>
+          <td>
+            {{ r.logement.id }}
+          </td>
+          <td>
+            {{ r.epreuve.id }}
+          </td>
           <td>
             <a
               [routerLink]="['/reservation', 'edit', r.id]"

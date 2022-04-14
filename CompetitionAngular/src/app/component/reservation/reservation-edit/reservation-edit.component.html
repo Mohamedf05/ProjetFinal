@@ -11,26 +11,26 @@
 
         <label>Date fin:</label>
         <input type="date" class="form-control" formControlName="dateFin" />
-
         <label>Logement:</label>
         <select formControlName="logement" class="form-control">
           <option>Select</option>
-          <option *ngFor="let l of logements">
+          <option *ngFor="let l of logements" [value]="l.id">
             {{ l.id }}
+            {{ l.nom }}
           </option>
         </select>
 
         <label>Epreuve:</label>
         <select formControlName="epreuve" class="form-control">
           <option>Select</option>
-          <option *ngFor="let e of epreuves">
-            {{ e.id }}
+          <option *ngFor="let e of epreuves" [value]="e.id">
+            {{ e.id }} {{ e.discipline }}
           </option>
         </select>
       </div>
       <div>
         <button type="submit" class="btn btn-success">enregistrer</button>
-        <a routerLink="/reservation" class="btn btn-warning">annuler</a>
+        <a (click)="annuler()" class="btn btn-warning">annuler</a>
       </div>
     </div>
   </div>

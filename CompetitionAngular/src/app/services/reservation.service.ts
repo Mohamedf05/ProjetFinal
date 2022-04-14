@@ -36,14 +36,6 @@ export class ReservationService {
       heure: reservation.heure,
       logement: {
         id: reservation.logement.id,
-        // nom: reservation.logement.nom,
-        // adresse: {
-        //   numero: reservation.logement.adresse.numero,
-        //   voie: reservation.logement.adresse.voie,
-        //   ville: reservation.logement.adresse.ville,
-        //   cp: reservation.logement.adresse.cp,
-        // },
-        // typeLogement: reservation.logement.typeLogement,
       },
       epreuve: {
         id: reservation.epreuve.id,

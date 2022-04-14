@@ -23,6 +23,7 @@ export class ReservationEditComponent implements OnInit {
   adresse: Adresse[] | undefined;
   statut = StatutEvent;
   form: FormGroup;
+  idEpreuve: number | undefined;
 
   constructor(
     private aR: ActivatedRoute,
@@ -34,18 +35,24 @@ export class ReservationEditComponent implements OnInit {
     this.form = new FormGroup({
       dateDebut: new FormControl('', Validators.required),
       dateFin: new FormControl('', Validators.required),
-      logement: new FormControl('', Validators.required),
-      epreuve: new FormControl('', Validators.required),
+      logement: new FormControl(''),
+      epreuve: new FormControl(''),
     });
   }
 
   ngOnInit(): void {
+    this.aR.params.subscribe((param) => {
+      if (param['idEpreuve']) {
+        this.idEpreuve = param['idEpreuve'];
+        this.form.get('epreuve')?.setValue(param['idEpreuve']);
+      }
+    });
     this.aR.params.subscribe((params) => {
       this.logementService.getAll().subscribe((result) => {
         this.logements = result;
       });
 
-      this.epreuveService.getAll().subscribe((result) => {
+      this.epreuveService.getAllEp().subscribe((result) => {
         this.epreuves = result;
       });
 
@@ -90,6 +97,18 @@ export class ReservationEditComponent implements OnInit {
   }
 
   goList() {
-    this.router.navigateByUrl('/reservation');
+    if (this.idEpreuve) {
+      this.router.navigateByUrl('/epreuve/consulter');
+    } else {
+      this.router.navigateByUrl('/reservation');
+    }
+  }
+
+  annuler(): void {
+    if (this.idEpreuve) {
+      this.router.navigateByUrl('/epreuve/consulter');
+    } else {
+      this.router.navigateByUrl('/reservation');
+    }
   }
 }

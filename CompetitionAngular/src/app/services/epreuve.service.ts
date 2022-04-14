@@ -19,6 +19,10 @@ export class EpreuveService {
     );
   }
 
+  public getAllEp(): Observable<Epreuve[]> {
+    return this.http.get<Epreuve[]>(EpreuveService.URL);
+  }
+
   public getAthletes(): Observable<Compte[]> {
     return this.http.get<Compte[]>(
       EpreuveService.URL +

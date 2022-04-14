@@ -13,6 +13,10 @@
           <th scope="col">Terrain</th>
           <td>{{ epreuve.terrain?.nom }}</td>
         </tr>
+        <tr>
+          <th scope="col">Date</th>
+          <td>{{ epreuve.date }}</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -31,6 +35,13 @@
       routerLinkActive="active"
       class="btn btn-outline-danger"
       >supprimer</a
+    >
+    <a
+      *ngIf="role == 'athlete'"
+      routerLink="/reservation/epreuve/{{ epreuve.id }}"
+      routerLinkActive="active"
+      class="btn btn-outline-success"
+      >S'inscrire à cette épreuve</a
     >
 
     <a
