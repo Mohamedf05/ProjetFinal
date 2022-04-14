@@ -38,17 +38,24 @@ export class ArticleEditComponent implements OnInit {
   }
 
   submit() {
-    let article = {
-      id: this.article.id,
-      titre: this.form.get('titre')?.value,
-      corps: this.form.get('corps')?.value,
-      image: 'test',
-    };
     if (this.article.id) {
+      let article = {
+        id: this.article.id,
+        titre: this.form.get('titre')?.value,
+        corps: this.form.get('corps')?.value,
+        image: this.article.image,
+        journaliste: JSON.parse(localStorage.getItem('compte')!),
+      };
       this.articleService.update(article).subscribe((ok) => {
         this.router.navigateByUrl('/article');
       });
     } else {
+      let article = {
+        titre: this.form.get('titre')?.value,
+        corps: this.form.get('corps')?.value,
+        image: 'assets/images/logo3.jpg',
+        journaliste: JSON.parse(localStorage.getItem('compte')!),
+      };
       this.articleService.create(article).subscribe((ok) => {
         this.router.navigateByUrl('/article');
       });

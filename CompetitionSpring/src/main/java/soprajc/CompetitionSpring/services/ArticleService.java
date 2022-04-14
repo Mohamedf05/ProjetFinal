@@ -26,7 +26,7 @@ public class ArticleService {
 	private Validator validator;
 	
 	public String uploadFile(MultipartFile file) throws IllegalStateException, IOException {
-		String absolutePath = "C:\\Users\\ajc\\Desktop\\Projet Groupe2\\ProjetFinal\\CompetitionAngular\\src\\assets\\images"+file.getOriginalFilename();
+		String absolutePath = "C:\\Users\\ajc\\Desktop\\Projet Groupe2\\ProjetFinal\\CompetitionAngular\\src\\assets\\images\\"+file.getOriginalFilename();
 		file.transferTo(new File(absolutePath));
 		String image = "assets/images/"+file.getOriginalFilename();
 		return image;
