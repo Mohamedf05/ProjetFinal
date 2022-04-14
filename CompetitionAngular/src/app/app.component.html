@@ -1,97 +1,82 @@
 <div class="banniere">
-  <a routerLink="/home" routerLinkActive="active" class="btn btn-link">Home</a>
-  <span *ngIf="isAutenticated()">Bonjour {{ login }}</span>
+  <div class="logo">
+    <a routerLink="/home" routerLinkActive="active" class="btn btn-link"
+      ><img id="logo" src="./assets/images/logo3.jpg"
+    /></a>
+  </div>
+
+  <div class="login">
+    <span *ngIf="isAutenticated()">Bonjour {{ login }}</span>
+    <a
+      routerLink="/inscription"
+      routerLinkActive="active"
+      class="btn btn-outline-dark"
+      >Inscription</a
+    >
+    <a
+      *ngIf="!isAutenticated()"
+      routerLink="/login"
+      routerLinkActive="active"
+      class="btn btn-outline-dark"
+      >Login</a
+    >
+
+    <button
+      *ngIf="isAutenticated()"
+      (click)="logout()"
+      class="btn btn-outline-danger"
+    >
+      Logout
+    </button>
+  </div>
 </div>
+<div class="banniereCompo"><app-banniere></app-banniere></div>
 
-<a
-  *ngIf="role == 'organisateur'"
-  routerLink="/athlete"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Athlete</a
->
-<a
-  *ngIf="role == 'organisateur'"
-  routerLink="/organisateur"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Organisateur</a
->
-<a
-  *ngIf="role == 'organisateur'"
-  routerLink="/spectateur"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Spectateur</a
->
-<a
-  *ngIf="role == 'organisateur'"
-  routerLink="/journaliste"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Journaliste</a
->
+<div class="container"></div>
 
-<a
-  *ngIf="!isAutenticated()"
-  routerLink="/login"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >login</a
->
-<a
-  *ngIf="!isAutenticated()"
-  routerLink="/inscription"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >inscription</a
->
-
-<button
-  *ngIf="isAutenticated()"
-  routerLink="/home"
-  (click)="logout()"
-  class="btn btn-link"
->
-  logout
-</button>
-
-<a
-  *ngIf="isAutenticated()"
-  routerLink="/terrain"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Terrains</a
->
-
-<a
-  *ngIf="isAutenticated()"
-  routerLink="/logement"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Logements</a
->
-<a
-  *ngIf="isAutenticated()"
-  routerLink="/evenement"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Evenement</a
->
-
-<a
-  *ngIf="isAutenticated()"
-  routerLink="/epreuve"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Epreuve</a
->
-
-<a
-  *ngIf="isAutenticated()"
-  routerLink="/reservation"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Reservation</a
->
 <router-outlet></router-outlet>
+
+<footer class="text-center text-lg-start bg-light text-muted">
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-2">
+        <!-- Grid column -->
+        <div class="col-md-6 col-lg-8 col-xl-6 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>A propos
+          </h6>
+          <p style="text-align: left">
+            Application développée grâce à une team <b>d'acharnés!</b>
+          </p>
+          <p>
+            Dans le cadre de la formation #JavaEE dispensée par AJC Formation
+            pour SopraSteria
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3"></i> Groupe 2</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            competsport2@gmail.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> +33 6 59 41 57 36</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+
+  <div class="text-center p-4">
+    © 2022 Copyright:
+    <a class="text-reset fw-bold" routerLink="/home">Perfect Match</a>
+  </div>
+</footer>

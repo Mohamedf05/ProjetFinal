@@ -39,6 +39,13 @@ import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epre
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
+import { ArticleEditComponent } from './component/article/article-edit/article-edit.component';
+import { ArticleAccueilComponent } from './component/article/article-accueil/article-accueil.component';
+import { EvenementComponent } from './component/evenement/evenement/evenement.component';
+import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
+import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BanniereComponent } from './component/banniere/banniere.component';
 import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
 import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
 import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
@@ -79,6 +86,12 @@ import { ReservationAccueilComponent } from './component/reservation/reservation
     EpreuveAccueiComponent,
     EditEpreuveComponent,
     TerrainEditComponent,
+    ArticleEditComponent,
+    ArticleAccueilComponent,
+    EvenementComponent,
+    EpreuveComponent,
+    ArticleLectureComponent,
+    BanniereComponent,
     ReservationEditComponent,
     ReservationEpreuveComponent,
   ],
@@ -88,6 +101,7 @@ import { ReservationAccueilComponent } from './component/reservation/reservation
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

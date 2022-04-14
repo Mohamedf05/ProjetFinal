@@ -11,7 +11,7 @@ export class EpreuveAccueiComponent implements OnInit {
 
   ngOnInit(): void {}
   ajouter(): void {
-    this.router.navigateByUrl('/epreuve/edit/1');
+    this.router.navigateByUrl('/epreuve/edit');
   }
   get role() {
     return localStorage.getItem('role');

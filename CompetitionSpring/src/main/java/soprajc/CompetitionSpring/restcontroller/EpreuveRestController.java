@@ -58,7 +58,7 @@ public class EpreuveRestController {
 	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping("/{id}")
-	public Epreuve getAllByEvenement(@PathVariable Integer id)
+	public Epreuve getById(@PathVariable Integer id)
 	{
 		return epreuveService.getById(id);
 	}

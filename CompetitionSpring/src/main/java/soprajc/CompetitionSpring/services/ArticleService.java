@@ -24,11 +24,12 @@ public class ArticleService {
 	
 	@Autowired
 	private Validator validator;
-
+	
 	public String uploadFile(MultipartFile file) throws IllegalStateException, IOException {
-		String URL = "C:\\Users\\Michel\\eclipse-workspace\\ProjetFinal\\CompetitionAngular\\src\\assets\\images\\"+file.getOriginalFilename();
-		file.transferTo(new File(URL));
-		return URL;
+		String absolutePath = "C:\\Users\\Michel\\eclipse-workspace\\ProjetFinal\\CompetitionAngular\\src\\assets\\images\\"+file.getOriginalFilename();
+		file.transferTo(new File(absolutePath));
+		String image = "assets/images/"+file.getOriginalFilename();
+		return image;
 	}
 	
 	public List<Article> getAll() {

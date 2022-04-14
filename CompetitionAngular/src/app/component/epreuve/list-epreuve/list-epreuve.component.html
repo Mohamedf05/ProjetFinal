@@ -21,25 +21,10 @@
         <td>{{ e.maxParticipant }}</td>
         <td>
           <a
-            [routerLink]="['/epreuve/list']"
+            [routerLink]="['/epreuve/consulter/' + e.id]"
             routerLinkActive="active"
             class="btn btn-outline-info"
             >consulter</a
-          >
-          <a
-            *ngIf="role == 'organisateur'"
-            [routerLink]="['/epreuve/edit/' + e.id]"
-            routerLinkActive="active"
-            class="btn btn-outline-warning"
-            >Editer</a
-          >
-
-          <a
-            *ngIf="role == 'organisateur'"
-            (click)="delete(e.id)"
-            routerLinkActive="active"
-            class="btn btn-outline-danger"
-            >supprimer</a
           >
         </td>
       </tr>

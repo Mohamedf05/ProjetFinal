@@ -1,0 +1,9 @@
+<p>article-lecture works!</p>
+<h1>{{ article.titre }}</h1>
+<h3>
+  Article écrit par {{ article.journaliste?.prenom }}
+  {{ article.journaliste?.nom }}
+</h3>
+<h5>Publié le {{ article.date }}</h5>
+<img [src]="article.image" alt="Image article" height="400" />
+<div>{{ article.corps }}</div>
