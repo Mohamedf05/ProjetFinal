@@ -44,5 +44,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    localStorage.removeItem('profil');
+  }
 }

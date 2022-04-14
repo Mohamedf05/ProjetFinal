@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">Bienvenue sur profil&nbsp;{{ role }}</div>
+  <div class="card-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom: &nbsp;{{ compte?.prenom }}</th>
+          <th>Prenom:&nbsp;{{ compte?.nom }}</th>
+          <th>Date de naissance:&nbsp;{{ compte?.dateNaissance }}</th>
+          <th>Mail:&nbsp;{{ compte?.mail }}</th>
+          <th>
+            Adresse:&nbsp;{{ compte?.adresse?.numero }}&nbsp;{{
+              compte?.adresse?.voie
+            }}&nbsp;{{ compte?.adresse?.cp }}&nbsp;{{ compte?.adresse?.ville }}
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div>
+    <button class="btn btn-outline-dark" routerLink="/home">Retour</button>
+    <button class="btn btn-outline-warning" (click)="editer()">
+      Editer votre profil
+    </button>
+  </div>
+</div>

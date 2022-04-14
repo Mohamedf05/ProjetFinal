@@ -20,6 +20,9 @@ export class SpectateurEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('profil')) {
+      this.compte = JSON.parse(localStorage.getItem('compte')!);
+    }
     this.aR.params.subscribe((params) => {
       if (params['id']) {
         this.spectateurService.get(params['id']).subscribe((result) => {
@@ -44,6 +47,14 @@ export class SpectateurEditComponent implements OnInit {
   }
 
   goList() {
-    this.router.navigateByUrl('/spectateur');
+    if (localStorage.getItem('profil')) {
+      localStorage.removeItem('profil');
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/spectateur');
+  }
+  annuler() {
+    if (localStorage.getItem('profil')) {
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/spectateur');
   }
 }
