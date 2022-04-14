@@ -1,3 +1,6 @@
+import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
+import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
+import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
 import { EditEvenementComponent } from './component/evenement/edit-evenement/edit-evenement.component';
 import { routes } from './routes';
@@ -46,9 +49,6 @@ import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component'
 import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BanniereComponent } from './component/banniere/banniere.component';
-import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
-import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
-import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,6 @@ import { ReservationAccueilComponent } from './component/reservation/reservation
     EvenementAccueilComponent,
     LogementComponent,
     TerrainAccueilComponent,
-    ReservationAccueilComponent,
     InscriptionAthleteComponent,
     InscriptionOrganisateurComponent,
     InscriptionSpectateurComponent,
@@ -92,6 +91,7 @@ import { ReservationAccueilComponent } from './component/reservation/reservation
     EpreuveComponent,
     ArticleLectureComponent,
     BanniereComponent,
+    ReservationAccueilComponent,
     ReservationEditComponent,
     ReservationEpreuveComponent,
   ],
@@ -102,7 +102,6 @@ import { ReservationAccueilComponent } from './component/reservation/reservation
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     NgbModule,
-    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
