@@ -51,6 +51,7 @@ import { BanniereComponent } from './component/banniere/banniere.component';
 import { VisiteurComponent } from './component/visiteur/visiteur.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ParticipantComponent } from './component/epreuve/participant/participant.component';
+import { EditProfilComponent } from './component/login/profil/edit-profil/edit-profil.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { ParticipantComponent } from './component/epreuve/participant/participan
     ReservationAccueilComponent,
     ReservationEditComponent,
     ParticipantComponent,
+    EditProfilComponent,
   ],
   imports: [
     BrowserModule,

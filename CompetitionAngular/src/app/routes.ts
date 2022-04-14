@@ -1,3 +1,4 @@
+import { EditProfilComponent } from './component/login/profil/edit-profil/edit-profil.component';
 import { ParticipantComponent } from './component/epreuve/participant/participant.component';
 import { GuardService } from './services/guard.service';
 import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
@@ -47,8 +48,8 @@ export const routes: Routes = [
   { path: 'athlete/:id/epreuve', component: AthleteEpreuveComponent },
   { path: 'athlete/:id/reservation', component: AthleteReservationComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'visiteur', component: VisiteurComponent},
-  
+  { path: 'visiteur', component: VisiteurComponent },
+
   { path: 'logement', component: LogementComponent },
   { path: 'logement/edit', component: EditLogementComponent },
   { path: 'logement/edit/:id', component: EditLogementComponent },
@@ -64,6 +65,7 @@ export const routes: Routes = [
   { path: 'epreuve/edit/:id', component: EditEpreuveComponent },
   { path: 'epreuve/edit', component: EditEpreuveComponent },
   { path: 'epreuve/participants', component: ParticipantComponent },
+  { path: 'profil', component: EditProfilComponent },
   { path: 'organisateur', component: OrganisateurAccueilComponent },
   { path: 'organisateur/edit', component: OrganisateurEditComponent },
   { path: 'organisateur/edit/:id', component: OrganisateurEditComponent },
