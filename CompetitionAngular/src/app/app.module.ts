@@ -48,6 +48,8 @@ import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component'
 import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BanniereComponent } from './component/banniere/banniere.component';
+import { VisiteurComponent } from './component/visiteur/visiteur.component';
+import { FooterComponent } from './component/footer/footer.component';
 import { ParticipantComponent } from './component/epreuve/participant/participant.component';
 
 @NgModule({
@@ -91,6 +93,8 @@ import { ParticipantComponent } from './component/epreuve/participant/participan
     EpreuveComponent,
     ArticleLectureComponent,
     BanniereComponent,
+    VisiteurComponent,
+    FooterComponent,
     ReservationAccueilComponent,
     ReservationEditComponent,
     ParticipantComponent,

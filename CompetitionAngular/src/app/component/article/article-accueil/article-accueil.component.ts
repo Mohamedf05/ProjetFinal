@@ -15,6 +15,9 @@ export class ArticleAccueilComponent implements OnInit {
   ngOnInit(): void {
     this.list();
   }
+  get role() {
+    return localStorage.getItem('role');
+  }
 
   list() {
     this.articleService.getAll().subscribe((result) => {

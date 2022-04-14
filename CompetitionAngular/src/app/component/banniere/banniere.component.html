@@ -1,4 +1,4 @@
-<div class="navBar">
+<div class="container">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand">Menus</a>
@@ -16,6 +16,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a
+            *ngIf="role == 'organisateur' || role == 'athlete'"
             class="nav-link"
             aria-current="page"
             routerLink="/athlete"
@@ -23,27 +24,45 @@
             >Athlete</a
           >
           <a
+            *ngIf="role == 'organisateur'"
             class="nav-link"
             routerLink="/organisateur"
             routerLinkActive="active"
             >Organisateur</a
           >
-          <a class="nav-link" routerLink="/spectateur" routerLinkActive="active"
+          <a
+            *ngIf="role == 'organisateur' || role == 'spectateur'"
+            class="nav-link"
+            routerLink="/spectateur"
+            routerLinkActive="active"
             >Spectateur</a
           >
           <a
+            *ngIf="role == 'organisateur' || role == 'journaliste'"
             routerLink="/journaliste"
             routerLinkActive="active"
             class="nav-link"
             >Journaliste</a
           >
-          <a routerLink="/terrain" routerLinkActive="active" class="nav-link"
+          <a
+            *ngIf="isAutenticated()"
+            routerLink="/terrain"
+            routerLinkActive="active"
+            class="nav-link"
             >Terrains</a
           >
-          <a routerLink="/logement" routerLinkActive="active" class="nav-link"
+          <a
+            *ngIf="isAutenticated()"
+            routerLink="/logement"
+            routerLinkActive="active"
+            class="nav-link"
             >Logements</a
           >
-          <a routerLink="/evenement" routerLinkActive="active" class="nav-link"
+          <a
+            *ngIf="isAutenticated()"
+            routerLink="/evenement"
+            routerLinkActive="active"
+            class="nav-link"
             >Evenement</a
           >
 
@@ -52,6 +71,9 @@
             routerLinkActive="active"
             class="nav-link"
             >Reservation</a
+
+          <a routerLink="/article" routerLinkActive="active" class="nav-link"
+            >Articles</a
           >
         </div>
       </div>

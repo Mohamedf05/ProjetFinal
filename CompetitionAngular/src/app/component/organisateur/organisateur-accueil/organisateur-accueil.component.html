@@ -1,12 +1,13 @@
-<div class="card">
-  <div class="card-header">Liste des organisateurs</div>
+<div class="container"> 
+  <div class="card">
+  <div class="card-header"><h3>Liste des organisateurs</h3></div>
   <div class="card-body">
     <table class="table">
       <thead>
         <tr>
           <th>Id</th>
-          <th>nom</th>
-          <th>prenom</th>
+          <th>Nom</th>
+          <th>Prenom</th>
           <th>Raison sociale</th>
           <th>Email</th>
           <th>Numero</th>
@@ -33,7 +34,7 @@
               [routerLink]="['/organisateur', o.id, 'reservation']"
               routerLinkActive="active"
               class="btn btn-link"
-              >Liste des reservations</a
+              >Liste des réservations</a
             >
           </td>
           <td>
@@ -41,16 +42,16 @@
               [routerLink]="['/organisateur', 'edit', o.id]"
               routerLinkActive="active"
               class="btn btn-primary"
-              >editer</a
+              >Editer</a
             >
           </td>
           <td>
             <button class="btn btn-danger" (click)="delete(o.id!)">
-              supprimer
+              Supprimer
             </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-</div>
+</div></div>
