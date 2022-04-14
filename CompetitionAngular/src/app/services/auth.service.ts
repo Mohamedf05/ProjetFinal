@@ -18,15 +18,8 @@ export class AuthService {
     });
   }
 
-  public authenticationObj(login: string, password: string): Observable<any> {
-    let httpHeaders: HttpHeaders = new HttpHeaders({
-      Authorization: 'Basic ' + btoa(login + ':' + password),
-    });
-
-    return this.http.get<any>('http://localhost:8080/compet/api/auth/obj', {
-      headers: httpHeaders,
-      responseType: 'text' as 'json',
-    });
+  public authenticationObj(): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/compet/api/auth/obj');
   }
 
   isAutenticated(): boolean {

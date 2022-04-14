@@ -40,6 +40,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('role', value);
         this.err = false;
         this.router.navigateByUrl('/home');
+        this.authService.authenticationObj().subscribe((result) => {
+          localStorage.setItem('compte', JSON.stringify(result));
+          console.log(JSON.parse(localStorage.getItem('compte')!));
+        });
       },
       error: (error: any) => {
         console.log(error);
@@ -47,19 +51,5 @@ export class LoginComponent implements OnInit {
         this.message = 'informations incorrectes';
       },
     });
-
-    this.authService.authenticationObj(this.login, this.password).subscribe({
-      next: (value: Compte) => {
-        localStorage.setItem('compte', JSON.stringify(value));
-        this.err = false;
-        this.router.navigateByUrl('/home');
-      },
-      error: (error: any) => {
-        console.log(error);
-        this.err = true;
-        this.message = 'informations incorrectes';
-      },
-    });
-    console.log(JSON.parse(localStorage.getItem('compte')!));
   }
 }
