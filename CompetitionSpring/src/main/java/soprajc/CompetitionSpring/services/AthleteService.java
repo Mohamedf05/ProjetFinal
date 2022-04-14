@@ -49,6 +49,10 @@ public class AthleteService {
 	public List<Athlete> getAll() {
 		return athleteRepo.findAll();
 	}
+	
+	public List<Athlete> getAllByEpreuve(Integer id) {
+		return athleteRepo.findWithEpreuves(id);
+	}
 
 	public Athlete getById(Integer id) {
 		return athleteRepo.findById(id).orElseThrow(() -> {

@@ -23,4 +23,9 @@ export class ListEpreuveComponent implements OnInit {
       this.epreuves = result;
     });
   }
+  consulter(epreuve: any): void {
+    localStorage.setItem('epreuve', JSON.stringify(epreuve));
+
+    this.router.navigateByUrl('/epreuve/consulter');
+  }
 }
