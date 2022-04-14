@@ -34,20 +34,22 @@ export class ReservationService {
       statut: reservation.statut,
       date: reservation.date,
       heure: reservation.heure,
+      logement: {
+        id: reservation.logement.id,
+        // nom: reservation.logement.nom,
+        // adresse: {
+        //   numero: reservation.logement.adresse.numero,
+        //   voie: reservation.logement.adresse.voie,
+        //   ville: reservation.logement.adresse.ville,
+        //   cp: reservation.logement.adresse.cp,
+        // },
+        // typeLogement: reservation.logement.typeLogement,
+      },
+      epreuve: {
+        id: reservation.epreuve.id,
+      },
       dateDebut: reservation.dateDebut,
       dateFin: reservation.dateFin,
-
-      /*logement: {
-        id: reservation.logement.id,
-        nom: reservation.logement.nom,
-        typeLogement: reservation.logement.typeLogement,
-        adresse: {
-          numero: reservation.logement.adresse.numero,
-          voie: reservation.logement.adresse.voie,
-          ville: reservation.logement.adresse.ville,
-          cp: reservation.logement.adresse.cp,
-        },
-      },*/
     };
 
     return this.http.post<Reservation>(ReservationService.URL, obj);

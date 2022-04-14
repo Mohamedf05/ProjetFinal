@@ -18,4 +18,9 @@ public class AuthController {
 	public String auth(@AuthenticationPrincipal Compte compte) {
 		return compte.getClass().getSimpleName().toLowerCase();
 	}
+	
+	@GetMapping("/obj")
+	public Compte authObj(@AuthenticationPrincipal Compte compte) {
+		return compte;
+	}
 }

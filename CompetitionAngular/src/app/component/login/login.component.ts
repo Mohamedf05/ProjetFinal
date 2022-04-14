@@ -1,3 +1,4 @@
+import { Compte } from './../../model/compte';
 import { AuthService } from './../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -46,5 +47,19 @@ export class LoginComponent implements OnInit {
         this.message = 'informations incorrectes';
       },
     });
+
+    this.authService.authenticationObj(this.login, this.password).subscribe({
+      next: (value: Compte) => {
+        localStorage.setItem('compte', JSON.stringify(value));
+        this.err = false;
+        this.router.navigateByUrl('/home');
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.err = true;
+        this.message = 'informations incorrectes';
+      },
+    });
+    console.log(JSON.parse(localStorage.getItem('compte')!));
   }
 }

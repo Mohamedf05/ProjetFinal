@@ -11,6 +11,22 @@
 
         <label>Date fin:</label>
         <input type="date" class="form-control" formControlName="dateFin" />
+
+        <label>Logement:</label>
+        <select formControlName="logement" class="form-control">
+          <option>Select</option>
+          <option *ngFor="let l of logements">
+            {{ l.id }}
+          </option>
+        </select>
+
+        <label>Epreuve:</label>
+        <select formControlName="epreuve" class="form-control">
+          <option>Select</option>
+          <option *ngFor="let e of epreuves">
+            {{ e.id }}
+          </option>
+        </select>
       </div>
       <div>
         <button type="submit" class="btn btn-success">enregistrer</button>
