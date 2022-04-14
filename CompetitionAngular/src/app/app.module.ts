@@ -102,6 +102,7 @@ import { ReservationAccueilComponent } from './component/reservation/reservation
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     NgbModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
