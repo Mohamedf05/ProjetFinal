@@ -20,6 +20,9 @@ export class AthleteEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('profil')) {
+      this.compte = JSON.parse(localStorage.getItem('compte')!);
+    }
     this.aR.params.subscribe((params) => {
       if (params['id']) {
         this.athleteService.get(params['id']).subscribe((result) => {
@@ -44,6 +47,14 @@ export class AthleteEditComponent implements OnInit {
   }
 
   goList() {
-    this.router.navigateByUrl('/athlete');
+    if (localStorage.getItem('profil')) {
+      localStorage.removeItem('profil');
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/athlete');
+  }
+  annuler() {
+    if (localStorage.getItem('profil')) {
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/athlete');
   }
 }

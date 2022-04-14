@@ -20,6 +20,9 @@ export class OrganisateurEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('profil')) {
+      this.compte = JSON.parse(localStorage.getItem('compte')!);
+    }
     this.aR.params.subscribe((params) => {
       if (params['id']) {
         this.organisateurService.get(params['id']).subscribe((result) => {
@@ -42,8 +45,15 @@ export class OrganisateurEditComponent implements OnInit {
       });
     }
   }
-
   goList() {
-    this.router.navigateByUrl('/organisateur');
+    if (localStorage.getItem('profil')) {
+      localStorage.removeItem('profil');
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/organisateur');
+  }
+  annuler() {
+    if (localStorage.getItem('profil')) {
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/organisateur');
   }
 }
