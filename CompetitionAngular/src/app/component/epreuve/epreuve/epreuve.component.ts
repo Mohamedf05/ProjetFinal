@@ -1,5 +1,5 @@
+import { Router } from '@angular/router';
 import { Epreuve } from './../../../model/epreuve';
-import { Router, ActivatedRoute } from '@angular/router';
 import { EpreuveService } from './../../../services/epreuve.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,18 +12,10 @@ export class EpreuveComponent implements OnInit {
   epreuve: Epreuve = new Epreuve();
   role: string | undefined = localStorage.getItem('role')!;
 
-  constructor(
-    private epreuveService: EpreuveService,
-    private router: Router,
-    private aR: ActivatedRoute
-  ) {}
+  constructor(private epreuveService: EpreuveService, private router: Router) {}
 
   ngOnInit(): void {
-    this.aR.params.subscribe((param) => {
-      this.epreuveService.get(param['id']).subscribe((result) => {
-        this.epreuve = result;
-      });
-    });
+    this.epreuve = JSON.parse(localStorage.getItem('epreuve')!);
   }
   modifier(): void {
     this.router.navigateByUrl('/epreuve/edit/' + this.epreuve.id);

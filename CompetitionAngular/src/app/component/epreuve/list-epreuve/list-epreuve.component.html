@@ -21,7 +21,7 @@
         <td>{{ e.maxParticipant }}</td>
         <td>
           <a
-            [routerLink]="['/epreuve/consulter/' + e.id]"
+            (click)="consulter(e)"
             routerLinkActive="active"
             class="btn btn-outline-info"
             >consulter</a

@@ -1,3 +1,4 @@
+import { ParticipantComponent } from './component/epreuve/participant/participant.component';
 import { GuardService } from './services/guard.service';
 import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
 import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
@@ -56,11 +57,11 @@ export const routes: Routes = [
   { path: 'evenement/edit', component: EditEvenementComponent },
   { path: 'evenement/consulter', component: EvenementComponent },
   { path: 'epreuve', component: EpreuveAccueiComponent },
-  { path: 'epreuve/consulter/:id', component: EpreuveComponent },
+  { path: 'epreuve/consulter', component: EpreuveComponent },
   { path: 'epreuve/list', component: ListEpreuveComponent },
   { path: 'epreuve/edit/:id', component: EditEpreuveComponent },
   { path: 'epreuve/edit', component: EditEpreuveComponent },
-
+  { path: 'epreuve/participants', component: ParticipantComponent },
   { path: 'organisateur', component: OrganisateurAccueilComponent },
   { path: 'organisateur/edit', component: OrganisateurEditComponent },
   { path: 'organisateur/edit/:id', component: OrganisateurEditComponent },
