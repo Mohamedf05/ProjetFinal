@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
@@ -21,7 +22,7 @@ public class Athlete extends Compte {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateNaissance;
 	
-	@ManyToMany(mappedBy = "participants")
+	@ManyToMany(mappedBy = "participants",fetch = FetchType.EAGER)
 	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	private List<Epreuve> epreuves;
 
