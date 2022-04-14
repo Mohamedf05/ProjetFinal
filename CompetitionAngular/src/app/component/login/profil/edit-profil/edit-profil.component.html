@@ -1,26 +1,35 @@
-<div class="card">
-  <div class="card-header">Bienvenue sur profil&nbsp;{{ role }}</div>
-  <div class="card-body">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nom: &nbsp;{{ compte?.prenom }}</th>
-          <th>Prenom:&nbsp;{{ compte?.nom }}</th>
-          <th>Date de naissance:&nbsp;{{ compte?.dateNaissance }}</th>
-          <th>Mail:&nbsp;{{ compte?.mail }}</th>
-          <th>
-            Adresse:&nbsp;{{ compte?.adresse?.numero }}&nbsp;{{
-              compte?.adresse?.voie
-            }}&nbsp;{{ compte?.adresse?.cp }}&nbsp;{{ compte?.adresse?.ville }}
-          </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <div>
-    <button class="btn btn-outline-dark" routerLink="/home">Retour</button>
-    <button class="btn btn-outline-warning" (click)="editer()">
-      Editer votre profil
-    </button>
+<div class="container">
+  <div class="card">
+    <div class="card-header">Bienvenue sur mon profil&nbsp;{{ role }}</div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom: &nbsp;{{ compte?.prenom }}</th>
+          </tr>
+          <tr>
+            <th>Prenom:&nbsp;{{ compte?.nom }}</th>
+          </tr>
+          <tr>
+            <th>Mail:&nbsp;{{ compte?.mail }}</th>
+          </tr>
+          <tr>
+            <th>
+              Adresse:&nbsp;{{ compte?.adresse?.numero }}&nbsp;{{
+                compte?.adresse?.voie
+              }}&nbsp;{{ compte?.adresse?.cp }}&nbsp;{{
+                compte?.adresse?.ville
+              }}
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div>
+      <button class="btn btn-dark" routerLink="/home">Retour</button><br />
+      <button class="btn btn-warning" (click)="editer()">
+        Editer mon profil
+      </button>
+    </div>
   </div>
 </div>

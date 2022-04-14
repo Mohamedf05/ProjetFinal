@@ -1,50 +1,61 @@
-<p>terrain-accueil works!</p>
-
-<table class="table">
-  <tr>
-    <td>ID</td>
-    <td>Nom</td>
-    <td>Numero</td>
-    <td>Voie</td>
-    <td>Code postal</td>
-    <td>Ville</td>
-    <td>Disciplines</td>
-    <td>Type Terrain</td>
-  </tr>
-  <tr *ngFor="let t of terrains">
-    <td>{{ t.id }}</td>
-    <td>{{ t.nom }}</td>
-    <td>{{ t.adresse?.numero }}</td>
-    <td>{{ t.adresse?.voie }}</td>
-    <td>{{ t.adresse?.cp }}</td>
-    <td>{{ t.adresse?.ville }}</td>
-    <td>{{ t.disciplines }}</td>
-    <td>{{ t.typeTerrain }}</td>
-    <td>
-      <a
-        *ngIf="role == 'organisateur'"
-        [routerLink]="['/terrain', 'edit', t.id]"
-        routerLinkActive="active"
-        class="btn btn-outline-primary"
-        >Editer</a
-      >
-    </td>
-    <td>
-      <button
-        *ngIf="role == 'organisateur'"
-        (click)="delete(t.id!)"
-        class="btn btn-outline-danger"
-      >
-        Supprimer
-      </button>
-    </td>
-  </tr>
-</table>
-
-<a
-  *ngIf="role == 'organisateur'"
-  routerLink="/terrain/edit"
-  routerLinkActive="active"
-  class="btn btn-link"
-  >Ajouter un terrain</a
->
+<div class="container">
+  <div class="card text-center">
+    <h1>Liste des terrains</h1>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Numero</th>
+          <th>Voie</th>
+          <th>Code postal</th>
+          <th>Ville</th>
+          <th>Disciplines</th>
+          <th>Type Terrain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of terrains">
+          <td>{{ t.id }}</td>
+          <td>{{ t.nom }}</td>
+          <td>{{ t.adresse?.numero }}</td>
+          <td>{{ t.adresse?.voie }}</td>
+          <td>{{ t.adresse?.cp }}</td>
+          <td>{{ t.adresse?.ville }}</td>
+          <td>{{ t.disciplines }}</td>
+          <td>{{ t.typeTerrain }}</td>
+          <td>
+            <a
+              *ngIf="role == 'organisateur'"
+              [routerLink]="['/terrain', 'edit', t.id]"
+              routerLinkActive="active"
+              class="btn btn-primary"
+              >Editer</a
+            >
+          </td>
+          <td>
+            <button
+              *ngIf="role == 'organisateur'"
+              (click)="delete(t.id!)"
+              class="btn btn-danger"
+            >
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <a
+      *ngIf="role == 'organisateur'"
+      routerLink="/terrain/edit"
+      routerLinkActive="active"
+      class="btn btn-success"
+      >Ajouter un terrain</a
+    >
+    <a routerLink="/home" routerLinkActive="active" class="btn btn-dark">
+      Retour Accueil</a
+    >
+  </div>
+</div>

@@ -1,27 +1,29 @@
-<div class="card">
-  <div class="card-header">Liste des réservations</div>
-  <div class="card-body">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Date</th>
-          <th>Date début</th>
-          <th>Date fin</th>
-          <th>Heure</th>
-          <th>Statut</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let r of reservations">
-          <th>{{ r.id }}</th>
-          <td>{{ r.date }}</td>
-          <td>{{ r.dateDebut }}</td>
-          <td>{{ r.dateFin }}</td>
-          <td>{{ r.heure }}</td>
-          <td>{{ r.statut }}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container">
+  <div class="card">
+    <div class="card-header">Liste des réservations</div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date de réservation</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Heure</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of reservations">
+            <th>{{ r.id }}</th>
+            <td>{{ r.date }}</td>
+            <td>{{ r.dateDebut }}</td>
+            <td>{{ r.dateFin }}</td>
+            <td>{{ r.heure }}</td>
+            <td>{{ r.statut }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

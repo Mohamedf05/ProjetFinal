@@ -1,45 +1,60 @@
-<div>
-  <h1>Liste des logements</h1>
-</div>
-<div>
-  <table class="table">
-    <tr *ngFor="let l of logements">
-      <td>{{ l.id }}</td>
-      <td>{{ l.nom }}</td>
-      <td>{{ l.adresse?.numero }}</td>
-      <td>{{ l.adresse?.voie }}</td>
-      <td>{{ l.adresse?.ville }}</td>
-      <td>{{ l.adresse?.cp }}</td>
-      <td>{{ l.typeLogement }}</td>
-      <td>
-        <a
-          *ngIf="role == 'organisateur'"
-          [routerLink]="['/logement', 'edit', l.id]"
-          routerLinkActive="active"
-          class="btn btn-outline-primary"
-          >Modifier</a
-        >
-      </td>
-      <td>
-        <button
-          *ngIf="role == 'organisateur'"
-          class="btn btn-outline-danger"
-          (click)="delete(l.id!)"
-        >
-          Supprimer
-        </button>
-      </td>
-    </tr>
-  </table>
-  <a
-    *ngIf="role == 'organisateur'"
-    routerLink="/logement/edit"
-    routerLinkActive="active"
-    class="btn btn-outline-success"
-    >Ajouter un logement</a
-  >
+<div class="container">
+  <div class="card text-center">
+    <h1>Liste des logements</h1>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Numero</th>
+          <th>Voie</th>
+          <th>Ville</th>
+          <th>Code postal</th>
+          <th>Type de logement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let l of logements">
+          <td>{{ l.id }}</td>
+          <td>{{ l.nom }}</td>
+          <td>{{ l.adresse?.numero }}</td>
+          <td>{{ l.adresse?.voie }}</td>
+          <td>{{ l.adresse?.ville }}</td>
+          <td>{{ l.adresse?.cp }}</td>
+          <td>{{ l.typeLogement }}</td>
+          <td>
+            <a
+              *ngIf="role == 'organisateur'"
+              [routerLink]="['/logement', 'edit', l.id]"
+              routerLinkActive="active"
+              class="btn btn-primary"
+              >Editer</a
+            >
+          </td>
+          <td>
+            <button
+              *ngIf="role == 'organisateur'"
+              class="btn btn-danger"
+              (click)="delete(l.id!)"
+            >
+              Supprimer
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <a
+      *ngIf="role == 'organisateur'"
+      routerLink="/logement/edit"
+      routerLinkActive="active"
+      class="btn btn-success"
+      >Ajouter un logement</a
+    >
 
-  <a routerLink="/home" routerLinkActive="active" class="btn btn-outline-dark">
-    Retour Accueil</a
-  >
+    <a routerLink="/home" routerLinkActive="active" class="btn btn-dark">
+      Retour Accueil</a
+    >
+  </div>
 </div>

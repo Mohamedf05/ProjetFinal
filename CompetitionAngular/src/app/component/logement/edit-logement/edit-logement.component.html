@@ -1,45 +1,52 @@
-<form (ngSubmit)="submit()" [formGroup]="form">
-  <div class="form-group">
-    <label>Id:</label>
-    <input readonly class="form-control" placeholder="generation auto" />
-  </div>
-  <div class="form-group">
-    <label>Nom:</label>
-    <input formControlName="nom" class="form-control" />
-  </div>
-  <div formGroupName="adresse">
-    <div class="form-group">
-      <label>Numero:</label>
-      <input formControlName="numero" class="form-control" />
+<div class="container">
+  <div class="card">
+    <div class="card-header">Modifier un logement</div>
+    <div class="card-body">
+      <form (ngSubmit)="submit()" [formGroup]="form">
+        <div class="form-group">
+          <label>ID</label>
+          <input readonly class="form-control" placeholder="generation auto" />
+        </div>
+        <div class="form-group">
+          <label>Nom:</label>
+          <input formControlName="nom" class="form-control" />
+        </div>
+        <div formGroupName="adresse">
+          <div class="form-group">
+            <label>Numero:</label>
+            <input formControlName="numero" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Voie:</label>
+            <input formControlName="voie" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Ville:</label>
+            <input formControlName="ville" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Code postal:</label>
+            <input formControlName="cp" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Type:</label>
+          <select
+            formControlName="types"
+            class="form-control"
+            [compareWith]="byTypes"
+          >
+            <option>Select</option>
+            <option *ngFor="let typel of types | keyvalue">
+              {{ typel.value }}
+            </option>
+          </select>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-success">Valider</button>
+          <a routerLink="/logement" class="btn btn-warning">Annuler</a>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <label>Voie:</label>
-      <input formControlName="voie" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label>Ville:</label>
-      <input formControlName="ville" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label>Code postal:</label>
-      <input formControlName="cp" class="form-control" />
-    </div>
   </div>
-  <div class="form-group">
-    <label>Type:</label>
-    <select
-      formControlName="types"
-      class="form-control"
-      [compareWith]="byTypes"
-    >
-      <option>Select</option>
-      <option *ngFor="let typel of types | keyvalue">
-        {{ typel.value }}
-      </option>
-    </select>
-  </div>
-  <div>
-    <button type="submit" class="btn btn-outline-success">Enregistrer</button>
-    <a routerLink="/logement" class="btn btn-outline-warning">Annuler</a>
-  </div>
-</form>
+</div>

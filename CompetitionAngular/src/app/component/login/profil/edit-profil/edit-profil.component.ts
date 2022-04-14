@@ -20,11 +20,11 @@ export class EditProfilComponent implements OnInit {
 
   editer() {
     localStorage.setItem('profil', 'editProfil');
-    if ((this.role = 'organisateur')) {
+    if (this.role == 'organisateur') {
       this.router.navigateByUrl('/organisateur/edit/' + this.compte?.id);
-    } else if ((this.role = 'athlete')) {
+    } else if (this.role == 'athlete') {
       this.router.navigateByUrl('/athlete/edit/' + this.compte?.id);
-    } else if ((this.role = 'journaliste')) {
+    } else if (this.role == 'journaliste') {
       this.router.navigateByUrl('/journaliste/edit/' + this.compte?.id);
     } else {
       this.router.navigateByUrl('/spectateur/edit/' + this.compte?.id);

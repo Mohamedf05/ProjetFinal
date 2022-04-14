@@ -1,11 +1,12 @@
 <app-list-evenement></app-list-evenement>
-<button class="btn btn-outline-dark" routerLink="/home">Retour</button>
-<button
-  *ngIf="role == 'organisateur'"
-  class="btn btn-outline-primary"
-  (click)="ajouter()"
->
-  Ajouter un evenement
-</button>
-
-<router-outlet></router-outlet>
+<div class="container">
+  <button
+    *ngIf="role == 'organisateur'"
+    class="btn btn-success"
+    (click)="ajouter()"
+  >
+    Ajouter un évènement
+  </button>
+  <button class="btn btn-dark" routerLink="/home">Retour Accueil</button>
+  <router-outlet></router-outlet>
+</div>

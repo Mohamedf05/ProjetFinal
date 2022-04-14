@@ -1,19 +1,21 @@
-<div class="mt-4 col-8 offset-2">
-  <div class="card">
-    <div class="card-header">Choix du compte</div>
-    <div class="card-body">
-      <form (ngSubmit)="submit()" [formGroup]="inscriptionForm">
-        <p>Quel type de compte voulez-vous créer :</p>
-        <select class="form-select" formControlName="typeCompte">
-          <option value="athlete">Athlète</option>
-          <option value="organisateur">Organisateur</option>
-          <option value="spectateur">Spectateur</option>
-          <option value="journaliste">Journaliste</option>
-        </select>
-        <br />
-        <button type="submit" class="btn btn-success">Valider</button>
-        <a routerLink="/home" class="btn btn-warning">Retour</a>
-      </form>
+<div class="container">
+  <div class="mt-4 col-8 offset-2">
+    <div class="card">
+      <div class="card-header">Choix du compte</div>
+      <div class="card-body">
+        <form (ngSubmit)="submit()" [formGroup]="inscriptionForm">
+          <p>Quel type de compte voulez-vous créer ?</p>
+          <select class="form-select" formControlName="typeCompte">
+            <option value="athlete">Athlète</option>
+            <option value="organisateur">Organisateur</option>
+            <option value="spectateur">Spectateur</option>
+            <option value="journaliste">Journaliste</option>
+          </select>
+          <br />
+          <button type="submit" class="btn btn-success">Valider</button>
+          <a routerLink="/home" class="btn btn-warning">Retour</a>
+        </form>
+      </div>
     </div>
   </div>
 </div>

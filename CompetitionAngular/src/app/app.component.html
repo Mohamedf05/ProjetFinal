@@ -3,48 +3,45 @@
     <a routerLink="/home" routerLinkActive="active" class="btn btn-link"
       ><img id="logo" src="./assets/images/logo3.jpg"
     /></a>
-  </div>
 
-  <div class="login">
-    <span *ngIf="isAutenticated()">Bonjour {{ nom }} {{ prenom }}</span>
-    <a
-      *ngIf="!isAutenticated()"
-      routerLink="/inscription"
-      routerLinkActive="active"
-      class="btn btn-outline-dark"
-      >Inscription</a
-    >
-    <a
-      *ngIf="!isAutenticated()"
-      routerLink="/login"
-      routerLinkActive="active"
-      class="btn btn-outline-dark"
-      >Login</a
-    >
-  </div>
-  <div>
-    <button
-      class="modifier"
-      *ngIf="isAutenticated()"
-      routerLink=""
-      routerLinkActive="active"
-      class="btn btn-outline-warning"
-    >
-      Modifier mon profil
-    </button>
-  </div>
+    <div class="container-fluid">
+      <span *ngIf="isAutenticated()">Bonjour {{ nom }} {{ prenom }}</span>
+      <a
+        *ngIf="!isAutenticated()"
+        routerLink="/inscription"
+        routerLinkActive="active"
+        class="btn btn-info"
+        >Inscription</a
+      >
+      <a
+        *ngIf="!isAutenticated()"
+        routerLink="/login"
+        routerLinkActive="active"
+        class="btn btn-info"
+        >Login</a
+      >
 
-  <div>
-    <button
-      class="logout"
-      *ngIf="isAutenticated()"
-      (click)="logout()"
-      routerLink="/home"
-      routerLinkActive="active"
-      class="btn btn-outline-danger"
-    >
-      Logout
-    </button>
+      <button
+        class="modifier"
+        *ngIf="isAutenticated()"
+        routerLink="/profil"
+        routerLinkActive="active"
+        class="btn btn-warning"
+      >
+        Voir mon profil
+      </button>
+
+      <button
+        class="logout"
+        *ngIf="isAutenticated()"
+        (click)="logout()"
+        routerLink="/home"
+        routerLinkActive="active"
+        class="btn btn-danger"
+      >
+        Logout
+      </button>
+    </div>
   </div>
 </div>
 
