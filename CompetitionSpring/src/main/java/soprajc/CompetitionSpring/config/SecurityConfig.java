@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.authorizeHttpRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				//.antMatchers("/api/**").permitAll()				
+				.antMatchers("/api/**").permitAll()				
 				.antMatchers(HttpMethod.POST).permitAll()
 				//.antMatchers(HttpMethod.GET,"/api/athlete").permitAll()
 				.antMatchers("/api/athlete/**").hasRole("ATHLETE")

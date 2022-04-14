@@ -1,4 +1,3 @@
-import { Adresse } from './../../../model/adresse';
 import { Terrain } from './../../../model/terrain';
 import { TerrainService } from './../../../services/terrain.service';
 import { Component, OnInit } from '@angular/core';
