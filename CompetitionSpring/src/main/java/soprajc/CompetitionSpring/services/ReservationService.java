@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import soprajc.CompetitionSpring.exception.ReservationException;
+import soprajc.CompetitionSpring.model.Athlete;
 import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.repositories.ReservationRepository;
 
@@ -39,6 +40,11 @@ public class ReservationService {
 	}
 
 	public void delete(Reservation reservation) {
+		if(reservation.getCompte().getClass().getSimpleName().toLowerCase().equals("athlete")) {
+			((Athlete) reservation.getCompte()).RemoveEpreuve(reservation.getEpreuve());
+		}
+		reservation.getEpreuve().RemoveParticipant((Athlete)reservation.getCompte());
+		
 		delete(reservation.getId());
 	}
 

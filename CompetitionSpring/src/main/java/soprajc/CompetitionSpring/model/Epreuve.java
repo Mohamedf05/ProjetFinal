@@ -155,6 +155,10 @@ public class Epreuve {
 	public void setParticipants(Athlete participants) {
 		Collections.addAll(this.participants, participants);
 	}
+	
+	public void RemoveParticipant(Athlete athlete) {
+		this.participants.remove(athlete);
+	}
 
 	public void setScore(Score score) {
 		this.score = score;
