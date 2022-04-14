@@ -79,8 +79,13 @@ public class ReservationRestController {
 			reservation.setStatut(Statut.En_Cours);
 		else
 			reservation.setStatut(Statut.A_Venir);
-		reservation.setLogement(logementService.getById(reservation.getLogement().getId()));
-		reservation.setEpreuve(epreuveService.getById(reservation.getEpreuve().getId()));
+		
+		if(reservation.getLogement() != null)
+			reservation.setLogement(logementService.getById(reservation.getLogement().getId()));
+		
+		if(reservation.getEpreuve() != null)
+			reservation.setEpreuve(epreuveService.getById(reservation.getEpreuve().getId()));
+		
 		return save(reservation, br);}
 	
 	@JsonView(JsonViews.ReservationWithEpreuve.class)
@@ -89,12 +94,14 @@ public class ReservationRestController {
 		reservation.setId(id);
 		reservation.setDate(reservationService.getById(id).getDate());
 		reservation.setHeure(reservationService.getById(id).getHeure());
+		
 		if(reservation.getDateFin().isBefore(LocalDate.now()))
 			reservation.setStatut(Statut.Termine);
 		else if(reservation.getDateDebut().isBefore(LocalDate.now()))
 			reservation.setStatut(Statut.En_Cours);
 		else
 			reservation.setStatut(Statut.A_Venir);
+		
 		return save(reservation, br);
 	}
 	
