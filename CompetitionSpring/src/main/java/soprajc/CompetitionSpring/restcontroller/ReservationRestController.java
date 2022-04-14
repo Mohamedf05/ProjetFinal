@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.CompetitionSpring.exception.ReservationException;
+import soprajc.CompetitionSpring.model.Athlete;
+import soprajc.CompetitionSpring.model.Compte;
 import soprajc.CompetitionSpring.model.JsonViews;
 import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.model.Statut;
@@ -70,7 +73,10 @@ public class ReservationRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PostMapping("")
-	public Reservation create(@Valid @RequestBody Reservation reservation, BindingResult br) {
+	public Reservation create(@Valid @RequestBody Reservation reservation,@AuthenticationPrincipal Compte compte, BindingResult br) {
+		
+		
+		
 		reservation.setDate(LocalDate.now());
 		reservation.setHeure(LocalTime.now());
 		if(reservation.getDateFin().isBefore(LocalDate.now()))
@@ -85,6 +91,14 @@ public class ReservationRestController {
 		
 		if(reservation.getEpreuve() != null)
 			reservation.setEpreuve(epreuveService.getById(reservation.getEpreuve().getId()));
+		if(compte.getClass().getSimpleName().toLowerCase().equals("athlete")) {
+			Athlete athlete=(Athlete) compte;
+			if(reservation.getEpreuve().getId()!=null) {
+				athlete.setEpreuves(reservation.getEpreuve());
+				
+				reservation.getEpreuve().setParticipants(athlete);
+			}
+		}
 		
 		return save(reservation, br);}
 	

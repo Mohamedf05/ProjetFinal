@@ -1,9 +1,11 @@
 package soprajc.CompetitionSpring.model;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
@@ -20,8 +22,8 @@ public class Athlete extends Compte {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateNaissance;
 	
-	@ManyToMany(mappedBy = "participants")
-	@JsonView(JsonViews.AthleteEpreuve.class)
+	@ManyToMany(mappedBy = "participants",fetch = FetchType.EAGER)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	private List<Epreuve> epreuves;
 
 	public Athlete() {
@@ -51,8 +53,8 @@ public class Athlete extends Compte {
 		return epreuves;
 	}
 
-	public void setEpreuves(List<Epreuve> epreuves) {
-		this.epreuves = epreuves;
+	public void setEpreuves(Epreuve epreuve) {
+		Collections.addAll(this.epreuves, epreuve);
 	}
 	
 	@Override

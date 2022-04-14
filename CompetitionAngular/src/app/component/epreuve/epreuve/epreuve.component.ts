@@ -21,7 +21,7 @@ export class EpreuveComponent implements OnInit {
     this.router.navigateByUrl('/epreuve/edit/' + this.epreuve.id);
   }
   delete(id?: number | undefined): void {
-    this.epreuveService.delete(id!).subscribe((result) => {
+    this.epreuveService.delete(id!).subscribe((): void => {
       this.router.navigateByUrl('/epreuve');
       this.ngOnInit();
     });
