@@ -1,6 +1,7 @@
 package soprajc.CompetitionSpring.restcontroller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -66,15 +67,31 @@ public class ReservationRestController {
 	}
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@JsonView(JsonViews.ReservationWithEpreuve.class)
+	@JsonView(JsonViews.Common.class)
 	@PostMapping("")
 	public Reservation create(@Valid @RequestBody Reservation reservation, BindingResult br) {
+		reservation.setDate(LocalDate.now());
+		reservation.setHeure(LocalTime.now());
+		if(reservation.getDateFin().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.Termine);
+		else if(reservation.getDateDebut().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.En_Cours);
+		else
+			reservation.setStatut(Statut.A_Venir);
 		return save(reservation, br);}
 	
 	@JsonView(JsonViews.Common.class)
 	@PutMapping("/{id}")
 	public Reservation update(@PathVariable Integer id, @Valid @RequestBody Reservation reservation, BindingResult br) {
 		reservation.setId(id);
+		reservation.setDate(reservationService.getById(id).getDate());
+		reservation.setHeure(reservationService.getById(id).getHeure());
+		if(reservation.getDateFin().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.Termine);
+		else if(reservation.getDateDebut().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.En_Cours);
+		else
+			reservation.setStatut(Statut.A_Venir);
 		return save(reservation, br);
 	}
 	

@@ -16,7 +16,6 @@ import { JournalisteAccueilComponent } from './component/journaliste/journaliste
 import { EvenementAccueilComponent } from './component/evenement/evenement-accueil/evenement-accueil.component';
 import { LogementComponent } from './component/logement/logement/logement.component';
 import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
-import { ReservationAccueilComponent } from './component/reservation-accueil/reservation-accueil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -40,6 +39,9 @@ import { ListEpreuveComponent } from './component/epreuve/list-epreuve/list-epre
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
 import { EditEpreuveComponent } from './component/epreuve/edit-epreuve/edit-epreuve.component';
 import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-edit.component';
+import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
+import { ReservationEpreuveComponent } from './component/reservation/reservation-epreuve/reservation-epreuve.component';
+import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { TerrainEditComponent } from './component/terrain/terrain-edit/terrain-e
     EpreuveAccueiComponent,
     EditEpreuveComponent,
     TerrainEditComponent,
+    ReservationEditComponent,
+    ReservationEpreuveComponent,
   ],
   imports: [
     BrowserModule,
