@@ -2,6 +2,7 @@ package soprajc.CompetitionSpring.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Article {
 	@JsonView(JsonViews.Common.class)
 	private String titre;
 	@NotEmpty
+	@Column(length = 20000)
 	@JsonView(JsonViews.Common.class)
 	private String corps;
 	@JsonView(JsonViews.Common.class)

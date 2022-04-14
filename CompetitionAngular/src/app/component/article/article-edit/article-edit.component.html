@@ -30,7 +30,6 @@ Tapez votre article</textarea
   <br />
   <div *ngIf="article.id">
     Upload image
-
     <label for="myfile"></label>
     <input
       type="file"
@@ -40,12 +39,12 @@ Tapez votre article</textarea
       (change)="onChange($event)"
     />
     <br />
-  </div>
-
-  <div>
     <button (click)="onUpload()" class="btn btn-outline-success">
       Valider envoi image
     </button>
+  </div>
+
+  <div>
     <a
       class="btn btn-outline-warning"
       routerLink="/article"

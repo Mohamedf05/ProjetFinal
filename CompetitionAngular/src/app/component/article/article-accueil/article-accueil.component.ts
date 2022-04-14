@@ -15,8 +15,15 @@ export class ArticleAccueilComponent implements OnInit {
   ngOnInit(): void {
     this.list();
   }
+
   get role() {
     return localStorage.getItem('role');
+  }
+
+  get journalisteId() {
+    if (localStorage.getItem('compte')) {
+      return JSON.parse(localStorage.getItem('compte')!).id;
+    }
   }
 
   list() {

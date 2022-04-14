@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
         this.authService.authenticationObj().subscribe((result) => {
           localStorage.setItem('compte', JSON.stringify(result));
-          console.log(JSON.parse(localStorage.getItem('compte')!));
         });
       },
       error: (error: any) => {
