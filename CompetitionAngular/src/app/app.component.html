@@ -21,8 +21,22 @@
       class="btn btn-outline-dark"
       >Login</a
     >
-<div>
-    <button class="logout"
+  </div>
+  <div>
+    <button
+      class="modifier"
+      *ngIf="isAutenticated()"
+      routerLink=""
+      routerLinkActive="active"
+      class="btn btn-outline-warning"
+    >
+      Modifier mon profil
+    </button>
+  </div>
+
+  <div>
+    <button
+      class="logout"
       *ngIf="isAutenticated()"
       (click)="logout()"
       routerLink="/home"
@@ -31,9 +45,9 @@
     >
       Logout
     </button>
-  </div> 
   </div>
 </div>
+
 <div class="container-fluid"><app-banniere></app-banniere></div>
 
 <router-outlet></router-outlet>
