@@ -1,4 +1,3 @@
-import { Compte } from './../../model/compte';
 import { AuthService } from './../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';

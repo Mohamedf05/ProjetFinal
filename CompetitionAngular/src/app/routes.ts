@@ -153,7 +153,10 @@ export const routes: Routes = [
     path: 'reservation/edit/:id',
     component: ReservationEditComponent,
   },
-
+  {
+    path: 'reservation/epreuve/:idEpreuve',
+    component: ReservationEditComponent,
+  },
   { path: 'terrain', component: TerrainAccueilComponent },
   { path: 'terrain/edit', component: TerrainEditComponent },
   { path: 'terrain/edit/:id', component: TerrainEditComponent },

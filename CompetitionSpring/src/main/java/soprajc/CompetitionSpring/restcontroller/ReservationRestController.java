@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.CompetitionSpring.exception.ReservationException;
+import soprajc.CompetitionSpring.model.Athlete;
+import soprajc.CompetitionSpring.model.Compte;
 import soprajc.CompetitionSpring.model.JsonViews;
 import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.model.Statut;
@@ -70,7 +73,19 @@ public class ReservationRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PostMapping("")
-	public Reservation create(@Valid @RequestBody Reservation reservation, BindingResult br) {
+	public Reservation create(@Valid @RequestBody Reservation reservation,@AuthenticationPrincipal Compte compte, BindingResult br) {
+		System.out.println("0000000000");
+		System.out.println(compte.getClass().getSimpleName().toLowerCase());
+		if(compte.getClass().getSimpleName().toLowerCase().equals("athlete")) {
+			System.out.println("11111111111111111");
+			Athlete athlete=(Athlete) compte;
+			System.out.println(athlete);
+			if(reservation.getEpreuve().getId()!=null) {
+				System.out.println("2222222222222");
+				athlete.setEpreuves(reservation.getEpreuve());
+				System.out.println(reservation.getEpreuve());
+			}
+		}
 		reservation.setDate(LocalDate.now());
 		reservation.setHeure(LocalTime.now());
 		if(reservation.getDateFin().isBefore(LocalDate.now()))
