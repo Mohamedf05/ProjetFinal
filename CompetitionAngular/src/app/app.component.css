@@ -1,0 +1,30 @@
+.banniere {
+  display: flex;
+  float: inherit;
+  align-content: flex-end;
+  background-color: rgb(196, 220, 255);
+}
+
+#logo {
+  justify-content: left;
+  border: solid 2px;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.login {
+  display: inline;
+  height: max-content;
+  width: max-content;
+  justify-content: right;
+  background-color: burlywood;
+}
+
+.logo {
+  display: inline-block;
+}
+
+.banniereCompo {
+  display: inline-flex;
+}

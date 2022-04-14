@@ -1,3 +1,4 @@
+import { OrganisateurService } from './../../../services/organisateur.service';
 import { StatutEvent } from '../../../model/statut-event';
 import { EvenementService } from './../../../services/evenement.service';
 import { Evenement } from '../../../model/evenement';
@@ -72,12 +73,12 @@ export class EditEvenementComponent implements OnInit {
     this.evenement.dateFin = this.form.get('dateGroup.dateFin')?.value;
     this.evenement.ville = this.form.get('ville')?.value;
     if (this.evenement.id) {
-      this.evenementService.update(this.evenement).subscribe((result) => {
-        this.router.navigateByUrl('/evenement/list');
+      this.evenementService.update(this.evenement).subscribe((): void => {
+        this.router.navigateByUrl('/evenement');
       });
     } else {
-      this.evenementService.create(this.evenement).subscribe((result) => {
-        this.router.navigateByUrl('/evenement/list');
+      this.evenementService.create(this.evenement).subscribe(() => {
+        this.router.navigateByUrl('/evenement');
       });
     }
   }
@@ -90,5 +91,11 @@ export class EditEvenementComponent implements OnInit {
       return null;
     }
     return debut >= fin ? { datesNotConsistent: true } : null;
+  }
+
+  annuler(): void {
+    if (localStorage.getItem('evenement')) {
+      this.router.navigateByUrl('/evenement/consulter');
+    } else this.router.navigateByUrl('/evenement');
   }
 }

@@ -36,7 +36,7 @@ public class Epreuve {
 	private Evenement evenement;
 	
 	@JsonView(JsonViews.Common.class)
-	//@NotNull
+	@NotNull
 	private  int maxParticipant;
 	
 	@JsonView(JsonViews.Common.class)
