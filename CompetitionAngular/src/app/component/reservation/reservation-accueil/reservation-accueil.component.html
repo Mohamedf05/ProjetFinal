@@ -10,7 +10,8 @@
           <th>Date fin</th>
           <th>Heure</th>
           <th>Statut</th>
-          <!-- <th>Logement</th>-->
+          <th>Logement</th>
+          <th>Epreuve</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -22,7 +23,8 @@
           <td>{{ r.dateFin }}</td>
           <td>{{ r.heure }}</td>
           <td>{{ r.statut }}</td>
-          <!-- <td>{{ r.logement.typeLogement }}</td> -->
+          <td>{{ r.logement.id }}</td>
+          <td>{{ r.epreuve.id }}</td>
           <td>
             <a
               [routerLink]="['/reservation', 'edit', r.id]"
