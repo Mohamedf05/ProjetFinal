@@ -56,6 +56,13 @@ public class EpreuveRestController {
 		return epreuveService.getAll();
 	}
 	
+	@JsonView(JsonViews.EpreuveWithEvenement.class)
+	@GetMapping("/evenement/{id}")
+	public List<Epreuve> getByEvenement(@PathVariable Integer id)
+	{
+		return epreuveService.getAllByEvenement(id);
+	}
+	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping("/{id}")
 	public Epreuve getById(@PathVariable Integer id)
@@ -63,20 +70,20 @@ public class EpreuveRestController {
 		return epreuveService.getById(id);
 	}
 	
-	@JsonView(JsonViews.EpreuveWithAthlete.class)
-	@GetMapping("/{id}/participants")
-	public List<Athlete> getAllParticipant(@PathVariable Integer id)
-	{
-		Epreuve epreuve=epreuveService.getById(id); 
-		return epreuve.getParticipants();
-	}
-	@JsonView(JsonViews.EpreuveWithReservation.class)
-	@GetMapping("/{id}/reservations")
-	public List<Reservation> getAllReservations(@PathVariable Integer id)
-	{
-		Epreuve epreuve=epreuveService.getById(id); 
-		return epreuve.getReservations();
-	}
+//	@JsonView(JsonViews.EpreuveWithAthlete.class)
+//	@GetMapping("/{id}/participants")
+//	public List<Athlete> getAllParticipant(@PathVariable Integer id)
+//	{
+//		Epreuve epreuve=epreuveService.getById(id); 
+//		return epreuve.getParticipants();
+//	}
+//	@JsonView(JsonViews.EpreuveWithReservation.class)
+//	@GetMapping("/{id}/reservations")
+//	public List<Reservation> getAllReservations(@PathVariable Integer id)
+//	{
+//		Epreuve epreuve=epreuveService.getById(id); 
+//		return epreuve.getReservations();
+//	}
 	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")

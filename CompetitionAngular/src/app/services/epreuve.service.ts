@@ -1,4 +1,3 @@
-import { EvenementService } from './evenement.service';
 import { Epreuve } from './../model/epreuve';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -9,13 +8,14 @@ import { Injectable } from '@angular/core';
 })
 export class EpreuveService {
   private static URL: string = 'http://localhost:8080/compet/api/epreuve';
-  constructor(
-    private http: HttpClient,
-    private evenementService: EvenementService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   public getAll(): Observable<Epreuve[]> {
-    return this.http.get<Epreuve[]>(EpreuveService.URL);
+    return this.http.get<Epreuve[]>(
+      EpreuveService.URL +
+        '/evenement/' +
+        JSON.parse(localStorage.getItem('evenement')!).id
+    );
   }
   public delete(id: number): Observable<void> {
     return this.http.delete<void>(EpreuveService.URL + '/' + id);
@@ -26,14 +26,12 @@ export class EpreuveService {
   }
 
   public create(epreuve: any): Observable<any> {
-    return new Observable<any>((observer) => {
-      this.evenementService
-        .getbyName(localStorage.getItem('evenement')!)
-        .subscribe((result) => {
-          this.http.post<any>(EpreuveService.URL + '/' + result.id, epreuve);
-          observer.next(result);
-        });
-    });
+    return this.http.post<any>(
+      EpreuveService.URL +
+        '/' +
+        JSON.parse(localStorage.getItem('evenement')!).id,
+      epreuve
+    );
   }
 
   public update(epreuve: any, id: number): Observable<any> {
