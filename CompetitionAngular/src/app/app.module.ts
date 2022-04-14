@@ -47,6 +47,7 @@ import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component'
 import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BanniereComponent } from './component/banniere/banniere.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { BanniereComponent } from './component/banniere/banniere.component';
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     NgbModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

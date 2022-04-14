@@ -19,21 +19,13 @@ export class EvenementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.evenementService
-      .getbyName(localStorage.getItem('evenement')!)
-      .subscribe((ok) => {
-        this.evenement = ok;
-      });
+    this.evenement = JSON.parse(localStorage.getItem('evenement')!);
   }
   modifier(): void {
-    this.evenementService
-      .getbyName(localStorage.getItem('evenement')!)
-      .subscribe((e) => {
-        this.router.navigateByUrl('/evenement/edit/' + e.id);
-      });
+    this.router.navigateByUrl('/evenement/edit/' + this.evenement.id);
   }
   delete(id?: number | undefined): void {
-    this.evenementService.delete(id!).subscribe((result) => {
+    this.evenementService.delete(id!).subscribe(() => {
       this.router.navigateByUrl('/evenement');
       this.ngOnInit();
     });

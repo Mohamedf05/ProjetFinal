@@ -33,18 +33,24 @@
     *ngIf="role == 'organisateur'"
     (click)="delete(evenement.id)"
     routerLinkActive="active"
-    class="btn btn-link"
+    class="btn btn-outline-danger"
     >supprimer</a
   >
 
-  <a routerLink="/epreuve" routerLinkActive="active" class="btn btn-link"
+  <a
+    routerLink="/epreuve"
+    routerLinkActive="active"
+    class="btn btn-outline-info"
     >Liste des epreuves</a
   >
 
-  <a routerLink="/epreuve" routerLinkActive="active" class="btn btn-link"
+  <a
+    routerLink="/epreuve"
+    routerLinkActive="active"
+    class="btn btn-outline-info"
     >Liste des participant</a
   >
 </div>
 <div>
-  <button class="btn btn-link" routerLink="/evenement">Retour</button>
+  <button class="btn btn-outline-dark" routerLink="/evenement">Retour</button>
 </div>

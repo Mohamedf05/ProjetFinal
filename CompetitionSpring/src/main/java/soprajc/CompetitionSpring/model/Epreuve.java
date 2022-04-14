@@ -31,7 +31,7 @@ public class Epreuve {
 	
 	//@NotNull
 	@ManyToOne
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.EpreuveWithEvenement.class)
 	@JoinColumn(name="evenement_fk")
 	private Evenement evenement;
 	

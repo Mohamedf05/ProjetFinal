@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-evenement.component.css'],
 })
 export class ListEvenementComponent implements OnInit {
-  evenements: Evenement[] = [];
+  evenements: any[] = [];
 
   constructor(
     private evenementService: EvenementService,
@@ -24,8 +24,8 @@ export class ListEvenementComponent implements OnInit {
     localStorage.removeItem('evenement');
   }
 
-  consulter(nom: string): void {
-    localStorage.setItem('evenement', nom);
+  consulter(evenement: any): void {
+    localStorage.setItem('evenement', JSON.stringify(evenement));
 
     this.router.navigateByUrl('/evenement/consulter');
   }
