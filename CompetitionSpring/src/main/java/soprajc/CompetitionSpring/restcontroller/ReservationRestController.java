@@ -74,18 +74,9 @@ public class ReservationRestController {
 	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PostMapping("")
 	public Reservation create(@Valid @RequestBody Reservation reservation,@AuthenticationPrincipal Compte compte, BindingResult br) {
-		System.out.println("0000000000");
-		System.out.println(compte.getClass().getSimpleName().toLowerCase());
-		if(compte.getClass().getSimpleName().toLowerCase().equals("athlete")) {
-			System.out.println("11111111111111111");
-			Athlete athlete=(Athlete) compte;
-			System.out.println(athlete);
-			if(reservation.getEpreuve().getId()!=null) {
-				System.out.println("2222222222222");
-				athlete.setEpreuves(reservation.getEpreuve());
-				System.out.println(reservation.getEpreuve());
-			}
-		}
+		
+		
+		
 		reservation.setDate(LocalDate.now());
 		reservation.setHeure(LocalTime.now());
 		if(reservation.getDateFin().isBefore(LocalDate.now()))
@@ -100,6 +91,14 @@ public class ReservationRestController {
 		
 		if(reservation.getEpreuve() != null)
 			reservation.setEpreuve(epreuveService.getById(reservation.getEpreuve().getId()));
+		if(compte.getClass().getSimpleName().toLowerCase().equals("athlete")) {
+			Athlete athlete=(Athlete) compte;
+			if(reservation.getEpreuve().getId()!=null) {
+				athlete.setEpreuves(reservation.getEpreuve());
+				
+				reservation.getEpreuve().setParticipants(athlete);
+			}
+		}
 		
 		return save(reservation, br);}
 	
