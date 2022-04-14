@@ -1,8 +1,9 @@
-<div class="card">
-  <div class="card-header">Modifier un athlete</div>
+<div class="container">
+  <div class="card">
+  <div class="card-header">Modifier un athlète</div>
   <div class="card-body">
     <div class="form-group">
-      <label>id:</label>
+      <label>Id</label>
       <input
         readonly
         class="form-control"
@@ -11,30 +12,32 @@
       />
     </div>
     <div class="form-group">
-      <label>Nom:</label>
+      <label>Nom</label>
       <input class="form-control" [(ngModel)]="compte.nom" />
-      <label>Prenom:</label>
+      <label>Prenom</label>
       <input class="form-control" [(ngModel)]="compte.prenom" />
-      <label>Date de naissance:</label>
+      <label>Date de naissance</label>
       <input
         type="date"
         class="form-control"
         [(ngModel)]="compte.dateNaissance"
       />
-      <label>Email:</label>
+      <label>Email</label>
       <input type="email" class="form-control" [(ngModel)]="compte.mail" />
-      <label>Numero:</label>
+      <label>Numero</label>
       <input class="form-control" [(ngModel)]="adresse.numero" />
-      <label>Voie:</label>
+      <label>Voie</label>
       <input class="form-control" [(ngModel)]="adresse.voie" />
-      <label>Ville:</label>
+      <label>Ville</label>
       <input class="form-control" [(ngModel)]="adresse.ville" />
-      <label>Code postale:</label>
+      <label>Code postal</label>
       <input class="form-control" [(ngModel)]="adresse.cp" />
     </div>
     <div>
-      <button (click)="save()" class="btn btn-success">enregistrer</button>
-      <a routerLink="/athlete" class="btn btn-warning">annuler</a>
+      <button (click)="save()" class="btn btn-success">Valider</button>
+      <a routerLink="/athlete" class="btn btn-warning">Annuler</a>
     </div>
   </div>
 </div>
+</div>
+

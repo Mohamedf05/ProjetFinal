@@ -1,5 +1,5 @@
-<div class="home">
-  <p>Bienvenue sur Perfect Match!</p>
+<div class="container">
+  <h1>Bienvenue sur Perfect Match!</h1>
 
   <ngb-carousel
     [showNavigationArrows]="false"
@@ -11,8 +11,12 @@
   >
     <ng-template ngbSlide id="firstSlide">
       <div class="picsum-img-wrapper">
-        <a routerLink="/organisateur" routerLinkActive="active"
-          ><img
+        <a
+          routerLinkActive="active"
+          (click)="fonctionClicO()"
+          style="cursor: pointer"
+        >
+          <img
             class="d-block w-100"
             src="./assets/images/Sportcitation.jpg"
             alt="Sportcitation"
@@ -29,7 +33,7 @@
 
     <ng-template ngbSlide id="secondSlide">
       <div class="picsum-img-wrapper">
-        <a routerLink="/evenement" routerLinkActive="active">
+        <a routerLink="/inscription" routerLinkActive="active">
           <img
             class="d-block w-100"
             src="./assets/images/colisee.jpg"
@@ -47,7 +51,10 @@
 
     <ng-template ngbSlide id="thirdSlide">
       <div class="picsum-img-wrapper">
-        <a routerLink="/athlete" routerLinkActive="active"
+        <a
+          (click)="fonctionClicA()"
+          routerLinkActive="active"
+          style="cursor: pointer"
           ><img
             class="d-block w-100"
             src="./assets/images/coupe.jpg"
@@ -63,4 +70,8 @@
       </div>
     </ng-template>
   </ngb-carousel>
+</div>
+
+<div>
+  <app-visiteur></app-visiteur>
 </div>
