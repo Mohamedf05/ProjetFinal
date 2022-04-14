@@ -1,6 +1,7 @@
 package soprajc.CompetitionSpring.model;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -31,7 +31,7 @@ public class Epreuve {
 	
 	//@NotNull
 	@ManyToOne
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.EpreuveWithEvenement.class)
 	@JoinColumn(name="evenement_fk")
 	private Evenement evenement;
 	
@@ -152,8 +152,8 @@ public class Epreuve {
 	}
 
 
-	public void setParticipants(List<Athlete> participants) {
-		this.participants = participants;
+	public void setParticipants(Athlete participants) {
+		Collections.addAll(this.participants, participants);
 	}
 
 	public void setScore(Score score) {

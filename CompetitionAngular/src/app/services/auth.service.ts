@@ -18,6 +18,10 @@ export class AuthService {
     });
   }
 
+  public authenticationObj(): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/compet/api/auth/obj');
+  }
+
   isAutenticated(): boolean {
     return localStorage.getItem('login') ? true : false;
   }

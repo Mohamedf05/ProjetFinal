@@ -21,20 +21,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-epreuve.component.css'],
 })
 export class EditEpreuveComponent implements OnInit {
-  currentDate: Date = new Date();
   form: FormGroup;
   epreuve: Epreuve = new Epreuve();
   disciplines = Discipline;
   terrains: Terrain[] | undefined = [];
-  evenement: Evenement = new Evenement();
-  dateDebut: Date | undefined = new Date();
-  dateFin: Date | undefined = new Date();
+
   constructor(
     private aR: ActivatedRoute,
     private router: Router,
     private epreuveService: EpreuveService,
-    private terrainService: TerrainService,
-    private evenementService: EvenementService
+    private terrainService: TerrainService
   ) {
     this.form = new FormGroup({
       participant: new FormControl('', Validators.required),
@@ -50,9 +46,9 @@ export class EditEpreuveComponent implements OnInit {
         this.epreuveService.get(params['id']).subscribe((e) => {
           this.epreuve = e;
           this.form.get('participant')?.setValue(e.maxParticipant);
-          this.form.get('date')?.setValue(e.date);
           this.form.get('discipline')?.setValue(e.discipline);
-          this.form.get('terrain')?.setValue(e.terrain);
+          this.form.get('terrain')?.setValue(e.terrain?.id);
+          this.form.get('date')?.setValue(e.date);
         });
       }
     });
@@ -68,18 +64,16 @@ export class EditEpreuveComponent implements OnInit {
     if (group.get('date')?.invalid) {
       return null;
     }
-    this.evenementService
-      .getbyName(localStorage.getItem('evenement')!)
-      .subscribe((e) => {
-        this.evenement = e;
-        this.dateDebut = e.dateDebut;
-        this.dateFin = e.dateFin;
 
-        return dateControl > this.dateFin?.getTime()! ||
-          dateControl < this.dateDebut?.getTime()!
-          ? { dateNotConsistent: true }
-          : null;
-      });
+    let evenement = JSON.parse(localStorage.getItem('evenement')!);
+    let dateDebut = new Date(evenement.dateDebut);
+    let dateFin = new Date(evenement.dateFin);
+    console.log(new Date(evenement.dateFin));
+    console.log(dateControl);
+    return dateControl > dateFin?.getTime()! ||
+      dateControl < dateDebut?.getTime()!
+      ? { dateNotConsistent: true }
+      : null;
   }
 
   submit(): void {

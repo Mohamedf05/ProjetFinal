@@ -6,18 +6,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import soprajc.CompetitionSpring.model.Compte;
+import soprajc.CompetitionSpring.model.JsonViews;
 
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/auth/obj")
 @CrossOrigin(origins = "*")
-public class AuthController {
+public class CompteRestController {
 	
+	@JsonView(JsonViews.Common.class)
 	@GetMapping("")
-	public String auth(@AuthenticationPrincipal Compte compte) {
-		return compte.getClass().getSimpleName().toLowerCase();
+	public Compte authObj(@AuthenticationPrincipal Compte compte) {
+		return compte;
 	}
-	
 	
 }

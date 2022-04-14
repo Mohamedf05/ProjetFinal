@@ -34,6 +34,7 @@ import soprajc.CompetitionSpring.model.Evenement;
 import soprajc.CompetitionSpring.model.JsonViews;
 import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.model.Terrain;
+import soprajc.CompetitionSpring.services.AthleteService;
 import soprajc.CompetitionSpring.services.EpreuveService;
 import soprajc.CompetitionSpring.services.EvenementService;
 import soprajc.CompetitionSpring.services.TerrainService;
@@ -49,11 +50,21 @@ public class EpreuveRestController {
 	@Autowired
 	TerrainService terrainService;
 	
+	@Autowired
+	AthleteService athleteService;
+	
 	@JsonView(JsonViews.Common.class)
 	@GetMapping("")
 	public List<Epreuve> getAll()
 	{
 		return epreuveService.getAll();
+	}
+	
+	@JsonView(JsonViews.EpreuveWithEvenement.class)
+	@GetMapping("/evenement/{id}")
+	public List<Epreuve> getByEvenement(@PathVariable Integer id)
+	{
+		return epreuveService.getAllByEvenement(id);
 	}
 	
 	@JsonView(JsonViews.Common.class)
@@ -64,11 +75,10 @@ public class EpreuveRestController {
 	}
 	
 	@JsonView(JsonViews.EpreuveWithAthlete.class)
-	@GetMapping("/{id}/participants")
+	@GetMapping("/participants/{id}")
 	public List<Athlete> getAllParticipant(@PathVariable Integer id)
 	{
-		Epreuve epreuve=epreuveService.getById(id); 
-		return epreuve.getParticipants();
+		return athleteService.getAllByEpreuve(id);
 	}
 	@JsonView(JsonViews.EpreuveWithReservation.class)
 	@GetMapping("/{id}/reservations")

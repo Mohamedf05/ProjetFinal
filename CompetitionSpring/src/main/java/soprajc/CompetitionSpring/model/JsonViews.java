@@ -36,12 +36,13 @@ public class JsonViews {
 
 	}
 	
-	public static class ReservationWithEpreuve extends Common {
-
-	}
+	
 
 	public static class AthleteEpreuve extends Common{
 		
+	}
+	public static class ReservationWithEpreuve extends AthleteEpreuve {
+
 	}
 	
 }

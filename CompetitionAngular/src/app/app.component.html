@@ -6,7 +6,7 @@
   </div>
 
   <div class="login">
-    <span *ngIf="isAutenticated()">Bonjour {{ login }}</span>
+    <span *ngIf="isAutenticated()">Bonjour {{ nom }} {{ prenom }}</span>
     <a
       *ngIf="!isAutenticated()"
       routerLink="/inscription"

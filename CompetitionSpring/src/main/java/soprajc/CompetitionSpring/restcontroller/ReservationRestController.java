@@ -1,6 +1,7 @@
 package soprajc.CompetitionSpring.restcontroller;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,11 +26,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import soprajc.CompetitionSpring.exception.ReservationException;
+import soprajc.CompetitionSpring.model.Athlete;
+import soprajc.CompetitionSpring.model.Compte;
 import soprajc.CompetitionSpring.model.JsonViews;
 import soprajc.CompetitionSpring.model.Reservation;
 import soprajc.CompetitionSpring.model.Statut;
 import soprajc.CompetitionSpring.services.CompteService;
 import soprajc.CompetitionSpring.services.EpreuveService;
+import soprajc.CompetitionSpring.services.LogementService;
 import soprajc.CompetitionSpring.services.ReservationService;
 
 @RestController
@@ -40,7 +45,7 @@ public class ReservationRestController {
 	private ReservationService reservationService;
 	
 	@Autowired
-	private CompteService compteService;
+	private LogementService logementService;
 	
 	@Autowired
 	private EpreuveService epreuveService;
@@ -68,13 +73,49 @@ public class ReservationRestController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PostMapping("")
-	public Reservation create(@Valid @RequestBody Reservation reservation, BindingResult br) {
+	public Reservation create(@Valid @RequestBody Reservation reservation,@AuthenticationPrincipal Compte compte, BindingResult br) {
+		
+		
+		
+		reservation.setDate(LocalDate.now());
+		reservation.setHeure(LocalTime.now());
+		if(reservation.getDateFin().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.Termine);
+		else if(reservation.getDateDebut().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.En_Cours);
+		else
+			reservation.setStatut(Statut.A_Venir);
+		
+		if(reservation.getLogement() != null)
+			reservation.setLogement(logementService.getById(reservation.getLogement().getId()));
+		
+		if(reservation.getEpreuve() != null)
+			reservation.setEpreuve(epreuveService.getById(reservation.getEpreuve().getId()));
+		if(compte.getClass().getSimpleName().toLowerCase().equals("athlete")) {
+			Athlete athlete=(Athlete) compte;
+			if(reservation.getEpreuve().getId()!=null) {
+				athlete.setEpreuves(reservation.getEpreuve());
+				
+				reservation.getEpreuve().setParticipants(athlete);
+			}
+		}
+		
 		return save(reservation, br);}
 	
-	@JsonView(JsonViews.Common.class)
+	@JsonView(JsonViews.ReservationWithEpreuve.class)
 	@PutMapping("/{id}")
 	public Reservation update(@PathVariable Integer id, @Valid @RequestBody Reservation reservation, BindingResult br) {
 		reservation.setId(id);
+		reservation.setDate(reservationService.getById(id).getDate());
+		reservation.setHeure(reservationService.getById(id).getHeure());
+		
+		if(reservation.getDateFin().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.Termine);
+		else if(reservation.getDateDebut().isBefore(LocalDate.now()))
+			reservation.setStatut(Statut.En_Cours);
+		else
+			reservation.setStatut(Statut.A_Venir);
+		
 		return save(reservation, br);
 	}
 	

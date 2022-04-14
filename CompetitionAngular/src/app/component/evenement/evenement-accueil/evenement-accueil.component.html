@@ -1,11 +1,11 @@
-<div class="container">
-  <a routerLink="/evenement/list" routerLinkActive="active" class="btn btn-primary btn-sm"
-  >Liste des évènements</a
->
-<button *ngIf="role == 'organisateur'" class="btn btn-primary btn-sm" (click)="ajouter()">
-  Ajouter un évènement
-</button>
 <app-list-evenement></app-list-evenement>
-</div>
+<button class="btn btn-outline-dark" routerLink="/home">Retour</button>
+<button
+  *ngIf="role == 'organisateur'"
+  class="btn btn-outline-primary"
+  (click)="ajouter()"
+>
+  Ajouter un evenement
+</button>
 
 <router-outlet></router-outlet>

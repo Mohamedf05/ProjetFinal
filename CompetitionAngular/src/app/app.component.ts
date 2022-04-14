@@ -1,3 +1,4 @@
+import { Compte } from './model/compte';
 import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 
@@ -11,8 +12,14 @@ export class AppComponent {
 
   public constructor(private authService: AuthService) {}
 
-  get login() {
-    return localStorage.getItem('login');
+  get nom() {
+    let compte = localStorage.getItem('compte');
+    return JSON.parse(compte!).nom;
+  }
+
+  get prenom() {
+    let compte = localStorage.getItem('compte');
+    return JSON.parse(compte!).prenom;
   }
 
   get role() {

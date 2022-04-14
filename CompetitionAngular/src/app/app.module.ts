@@ -1,3 +1,5 @@
+import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
+import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
 import { ListEvenementComponent } from './component/evenement/list-evenement/list-evenement.component';
 import { EditEvenementComponent } from './component/evenement/edit-evenement/edit-evenement.component';
 import { routes } from './routes';
@@ -16,7 +18,6 @@ import { JournalisteAccueilComponent } from './component/journaliste/journaliste
 import { EvenementAccueilComponent } from './component/evenement/evenement-accueil/evenement-accueil.component';
 import { LogementComponent } from './component/logement/logement/logement.component';
 import { TerrainAccueilComponent } from './component/terrain/terrain-accueil/terrain-accueil.component';
-import { ReservationAccueilComponent } from './component/reservation-accueil/reservation-accueil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -49,6 +50,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BanniereComponent } from './component/banniere/banniere.component';
 import { VisiteurComponent } from './component/visiteur/visiteur.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { ParticipantComponent } from './component/epreuve/participant/participant.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,6 @@ import { FooterComponent } from './component/footer/footer.component';
     EvenementAccueilComponent,
     LogementComponent,
     TerrainAccueilComponent,
-    ReservationAccueilComponent,
     InscriptionAthleteComponent,
     InscriptionOrganisateurComponent,
     InscriptionSpectateurComponent,
@@ -94,6 +95,9 @@ import { FooterComponent } from './component/footer/footer.component';
     BanniereComponent,
     VisiteurComponent,
     FooterComponent,
+    ReservationAccueilComponent,
+    ReservationEditComponent,
+    ParticipantComponent,
   ],
   imports: [
     BrowserModule,
