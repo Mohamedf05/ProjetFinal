@@ -20,6 +20,9 @@ export class JournalisteEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('profil')) {
+      this.compte = JSON.parse(localStorage.getItem('compte')!);
+    }
     this.aR.params.subscribe((params) => {
       if (params['id']) {
         this.journalisteService.get(params['id']).subscribe((result) => {
@@ -42,8 +45,15 @@ export class JournalisteEditComponent implements OnInit {
       });
     }
   }
-
   goList() {
-    this.router.navigateByUrl('/journaliste');
+    if (localStorage.getItem('profil')) {
+      localStorage.removeItem('profil');
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/journaliste');
+  }
+  annuler() {
+    if (localStorage.getItem('profil')) {
+      this.router.navigateByUrl('/profil');
+    } else this.router.navigateByUrl('/journaliste');
   }
 }
