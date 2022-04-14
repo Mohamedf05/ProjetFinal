@@ -1,3 +1,4 @@
+import { GuardJournalisteService } from './services/guard-journaliste.service';
 import { EditProfilComponent } from './component/login/profil/edit-profil/edit-profil.component';
 import { ParticipantComponent } from './component/epreuve/participant/participant.component';
 import { GuardService } from './services/guard.service';
@@ -167,6 +168,14 @@ export const routes: Routes = [
   { path: 'terrain/edit/:id', component: TerrainEditComponent },
   { path: 'article', component: ArticleAccueilComponent },
   { path: 'article/read/:id', component: ArticleLectureComponent },
-  { path: 'article/edit', component: ArticleEditComponent },
-  { path: 'article/edit/:id', component: ArticleEditComponent },
+  {
+    path: 'article/edit',
+    component: ArticleEditComponent,
+    canActivate: [GuardJournalisteService],
+  },
+  {
+    path: 'article/edit/:id',
+    component: ArticleEditComponent,
+    canActivate: [GuardJournalisteService],
+  },
 ];

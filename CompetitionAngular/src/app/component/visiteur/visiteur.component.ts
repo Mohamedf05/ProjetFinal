@@ -9,17 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisiteurComponent implements OnInit {
   articles: Article[] = [];
-  nb: number = 0;
 
   constructor(private articleService: ArticleService) {}
 
   ngOnInit(): void {
     this.list();
-    if (this.articles.length < 3) {
-      this.nb = this.articles.length;
-    } else {
-      this.nb = 4;
-    }
   }
 
   list() {
