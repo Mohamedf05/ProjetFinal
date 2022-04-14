@@ -1,4 +1,12 @@
-<div class="card text-center">
+<div class="container">
+  <div><a routerLink="/epreuve" routerLinkActive="active" class="btn btn-primary btn-sm"
+    >Liste des épreuves</a
+  >
+
+  <a routerLink="/epreuve" routerLinkActive="active" class="btn btn-primary btn-sm"
+    >Liste des participants</a
+  ></div>
+  <div class="card text-center">
   <h1>{{ evenement.nom }}</h1>
   <table class="table table-dark">
     <tbody>
@@ -33,18 +41,13 @@
     *ngIf="role == 'organisateur'"
     (click)="delete(evenement.id)"
     routerLinkActive="active"
-    class="btn btn-link"
-    >supprimer</a
+    class="btn btn-outline-danger"
+    >Supprimer</a
   >
 
-  <a routerLink="/epreuve" routerLinkActive="active" class="btn btn-link"
-    >Liste des epreuves</a
-  >
-
-  <a routerLink="/epreuve" routerLinkActive="active" class="btn btn-link"
-    >Liste des participant</a
-  >
+  <button class="btn btn-outline-warning" routerLink="/evenement">Retour</button>
 </div>
 <div>
-  <button class="btn btn-link" routerLink="/evenement">Retour</button>
+  
+</div>
 </div>

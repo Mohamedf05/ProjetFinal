@@ -2,7 +2,7 @@
   <div class="card-header">Modifier un organisateur</div>
   <div class="card-body">
     <div class="form-group">
-      <label>id:</label>
+      <label>Id:</label>
       <input
         readonly
         class="form-control"
@@ -15,7 +15,7 @@
       <input class="form-control" [(ngModel)]="compte.nom" />
       <label>Prenom:</label>
       <input class="form-control" [(ngModel)]="compte.prenom" />
-      <label>Raison social:</label>
+      <label>Raison sociale:</label>
       <input class="form-control" [(ngModel)]="compte.raisonSoc" />
       <label>Email:</label>
       <input type="email" class="form-control" [(ngModel)]="compte.mail" />
@@ -25,12 +25,12 @@
       <input class="form-control" [(ngModel)]="adresse.voie" />
       <label>Ville:</label>
       <input class="form-control" [(ngModel)]="adresse.ville" />
-      <label>Code postale:</label>
+      <label>Code postal:</label>
       <input class="form-control" [(ngModel)]="adresse.cp" />
     </div>
     <div>
-      <button (click)="save()" class="btn btn-success">enregistrer</button>
-      <a routerLink="/organisateur" class="btn btn-warning">annuler</a>
+      <button (click)="save()" class="btn btn-success">Enregistrer</button>
+      <a routerLink="/organisateur" class="btn btn-warning">Annuler</a>
     </div>
   </div>
 </div>

@@ -36,8 +36,26 @@ ngb-carousel img {
   z-index: 20;
 }
 
-.home {
+.container {
   background-color: beige;
   text-align: center;
-  text-shadow: 40px;
+  padding-bottom: 0.5%;
+  margin-bottom: 1%;
+}
+
+h1 {
+  font-size: 3em;
+  color: rgb(73, 65, 17);
+  text-shadow: -3px 3px 2px burlywood;
+  animation: identifier ease 3.5s;
+}
+@keyframes identifier {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 180px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+  }
 }

@@ -18,22 +18,24 @@
 
         <div formGroupName="emailPasswordGroup">
           <div class="form-group">
-            <label>email:</label>
+            <label>Email:</label>
             <input type="email" class="form-control" formControlName="email" />
             <div
               *ngIf="
                 form.get('emailPasswordGroup.email')?.dirty &&
                 form.get('emailPasswordGroup.email')?.invalid
               "
+              class="alert alert-danger"
             >
-              email incorrect
+              Email incorrect !
             </div>
             <div
               *ngIf="
                 form.get('emailPasswordGroup.email')?.hasError('emailExist')
               "
+              class="alert alert-danger"
             >
-              email deja utilise
+              Email déjà utilisé !
             </div>
             <div
               *ngIf="
@@ -41,13 +43,14 @@
                   .get('emailPasswordGroup')
                   ?.hasError('mailAndPasswordEquals')
               "
+              class="alert alert-danger"
             >
-              le mail et le mot de passe sont identiques
+              Le mail et le mot de passe sont identiques !
             </div>
           </div>
           <div formGroupName="passwordGroup">
             <div class="form-group">
-              <label>mot de passe:</label>
+              <label>Mot de passe:</label>
               <input
                 type="password"
                 class="form-control"
@@ -59,54 +62,71 @@
                     ?.dirty &&
                   form.get('emailPasswordGroup.passwordGroup.password')?.invalid
                 "
+                class="alert alert-warning"
               >
-                doit faire en 5 et 25 caracteres avec
-                majuscule,minuscule,chiffre et caractere special(*_!@-)
+                doit faire entre 5 et 25 caractères avec
+                majuscule,minuscule,chiffre et caractère spécial(*_!@-)
               </div>
             </div>
             <div class="form-group">
-              <label>ressaisir le mot de passe:</label>
+              <label>Ressaisir le mot de passe:</label>
               <input
                 type="password"
                 class="form-control"
                 formControlName="confirm"
               />
             </div>
-            <div *ngIf="form.get('emailPasswordGroup.passwordGroup')?.invalid">
-              erreur mot de passe
+            <div
+              *ngIf="
+                form.get('emailPasswordGroup.passwordGroup')?.invalid &&
+                form.get('emailPasswordGroup.passwordGroup')?.dirty
+              "
+              class="alert alert-danger"
+            >
+              Erreur de mot de passe !
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label>numero:</label>
+          <label>Numero:</label>
           <input class="form-control" formControlName="numero" />
-          <div *ngIf="form.get('numero')?.dirty && form.get('numero')?.invalid">
-            information obligatoire
+          <div
+            *ngIf="form.get('numero')?.dirty && form.get('numero')?.invalid"
+            class="alert alert-danger"
+          >
+            Information obligatoire !
           </div>
         </div>
         <div class="form-group">
-          <label>rue:</label>
+          <label>Rue:</label>
           <input class="form-control" formControlName="rue" />
-          <div *ngIf="form.get('rue')?.dirty && form.get('rue')?.invalid">
-            information obligatoire
+          <div
+            *ngIf="form.get('rue')?.dirty && form.get('rue')?.invalid"
+            class="alert alert-danger"
+          >
+            Information obligatoire !
           </div>
         </div>
         <div class="form-group">
-          <label>code postal:</label>
+          <label>Code postal:</label>
           <input class="form-control" formControlName="codePostal" />
           <div
             *ngIf="
               form.get('codePostal')?.dirty && form.get('codePostal')?.invalid
             "
+            class="alert alert-danger"
           >
-            information obligatoire
+            Information obligatoire !
           </div>
         </div>
         <div class="form-group">
-          <label>ville:</label>
+          <label>Ville:</label>
           <input class="form-control" formControlName="ville" />
-          <div *ngIf="form.get('ville')?.dirty && form.get('ville')?.invalid">
-            information obligatoire
+          <div
+            *ngIf="form.get('ville')?.dirty && form.get('ville')?.invalid"
+            class="alert alert-danger"
+          >
+            Information obligatoire !
           </div>
         </div>
         <br />
@@ -116,9 +136,9 @@
             class="btn btn-success"
             [disabled]="form.invalid"
           >
-            inscription
+            Valider
           </button>
-          <a routerLink="/home" class="btn btn-warning">retour home</a>
+          <a routerLink="/home" class="btn btn-warning">Retour</a>
         </div>
       </form>
     </div>
