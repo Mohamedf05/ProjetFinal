@@ -2,6 +2,7 @@ import { ParticipantComponent } from './component/epreuve/participant/participan
 import { GuardService } from './services/guard.service';
 import { ReservationEditComponent } from './component/reservation/reservation-edit/reservation-edit.component';
 import { ReservationAccueilComponent } from './component/reservation/reservation-accueil/reservation-accueil.component';
+import { VisiteurComponent } from './component/visiteur/visiteur.component';
 import { EpreuveComponent } from './component/epreuve/epreuve/epreuve.component';
 import { ArticleLectureComponent } from './component/article/article-lecture/article-lecture.component';
 import { EpreuveAccueiComponent } from './component/epreuve/epreuve-accuei/epreuve-accuei.component';
@@ -46,6 +47,8 @@ export const routes: Routes = [
   { path: 'athlete/:id/epreuve', component: AthleteEpreuveComponent },
   { path: 'athlete/:id/reservation', component: AthleteReservationComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'visiteur', component: VisiteurComponent},
+  
   { path: 'logement', component: LogementComponent },
   { path: 'logement/edit', component: EditLogementComponent },
   { path: 'logement/edit/:id', component: EditLogementComponent },

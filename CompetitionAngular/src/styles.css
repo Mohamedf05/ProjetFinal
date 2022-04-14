@@ -1,7 +1,18 @@
+* {
+  box-sizing: border-box;
+}
 
+html,
+body {
+  scroll-behavior: smooth;
+  background: url(./assets/images/pelouse.jpg);
+  background-size: contain;
+  background-repeat: round;
+  min-height: 100vh;
+  margin: 0;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

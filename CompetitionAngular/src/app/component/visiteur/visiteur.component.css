@@ -1,0 +1,22 @@
+.container {
+  background-color: bisque;
+  padding: 2% 2% 2% 2%;
+  border-radius: 0% 20% 0% 20%;
+  margin-bottom: 1%;
+}
+
+.elements p {
+  font-size: 1.2em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.elements {
+  padding: 20px 0;
+}
+
+.elements img {
+  width: 150px;
+}
