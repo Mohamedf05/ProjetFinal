@@ -18,5 +18,13 @@
 }
 
 .elements img {
-  width: 150px;
+  width: 170px;
+  height: 110px;
+}
+
+.btn-perso {
+  border: 2px solid;
+  border-radius: 50%;
+  color: chocolate;
+  font-weight: bold;
 }
