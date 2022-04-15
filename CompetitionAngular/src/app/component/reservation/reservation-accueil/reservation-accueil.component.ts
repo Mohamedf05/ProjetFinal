@@ -11,12 +11,15 @@ export class ReservationAccueilComponent implements OnInit {
   constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {
+    console.log(this.clientId);
     this.list();
+   
   }
 
   list() {
     this.reservationService.getAll().subscribe((result) => {
       this.reservations = result;
+      console.log(this.reservations);
     });
   }
 
@@ -24,5 +27,11 @@ export class ReservationAccueilComponent implements OnInit {
     this.reservationService.delete(id).subscribe((noResult) => {
       this.list();
     });
+  }
+
+  get clientId() {
+    if (localStorage.getItem('compte')) {
+      return JSON.parse(localStorage.getItem('compte')!).id;
+    }
   }
 }

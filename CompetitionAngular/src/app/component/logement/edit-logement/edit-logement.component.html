@@ -1,6 +1,7 @@
 <div class="container">
   <div class="card">
-    <div class="card-header">Modifier un logement</div>
+    <div class="card-header" *ngIf="this.logement.id">Modifier un logement</div>
+    <div class="card-header" *ngIf="!this.logement.id">Créer un logement</div>
     <div class="card-body">
       <form (ngSubmit)="submit()" [formGroup]="form">
         <div class="form-group">

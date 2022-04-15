@@ -25,10 +25,10 @@
           <td>{{ r.heure }}</td>
           <td>{{ r.statut }}</td>
           <td>
-            {{ r.logement.id }}
+            {{ r.logement.nom }}
           </td>
           <td>
-            {{ r.epreuve.id }}
+            {{ r.epreuve.discipline }}
           </td>
           <td>
             <a
@@ -48,6 +48,13 @@
     </table>
   </div>
   <div>
+    <a
+      routerLink="/reservation/edit"
+      routerLinkActive="active"
+      class="btn btn-success"
+      >Nouvelle réservation</a
+    >
+
     <a routerLink="/home" routerLinkActive="active" class="btn btn-dark">
       Retour Accueil</a
     >

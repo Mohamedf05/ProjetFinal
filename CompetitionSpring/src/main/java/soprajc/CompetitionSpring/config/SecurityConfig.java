@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.POST).permitAll()
 				.antMatchers(HttpMethod.GET,"/api/auth/obj").authenticated()
 				.antMatchers("/api/athlete/**").hasRole("ATHLETE")
-				.antMatchers("/api/epreuve/**").hasAnyRole("ATHLETE","ORGANISATEUR")
+				.antMatchers("/api/epreuve/**").hasAnyRole("ATHLETE","ORGANISATEUR","SPECTATEUR")
 				.antMatchers("/api/journaliste/**").hasRole("JOURNALISTE")
 				.antMatchers("/api/logement/**").hasAnyRole("ORGANISATEUR","SPECTATEUR","ATHLETE")
 				.antMatchers("/api/organisateur/**").hasRole("ORGANISATEUR")

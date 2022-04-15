@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { Adresse } from './../../../model/adresse';
 import { Compte } from './../../../model/compte';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -48,7 +49,8 @@ export class OrganisateurEditComponent implements OnInit {
   goList() {
     if (localStorage.getItem('profil')) {
       localStorage.removeItem('profil');
-      this.router.navigateByUrl('/profil');
+      localStorage.clear();
+      this.router.navigateByUrl('/home');
     } else this.router.navigateByUrl('/organisateur');
   }
   annuler() {

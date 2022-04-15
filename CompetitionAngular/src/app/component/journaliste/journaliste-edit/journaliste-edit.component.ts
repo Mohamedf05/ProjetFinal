@@ -48,7 +48,8 @@ export class JournalisteEditComponent implements OnInit {
   goList() {
     if (localStorage.getItem('profil')) {
       localStorage.removeItem('profil');
-      this.router.navigateByUrl('/profil');
+      localStorage.clear();
+      this.router.navigateByUrl('/home');
     } else this.router.navigateByUrl('/journaliste');
   }
   annuler() {

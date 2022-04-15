@@ -1,6 +1,7 @@
 <div class="container">
   <div class="card">
-    <div class="card-header">Modifier un terrain</div>
+    <div class="card-header" *ngIf="this.terrain.id">Modifier un terrain</div>
+    <div class="card-header" *ngIf="!this.terrain.id">Créer un terrain</div>
     <div class="card-body">
       <form (ngSubmit)="submit()" [formGroup]="form">
         <div *ngIf="terrain.id">
@@ -12,7 +13,7 @@
           <input type="text" class="form-control" formControlName="nom" />
         </div>
         <div class="form-group">
-          <label>Adresse: </label>
+          <label style="font-size: 20px">Adresse: </label>
           <div class="form-group">
             <label>Numero: </label>
             <input type="text" class="form-control" formControlName="numero" />
